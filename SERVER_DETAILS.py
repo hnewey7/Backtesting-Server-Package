@@ -8,13 +8,15 @@ Created on Friday 22nd March 2024.
 
 # SSH details.
 standard_server_details = {
-  "account":"",
+  "server":"",
+  "username":"",
   "password":""
 }
 
 # MySQL details.
 mysql_server_details = {
-  "account":"",
+  "server":"",
+  "username":"",
   "password":""
 }
 
