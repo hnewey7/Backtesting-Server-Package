@@ -38,7 +38,7 @@ class BacktestingServer():
     self.standard_details = standard_details
     self.sql_details = sql_details
 
-  def connect(self) -> tuple[paramiko.Channel, pymysql.cursors.Cursor]:
+  def connect(self) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]:
     """ Connecting to MySQL server using SSH.
         
         Returns
@@ -47,21 +47,25 @@ class BacktestingServer():
           Channel to MySQL server.
         pymysql.cursors.Cursor
           Cursor to execute SQL queries."""
-    # Connecting through SSH.
-    ssh = paramiko.SSHClient()
-    ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
-    logger.info("Connecting to server: {}".format(self.standard_details["server"]))
-    ssh.connect(self.standard_details["server"],username=self.standard_details["username"],password=self.standard_details["password"])
+    try:
+      # Connecting through SSH.
+      ssh = paramiko.SSHClient()
+      ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
+      logger.info("Connecting to server: {}".format(self.standard_details["server"]))
+      ssh.connect(self.standard_details["server"],username=self.standard_details["username"],password=self.standard_details["password"])
 
-    # Connecting to MySQL server.
-    transport = ssh.get_transport()
-    channel = transport.open_channel("direct-tcpip", ('127.0.0.1', 3306), ('localhost', 3306))
-    c = pymysql.connect(database='trading_bot', user=self.sql_details['username'], password=self.sql_details['password'], defer_connect=True)
-    c.connect(channel)
+      # Connecting to MySQL server.
+      transport = ssh.get_transport()
+      channel = transport.open_channel("direct-tcpip", ('127.0.0.1', 3306), ('localhost', 3306))
+      c = pymysql.connect(database='trading_bot', user=self.sql_details['username'], password=self.sql_details['password'], defer_connect=True)
+      c.connect(channel)
 
-    # Getting cursor to execute commands.
-    cursor = c.cursor()
-    return channel, cursor
+      # Getting cursor to execute commands.
+      cursor = c.cursor()
+      return channel, cursor
+    except:
+      logger.info("Unable to connect to MySQL server.")
+      return None, None
 
 # - - - - - - - - - - - - - -
     
