@@ -14,8 +14,6 @@ import paramiko.channel
 import pymysql
 import pymysql.cursors
 
-from SERVER_DETAILS import get_standard_server_details, get_mysql_server_details
-
 # - - - - - - - - - - - - - -
 
 global logger 
