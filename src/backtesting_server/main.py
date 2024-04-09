@@ -37,6 +37,9 @@ class BacktestingServer():
     # Getting details.
     self.standard_details = standard_details
     self.sql_details = sql_details
+    
+    self.channel: paramiko.Channel = None
+    self.cursor: pymysql.cursors.Cursor = None
 
   def connect(self) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]:
     """ Connecting to MySQL server using SSH.
@@ -62,6 +65,9 @@ class BacktestingServer():
 
       # Getting cursor to execute commands.
       cursor = c.cursor()
+      # Adding channel and cursor to server.
+      self.channel = channel
+      self.cursor = cursor
       return channel, cursor
     except:
       logger.info("Unable to connect to MySQL server.")
