@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "backtesting-server"
+version = "0.1.0"
+description = "Package to interact with MySQL server, recording results of the backtesting."
+authors = ["hnewey7 <hnewey7@gmail.com>"]
+license = "MIT"
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.11"
+paramiko = "^3.4.0"
+pymysql = "^1.1.0"
+
+
+[tool.poetry.group.dev.dependencies]
+pytest = "^8.1.1"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
