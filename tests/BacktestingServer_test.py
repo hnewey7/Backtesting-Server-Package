@@ -34,6 +34,8 @@ def test_BacktestingServer_connect() -> None:
   # Handling assertions.
   assert channel
   assert cursor
+  assert server.channel
+  assert server.cursor
 
 def test_BacktestingServer_connect_invalid() -> None:
   """ Testing invalid details with the BacktestingServer object."""
@@ -45,3 +47,5 @@ def test_BacktestingServer_connect_invalid() -> None:
   # Handling assertions.
   assert channel == None
   assert cursor == None
+  assert server.channel == None
+  assert server.cursor == None
