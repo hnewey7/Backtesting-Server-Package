@@ -23,9 +23,19 @@ mysql_server_details = {
 # - - - - - - - - - - - - - - - -
 
 def get_standard_server_details() -> dict:
-  """ Getting standard SSH details."""
+  """ Getting standard SSH details.
+      
+      Returns
+      -------
+      dict
+        Contains 'server', 'username' and 'password'."""
   return standard_server_details
 
 def get_mysql_server_details() -> dict:
-  """ Getting MySQL server details."""
+  """ Getting MySQL server details.
+
+    Returns
+    -------
+    dict
+      Contains 'server', 'username' and 'password'."""
   return mysql_server_details

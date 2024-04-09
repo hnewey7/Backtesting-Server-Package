@@ -28,10 +28,17 @@ class BacktestingServer():
         - Handles backtesting strategies.
         - Allows results to be uploaded."""
   
-  def __init__(self) -> None:
+  def __init__(self, standard_details:dict, sql_details:dict) -> None:
+    """
+        Parameters
+        ----------
+        standard_details: dict
+          Details for the standard server including 'server', 'username' and 'password'.
+        sql_details: dict
+          Details for the sql server including 'server', 'username' and 'password'."""
     # Getting details.
-    self.standard_details = get_standard_server_details()
-    self.sql_details = get_mysql_server_details()
+    self.standard_details = standard_details
+    self.sql_details = sql_details
 
   def connect(self) -> tuple[paramiko.Channel, pymysql.cursors.Cursor]:
     """ Connecting to MySQL server using SSH.
