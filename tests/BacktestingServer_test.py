@@ -49,3 +49,18 @@ def test_BacktestingServer_connect_invalid() -> None:
   assert cursor == None
   assert server.channel == None
   assert server.cursor == None
+
+def test_BacktestingServer_check_historical_data_summary_exists() -> None:
+  """ Testing check_historical_data_summary_exists() method within the BacktestingServer object."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect()
+
+  # Deleting any existing tables.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")
+  assert not server._check_historical_data_summary_exists()
+
+  # Creating table.
+  server._create_historical_data_summary()
+  assert server._check_historical_data_summary_exists()
