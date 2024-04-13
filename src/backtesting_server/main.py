@@ -43,9 +43,14 @@ class BacktestingServer():
     self.channel: paramiko.Channel = None
     self.cursor: pymysql.cursors.Cursor = None
 
-  def connect(self) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]:
+  def connect(self, database:str) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]:
     """ Connecting to MySQL server using SSH.
         
+        Parameters
+        ----------
+        database: str
+          Name of database to connect to.
+
         Returns
         -------
         paramiko.Channel
@@ -62,7 +67,7 @@ class BacktestingServer():
       # Connecting to MySQL server.
       transport = ssh.get_transport()
       channel = transport.open_channel("direct-tcpip", ('127.0.0.1', 3306), ('localhost', 3306))
-      c = pymysql.connect(database='trading_bot', user=self.sql_details['username'], password=self.sql_details['password'], defer_connect=True)
+      c = pymysql.connect(database=database, user=self.sql_details['username'], password=self.sql_details['password'], defer_connect=True)
       c.connect(channel)
 
       # Getting cursor to execute commands.
