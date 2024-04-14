@@ -94,7 +94,9 @@ class BacktestingServer():
       # Creating summary table.
       self._create_historical_data_summary()
     # Checking if data is already present.
-    self._check_instrument_in_historical_data(instrument)
+    if not self._check_instrument_in_historical_data(instrument):
+      # Adding new instrument.
+      self._add_historical_data_summary(instrument)
 
   def _check_historical_data_summary_exists(self) -> bool:
     """ Checking if the historical data summary table exists on the MySQL server.
@@ -146,6 +148,27 @@ class BacktestingServer():
     except:
       logger.info("Failed to create Historical Data Summary.")
 
+  def _add_historical_data_summary(self, instrument: ig_package.Instrument) -> None:
+    """ Adding instrument to the historical data summary and creating new table for historical data.
+    
+        Parameters
+        ----------
+        instrument: ig_package.Instrument
+          Instrument to add to the historical data summary."""
+    # Adding instrument to historical data summary.
+    self.cursor.execute(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic)\
+    VALUES ('{instrument.name}', '{instrument.epic}');")
+    # Creating new table for storing historical data.
+    new_name = instrument.name.replace(" ","_")
+    self.cursor.execute(f"CREATE TABLE {new_name}_HistoricalDataset (\
+    DatetimeIndex DATETIME NOT NULL,\
+    Open FLOAT(12),\
+    High FLOAT(12),\
+    Low FLOAT(12),\
+    Close FLOAT(12),\
+    PRIMARY KEY (DatetimeIndex)\
+    );")
+    
 # - - - - - - - - - - - - - -
     
 if __name__ == "__main__":
