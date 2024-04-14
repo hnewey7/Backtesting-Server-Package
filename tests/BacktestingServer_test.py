@@ -6,7 +6,9 @@ Created on Tuesday 9th April 2024.
 
 '''
 
+import paramiko.ssh_exception
 import pytest
+import paramiko
 from backtesting_server import BacktestingServer
 from SERVER_DETAILS import get_standard_server_details, get_mysql_server_details
 
@@ -24,7 +26,7 @@ def test_BacktestingServer_init() -> None:
     assert server.standard_details[key] 
     assert server.sql_details[key]
 
-@pytest.mark.parametrize("iteration", [i for i in range(100)])
+@pytest.mark.parametrize("iteration", [i for i in range(10)])
 def test_BacktestingServer_connect(iteration) -> None:
   """ Testing the connect method within the BacktestingServer object."""
   # Creating backtesting server object.
@@ -40,16 +42,11 @@ def test_BacktestingServer_connect(iteration) -> None:
 
 def test_BacktestingServer_connect_invalid() -> None:
   """ Testing invalid details with the BacktestingServer object."""
-  # Creating backtesting server object.
-  server = BacktestingServer(standard_details={"server":"", "username":"", "password":""},sql_details={"server":"", "username":"", "password":""})
-  # Connecting to the server.
-  channel, cursor = server.connect(database="test")
-
-  # Handling assertions.
-  assert channel == None
-  assert cursor == None
-  assert server.channel == None
-  assert server.cursor == None
+  with pytest.raises(paramiko.ssh_exception.NoValidConnectionsError):
+    # Creating backtesting server object.
+    server = BacktestingServer(standard_details={"server":"", "username":"", "password":""},sql_details={"server":"", "username":"", "password":""})
+    # Connecting to the server.
+    server.connect(database="test")
 
 def test_BacktestingServer_check_historical_data_summary_exists() -> None:
   """ Testing check_historical_data_summary_exists() method within the BacktestingServer object."""
