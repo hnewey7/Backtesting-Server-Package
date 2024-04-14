@@ -125,7 +125,7 @@ class BacktestingServer():
           Boolean depending if instrument is present in historical data."""
     # Checking historical data summary for instrument.
     self.cursor.execute(f'SELECT * FROM HistoricalDataSummary WHERE Epic="{instrument.epic}";')
-    result = cursor.fetchall()
+    result = self.cursor.fetchall()
     if len(result) == 0:
       logger.info(f"Instrument ({instrument.name}) could not be found in the historical data summary.")
       return False
