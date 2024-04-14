@@ -92,3 +92,34 @@ def test_BacktestingServer_check_instrument_in_historical_data() -> None:
 
    # Deleting table after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
+
+def test_BacktestingServer_add_historical_data() -> None:
+  """ Testing add_historical_data() method within the BacktestingServer object."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Creating table.
+  server._create_historical_data_summary()
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  test_instrument = ig.search_instrument('FTSE 100')
+
+  # Adding historical data
+  server._add_historical_data_summary(test_instrument)
+
+  # Checking if added to summary.
+  server.cursor.execute(f"SELECT * FROM HistoricalDataSummary WHERE Epic='{test_instrument.epic}';")
+  assert len(server.cursor.fetchall()) > 0
+  # Checking if table added.
+  try:
+    server.cursor.execute(f"SELECT * FROM {test_instrument.name.replace(' ','_')}_HistoricalDataset;")
+    assert True
+  except:
+    assert False
+
+  # Deleting tables after testing.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
+  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
