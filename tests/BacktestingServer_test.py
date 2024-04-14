@@ -6,11 +6,12 @@ Created on Tuesday 9th April 2024.
 
 '''
 
+import ig_package
 import paramiko.ssh_exception
 import pytest
 import paramiko
 from backtesting_server import BacktestingServer
-from SERVER_DETAILS import get_standard_server_details, get_mysql_server_details
+from SERVER_DETAILS import get_standard_server_details, get_mysql_server_details, get_ig_details
 
 # - - - - - - - - - - - - - - - - - - -
 
@@ -65,3 +66,29 @@ def test_BacktestingServer_check_historical_data_summary_exists() -> None:
   # Creating table.
   server._create_historical_data_summary()
   assert server._check_historical_data_summary_exists()
+
+  # Deleting table after testing.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")
+
+def test_BacktestingServer_check_instrument_in_historical_data() -> None:
+  """ Testing check_instrument_in_historical_data() method within the BacktestingServer object."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Creating table.
+  server._create_historical_data_summary()
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  test_instrument = ig.search_instrument('FTSE 100')
+  # Inserting test instrument.
+  server.cursor.execute(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic)\
+  VALUES ('{test_instrument.name}', '{test_instrument.epic}');")
+
+  # Checking instrument.
+  assert server._check_instrument_in_historical_data(test_instrument)
+
+   # Deleting table after testing.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
