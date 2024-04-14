@@ -24,12 +24,13 @@ def test_BacktestingServer_init() -> None:
     assert server.standard_details[key] 
     assert server.sql_details[key]
 
-def test_BacktestingServer_connect() -> None:
+@pytest.mark.parametrize("iteration", [i for i in range(100)])
+def test_BacktestingServer_connect(iteration) -> None:
   """ Testing the connect method within the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
-  channel, cursor = server.connect()
+  channel, cursor = server.connect(database="test")
 
   # Handling assertions.
   assert channel
@@ -42,7 +43,7 @@ def test_BacktestingServer_connect_invalid() -> None:
   # Creating backtesting server object.
   server = BacktestingServer(standard_details={"server":"", "username":"", "password":""},sql_details={"server":"", "username":"", "password":""})
   # Connecting to the server.
-  channel, cursor = server.connect()
+  channel, cursor = server.connect(database="test")
 
   # Handling assertions.
   assert channel == None
@@ -55,10 +56,13 @@ def test_BacktestingServer_check_historical_data_summary_exists() -> None:
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
-  server.connect()
+  server.connect(database="test")
 
   # Deleting any existing tables.
-  server.cursor.execute("DROP TABLE HistoricalDataSummary;")
+  try:
+    server.cursor.execute("DROP TABLE HistoricalDataSummary;")
+  except:
+    pass
   assert not server._check_historical_data_summary_exists()
 
   # Creating table.
