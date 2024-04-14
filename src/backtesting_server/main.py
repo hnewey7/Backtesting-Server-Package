@@ -62,7 +62,7 @@ class BacktestingServer():
       ssh = paramiko.SSHClient()
       ssh.set_missing_host_key_policy(paramiko.AutoAddPolicy())
       logger.info("Connecting to server: {}".format(self.standard_details["server"]))
-      ssh.connect(self.standard_details["server"],username=self.standard_details["username"],password=self.standard_details["password"])
+      ssh.connect(self.standard_details["server"],username=self.standard_details["username"],password=self.standard_details["password"],timeout=20,allow_agent=False,look_for_keys=False)
 
       # Connecting to MySQL server.
       transport = ssh.get_transport()
@@ -76,9 +76,9 @@ class BacktestingServer():
       self.channel = channel
       self.cursor = cursor
       return channel, cursor
-    except:
+    except Exception as e:
       logger.info("Unable to connect to MySQL server.")
-      return None, None
+      raise e
 
   def upload_historical_data(self, instrument:ig_package.Instrument, dataset:pd.DataFrame) -> None:
     """ Uploading historical data to the backtesting server.
