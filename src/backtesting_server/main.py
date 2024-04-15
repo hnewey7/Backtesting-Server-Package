@@ -66,11 +66,13 @@ class BacktestingServer():
       ssh.connect(self.standard_details["server"],username=self.standard_details["username"],password=self.standard_details["password"],timeout=20,allow_agent=False,look_for_keys=False)
 
       # Connecting to MySQL server.
+      logger.info("Connecting to MySQL server.")
       transport = ssh.get_transport()
       channel = transport.open_channel("direct-tcpip", ('127.0.0.1', 3306), ('localhost', 3306))
       c = pymysql.connect(database=database, user=self.sql_details['username'], password=self.sql_details['password'], defer_connect=True, autocommit=True)
       c.connect(channel)
 
+      logger.info("Successfully connected to MySQL server.")
       # Getting cursor to execute commands.
       cursor = c.cursor()
       # Adding channel and cursor to server.
@@ -102,6 +104,7 @@ class BacktestingServer():
     # Filtering out NaN values.
     dataset = dataset.dropna()
     # Inserting each row into database.
+    logger.info("Inserting data into server-side dataset.")
     for data_point in dataset.index:
       insert_statement = f'INSERT INTO {instrument.name.replace(" ","_")}_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)'
       values = [
@@ -166,6 +169,7 @@ class BacktestingServer():
         ----------
         instrument: ig_package.Instrument
           Instrument to add to the historical data summary."""
+    logger.info("Adding instrument to HistoricalDataSummary and creating a new table.")
     # Adding instrument to historical data summary.
     self.cursor.execute(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic)\
     VALUES ('{instrument.name}', '{instrument.epic}');")
