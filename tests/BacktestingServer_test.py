@@ -123,3 +123,41 @@ def test_BacktestingServer_add_historical_data() -> None:
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+
+def test_BacktestingServer_upload_historical_data() -> None:
+  """ Testing upload_historical_data() method within the BacktestingServer object."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Creating table.
+  server._create_historical_data_summary()
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  test_instrument = ig.search_instrument('FTSE 100')
+  data = test_instrument.get_historical_prices("SECOND","2024:04:15-14:13:00","2024:04:15-14:14:00")
+
+  # Uploading historical data.
+  server.upload_historical_data(test_instrument,data)
+
+  # Checking tables were created.
+  server.cursor.execute("SHOW TABLES;")
+  result_string = str(server.cursor.fetchall())
+  assert "historicaldatasummary" in result_string
+  assert f"{test_instrument.name.replace(" ","_")}_historicaldataset".lower() in result_string
+
+  # Checking data added.
+  data = data.dropna()
+  for datapoint in data.index:
+    server.cursor.execute(f'SELECT * FROM {test_instrument.name.replace(" ","_")}_historicaldataset WHERE DatetimeIndex = "{datapoint}"')
+    result = server.cursor.fetchall()
+    assert result[0][1] == data["Open"][datapoint]
+    assert result[0][2] == data["High"][datapoint]
+    assert result[0][3] == data["Low"][datapoint]
+    assert result[0][4] == data["Close"][datapoint]
+
+  # Deleting tables after testing.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
+  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
