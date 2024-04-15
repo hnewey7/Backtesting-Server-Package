@@ -15,6 +15,7 @@ import pymysql
 import pymysql.cursors
 import ig_package
 import pandas as pd
+from datetime import datetime
 
 # - - - - - - - - - - - - - -
 
@@ -67,7 +68,7 @@ class BacktestingServer():
       # Connecting to MySQL server.
       transport = ssh.get_transport()
       channel = transport.open_channel("direct-tcpip", ('127.0.0.1', 3306), ('localhost', 3306))
-      c = pymysql.connect(database=database, user=self.sql_details['username'], password=self.sql_details['password'], defer_connect=True)
+      c = pymysql.connect(database=database, user=self.sql_details['username'], password=self.sql_details['password'], defer_connect=True, autocommit=True)
       c.connect(channel)
 
       # Getting cursor to execute commands.
@@ -97,6 +98,16 @@ class BacktestingServer():
     if not self._check_instrument_in_historical_data(instrument):
       # Adding new instrument.
       self._add_historical_data_summary(instrument)
+
+    # Filtering out NaN values.
+    dataset = dataset.dropna()
+    # Inserting each row into database.
+    for data_point in dataset.index:
+      insert_statement = f'INSERT INTO {instrument.name.replace(" ","_")}_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)'
+      values = [
+        (str(data_point), float(dataset["Open"][data_point]), float(dataset["High"][data_point]), float(dataset["Low"][data_point]), float(dataset["Close"][data_point])),
+      ]
+      self.cursor.executemany(insert_statement, values)
 
   def _check_historical_data_summary_exists(self) -> bool:
     """ Checking if the historical data summary table exists on the MySQL server.
@@ -162,10 +173,10 @@ class BacktestingServer():
     new_name = instrument.name.replace(" ","_")
     self.cursor.execute(f"CREATE TABLE {new_name}_HistoricalDataset (\
     DatetimeIndex DATETIME NOT NULL,\
-    Open FLOAT(12),\
-    High FLOAT(12),\
-    Low FLOAT(12),\
-    Close FLOAT(12),\
+    Open FLOAT(20),\
+    High FLOAT(20),\
+    Low FLOAT(20),\
+    Close FLOAT(20),\
     PRIMARY KEY (DatetimeIndex)\
     );")
     
