@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html class="writer-html5" lang="en" data-content_root="../../">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>backtesting_server.main &mdash; Backtesting Server Package 0.1.0 documentation</title>
+      <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
+      <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=eafc0fe6" />
+
+  
+  <!--[if lt IE 9]>
+    <script src="../../_static/js/html5shiv.min.js"></script>
+  <![endif]-->
+  
+        <script src="../../_static/jquery.js?v=5d32c60e"></script>
+        <script src="../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
+        <script src="../../_static/documentation_options.js?v=01f34227"></script>
+        <script src="../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/js/theme.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Search" href="../../search.html" /> 
+</head>
+
+<body class="wy-body-for-nav"> 
+  <div class="wy-grid-for-nav">
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search" >
+
+          
+          
+          <a href="../../index.html" class="icon icon-home">
+            Backtesting Server Package
+          </a>
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" aria-label="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+        </div><div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="Navigation menu">
+              <!-- Local TOC -->
+              <div class="local-toc"></div>
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap"><nav class="wy-nav-top" aria-label="Mobile navigation menu" >
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../index.html">Backtesting Server Package</a>
+      </nav>
+
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="Page navigation">
+  <ul class="wy-breadcrumbs">
+      <li><a href="../../index.html" class="icon icon-home" aria-label="Home"></a></li>
+          <li class="breadcrumb-item"><a href="../index.html">Module code</a></li>
+      <li class="breadcrumb-item active">backtesting_server.main</li>
+      <li class="wy-breadcrumbs-aside">
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+             
+  <h1>Source code for backtesting_server.main</h1><div class="highlight"><pre>
+<span></span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">Module for uploading backtesting results to MySQL server.</span>
+
+<span class="sd">Created on Tuesday 19th March 2024.</span>
+<span class="sd">@author: Harry New</span>
+
+<span class="sd">&#39;&#39;&#39;</span>
+
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">logging.config</span>
+<span class="kn">import</span> <span class="nn">paramiko</span>
+<span class="kn">import</span> <span class="nn">sys</span>
+<span class="kn">import</span> <span class="nn">paramiko.channel</span>
+<span class="kn">import</span> <span class="nn">pymysql</span>
+<span class="kn">import</span> <span class="nn">pymysql.cursors</span>
+<span class="kn">import</span> <span class="nn">ig_package</span>
+<span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
+<span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
+
+<span class="c1"># - - - - - - - - - - - - - -</span>
+
+<span class="k">global</span> <span class="n">logger</span> 
+<span class="n">logger</span> <span class="o">=</span> <span class="n">logging</span><span class="o">.</span><span class="n">getLogger</span><span class="p">()</span>
+
+<span class="c1"># - - - - - - - - - - - - - -</span>
+
+<div class="viewcode-block" id="BacktestingServer">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer">[docs]</a>
+<span class="k">class</span> <span class="nc">BacktestingServer</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; Object representing the SQL server, allowing users to interact without having to directly connect.</span>
+<span class="sd">        - Handles backtesting strategies.</span>
+<span class="sd">        - Allows results to be uploaded.&quot;&quot;&quot;</span>
+  
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">standard_details</span><span class="p">:</span><span class="nb">dict</span><span class="p">,</span> <span class="n">sql_details</span><span class="p">:</span><span class="nb">dict</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        standard_details: dict</span>
+<span class="sd">          Details for the standard server including &#39;server&#39;, &#39;username&#39; and &#39;password&#39;.</span>
+<span class="sd">        sql_details: dict</span>
+<span class="sd">          Details for the sql server including &#39;server&#39;, &#39;username&#39; and &#39;password&#39;.&quot;&quot;&quot;</span>
+    <span class="c1"># Getting details.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">standard_details</span> <span class="o">=</span> <span class="n">standard_details</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">sql_details</span> <span class="o">=</span> <span class="n">sql_details</span>
+    
+    <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">:</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">Channel</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">:</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="BacktestingServer.connect">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.connect">[docs]</a>
+  <span class="k">def</span> <span class="nf">connect</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span><span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">tuple</span><span class="p">[</span><span class="n">paramiko</span><span class="o">.</span><span class="n">Channel</span><span class="p">,</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">Cursor</span><span class="p">]</span> <span class="o">|</span> <span class="nb">tuple</span><span class="p">[</span><span class="kc">None</span><span class="p">,</span> <span class="kc">None</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Connecting to MySQL server using SSH.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        database: str</span>
+<span class="sd">          Name of database to connect to.</span>
+
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        paramiko.Channel</span>
+<span class="sd">          Channel to MySQL server.</span>
+<span class="sd">        pymysql.cursors.Cursor</span>
+<span class="sd">          Cursor to execute SQL queries.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Connecting through SSH.</span>
+      <span class="n">ssh</span> <span class="o">=</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">SSHClient</span><span class="p">()</span>
+      <span class="n">ssh</span><span class="o">.</span><span class="n">set_missing_host_key_policy</span><span class="p">(</span><span class="n">paramiko</span><span class="o">.</span><span class="n">AutoAddPolicy</span><span class="p">())</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connecting to server: </span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">standard_details</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">]))</span>
+      <span class="n">ssh</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">standard_details</span><span class="p">[</span><span class="s2">&quot;server&quot;</span><span class="p">],</span><span class="n">username</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">standard_details</span><span class="p">[</span><span class="s2">&quot;username&quot;</span><span class="p">],</span><span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">standard_details</span><span class="p">[</span><span class="s2">&quot;password&quot;</span><span class="p">],</span><span class="n">timeout</span><span class="o">=</span><span class="mi">20</span><span class="p">,</span><span class="n">allow_agent</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span><span class="n">look_for_keys</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+
+      <span class="c1"># Connecting to MySQL server.</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Connecting to MySQL server.&quot;</span><span class="p">)</span>
+      <span class="n">transport</span> <span class="o">=</span> <span class="n">ssh</span><span class="o">.</span><span class="n">get_transport</span><span class="p">()</span>
+      <span class="n">channel</span> <span class="o">=</span> <span class="n">transport</span><span class="o">.</span><span class="n">open_channel</span><span class="p">(</span><span class="s2">&quot;direct-tcpip&quot;</span><span class="p">,</span> <span class="p">(</span><span class="s1">&#39;127.0.0.1&#39;</span><span class="p">,</span> <span class="mi">3306</span><span class="p">),</span> <span class="p">(</span><span class="s1">&#39;localhost&#39;</span><span class="p">,</span> <span class="mi">3306</span><span class="p">))</span>
+      <span class="n">c</span> <span class="o">=</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="n">database</span><span class="p">,</span> <span class="n">user</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sql_details</span><span class="p">[</span><span class="s1">&#39;username&#39;</span><span class="p">],</span> <span class="n">password</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">sql_details</span><span class="p">[</span><span class="s1">&#39;password&#39;</span><span class="p">],</span> <span class="n">defer_connect</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span> <span class="n">autocommit</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+      <span class="n">c</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">channel</span><span class="p">)</span>
+
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully connected to MySQL server.&quot;</span><span class="p">)</span>
+      <span class="c1"># Getting cursor to execute commands.</span>
+      <span class="n">cursor</span> <span class="o">=</span> <span class="n">c</span><span class="o">.</span><span class="n">cursor</span><span class="p">()</span>
+      <span class="c1"># Adding channel and cursor to server.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span>
+      <span class="k">return</span> <span class="n">channel</span><span class="p">,</span> <span class="n">cursor</span>
+    <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Unable to connect to MySQL server.&quot;</span><span class="p">)</span>
+      <span class="k">raise</span> <span class="n">e</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer.upload_historical_data">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.upload_historical_data">[docs]</a>
+  <span class="k">def</span> <span class="nf">upload_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Uploading historical data to the backtesting server.</span>
+<span class="sd">    </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        instrument: ig_package.Instrument</span>
+<span class="sd">          Instrument the historical data corresponds to.</span>
+<span class="sd">        dataset: pd.DataFrame</span>
+<span class="sd">          DataFrame containing the data to be uploaded.&quot;&quot;&quot;</span>
+    <span class="c1"># Checking if historical data summary exists.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_historical_data_summary_exists</span><span class="p">():</span>
+      <span class="c1"># Creating summary table.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_create_historical_data_summary</span><span class="p">()</span>
+    <span class="c1"># Checking if data is already present.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_instrument_in_historical_data</span><span class="p">(</span><span class="n">instrument</span><span class="p">):</span>
+      <span class="c1"># Adding new instrument.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_add_historical_data_summary</span><span class="p">(</span><span class="n">instrument</span><span class="p">)</span>
+
+    <span class="c1"># Filtering out NaN values.</span>
+    <span class="n">dataset</span> <span class="o">=</span> <span class="n">dataset</span><span class="o">.</span><span class="n">dropna</span><span class="p">()</span>
+    <span class="c1"># Inserting each row into database.</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Inserting data into server-side dataset.&quot;</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">data_point</span> <span class="ow">in</span> <span class="n">dataset</span><span class="o">.</span><span class="n">index</span><span class="p">:</span>
+      <span class="n">insert_statement</span> <span class="o">=</span> <span class="sa">f</span><span class="s1">&#39;INSERT INTO </span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="p">)</span><span class="si">}</span><span class="s1">_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)&#39;</span>
+      <span class="n">values</span> <span class="o">=</span> <span class="p">[</span>
+        <span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">data_point</span><span class="p">),</span> <span class="nb">float</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">][</span><span class="n">data_point</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;High&quot;</span><span class="p">][</span><span class="n">data_point</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;Low&quot;</span><span class="p">][</span><span class="n">data_point</span><span class="p">]),</span> <span class="nb">float</span><span class="p">(</span><span class="n">dataset</span><span class="p">[</span><span class="s2">&quot;Close&quot;</span><span class="p">][</span><span class="n">data_point</span><span class="p">])),</span>
+      <span class="p">]</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="n">insert_statement</span><span class="p">,</span> <span class="n">values</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer._check_historical_data_summary_exists">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._check_historical_data_summary_exists">[docs]</a>
+  <span class="k">def</span> <span class="nf">_check_historical_data_summary_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking if the historical data summary table exists on the MySQL server.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">          Depending on whether the summary table exists or not.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;SELECT * FROM HistoricalDataSummary;&#39;</span><span class="p">)</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Historical Data Summary exists.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Historical Data Summary does not exist.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer._check_instrument_in_historical_data">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._check_instrument_in_historical_data">[docs]</a>
+  <span class="k">def</span> <span class="nf">_check_instrument_in_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking if instrument is already in historical data.</span>
+<span class="sd">        </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        instrument: ig_package.Instrument</span>
+<span class="sd">          Instrument to be checked.</span>
+<span class="sd">        </span>
+<span class="sd">        Returns</span>
+<span class="sd">        -------</span>
+<span class="sd">        bool</span>
+<span class="sd">          Boolean depending if instrument is present in historical data.&quot;&quot;&quot;</span>
+    <span class="c1"># Checking historical data summary for instrument.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SELECT * FROM HistoricalDataSummary WHERE Epic=&quot;</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">epic</span><span class="si">}</span><span class="s1">&quot;;&#39;</span><span class="p">)</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">result</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instrument (</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">) could not be found in the historical data summary.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">False</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Instrument (</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">) is already in the historical data summary.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">True</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer._create_historical_data_summary">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._create_historical_data_summary">[docs]</a>
+  <span class="k">def</span> <span class="nf">_create_historical_data_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Creating the historical data summary on the MySQL server.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;CREATE TABLE HistoricalDataSummary (</span><span class="se">\</span>
+<span class="s1">      ID INT NOT NULL AUTO_INCREMENT,</span><span class="se">\</span>
+<span class="s1">      InstrumentName VARCHAR(20),</span><span class="se">\</span>
+<span class="s1">      Epic VARCHAR(100),</span><span class="se">\</span>
+<span class="s1">      PRIMARY KEY (ID)</span><span class="se">\</span>
+<span class="s1">      );&#39;</span><span class="p">)</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created Historical Data Summary.&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Failed to create Historical Data Summary.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer._add_historical_data_summary">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._add_historical_data_summary">[docs]</a>
+  <span class="k">def</span> <span class="nf">_add_historical_data_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Adding instrument to the historical data summary and creating new table for historical data.</span>
+<span class="sd">    </span>
+<span class="sd">        Parameters</span>
+<span class="sd">        ----------</span>
+<span class="sd">        instrument: ig_package.Instrument</span>
+<span class="sd">          Instrument to add to the historical data summary.&quot;&quot;&quot;</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adding instrument to HistoricalDataSummary and creating a new table.&quot;</span><span class="p">)</span>
+    <span class="c1"># Adding instrument to historical data summary.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INSERT INTO HistoricalDataSummary (InstrumentName, Epic)</span><span class="se">\</span>
+<span class="s2">    VALUES (&#39;</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;, &#39;</span><span class="si">{</span><span class="n">instrument</span><span class="o">.</span><span class="n">epic</span><span class="si">}</span><span class="s2">&#39;);&quot;</span><span class="p">)</span>
+    <span class="c1"># Creating new table for storing historical data.</span>
+    <span class="n">new_name</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CREATE TABLE </span><span class="si">{</span><span class="n">new_name</span><span class="si">}</span><span class="s2">_HistoricalDataset (</span><span class="se">\</span>
+<span class="s2">    DatetimeIndex DATETIME NOT NULL,</span><span class="se">\</span>
+<span class="s2">    Open FLOAT(20),</span><span class="se">\</span>
+<span class="s2">    High FLOAT(20),</span><span class="se">\</span>
+<span class="s2">    Low FLOAT(20),</span><span class="se">\</span>
+<span class="s2">    Close FLOAT(20),</span><span class="se">\</span>
+<span class="s2">    PRIMARY KEY (DatetimeIndex)</span><span class="se">\</span>
+<span class="s2">    );&quot;</span><span class="p">)</span></div>
+</div>
+
+    
+<span class="c1"># - - - - - - - - - - - - - -</span>
+    
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+
+  <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;logging_config.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+    <span class="n">config_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+    <span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
+
+  <span class="n">backtesting</span> <span class="o">=</span> <span class="n">BacktestingServer</span><span class="p">({</span>
+    <span class="s2">&quot;server&quot;</span><span class="p">:</span><span class="s2">&quot;2.123.180.133&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;hnewe&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;DexteR12712&quot;</span>
+<span class="p">}</span> <span class="p">,{</span>
+    <span class="s2">&quot;server&quot;</span><span class="p">:</span><span class="s2">&quot;2.123.180.133&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;Archie12712&quot;</span>
+<span class="p">}</span>
+<span class="p">)</span>
+  <span class="n">channel</span><span class="p">,</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">backtesting</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
+
+  <span class="n">ig</span> <span class="o">=</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">IG</span><span class="p">(</span><span class="s2">&quot;e9365a5085ccd18ccc2c2d1d91ce51ad3a6e69f8&quot;</span><span class="p">,</span><span class="s2">&quot;harrynewey&quot;</span><span class="p">,</span><span class="s2">&quot;Archie12712&quot;</span><span class="p">)</span>
+  <span class="n">ftse100</span> <span class="o">=</span> <span class="n">ig</span><span class="o">.</span><span class="n">search_instrument</span><span class="p">(</span><span class="s2">&quot;FTSE 100&quot;</span><span class="p">)</span>
+  <span class="n">data</span> <span class="o">=</span> <span class="n">ftse100</span><span class="o">.</span><span class="n">get_historical_prices</span><span class="p">(</span><span class="s2">&quot;SECOND&quot;</span><span class="p">,</span><span class="s2">&quot;2024:04:15-14:13:00&quot;</span><span class="p">,</span><span class="s2">&quot;2024:04:15-14:14:00&quot;</span><span class="p">)</span>
+
+  <span class="n">backtesting</span><span class="o">.</span><span class="n">upload_historical_data</span><span class="p">(</span><span class="n">ftse100</span><span class="p">,</span><span class="n">data</span><span class="p">)</span>  
+<span class="w">  </span><span class="sd">&#39;&#39;&#39;</span>
+<span class="sd">  cursor.execute(&quot;DESC Strategies;&quot;)</span>
+<span class="sd">  result = cursor.fetchall()</span>
+<span class="sd">  print(result)</span>
+<span class="sd">  &#39;&#39;&#39;</span>
+</pre></div>
+
+           </div>
+          </div>
+          <footer>
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>&#169; Copyright 2024, Harry New.</p>
+  </div>
+
+  Built with <a href="https://www.sphinx-doc.org/">Sphinx</a> using a
+    <a href="https://github.com/readthedocs/sphinx_rtd_theme">theme</a>
+    provided by <a href="https://readthedocs.org">Read the Docs</a>.
+   
+
+</footer>
+        </div>
+      </div>
+    </section>
+  </div>
+  <script>
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

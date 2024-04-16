@@ -1,0 +1,78 @@
+:py:mod:`backtesting_server.main`
+=================================
+
+.. py:module:: backtesting_server.main
+
+.. autoapi-nested-parse::
+
+   Module for uploading backtesting results to MySQL server.
+
+   Created on Tuesday 19th March 2024.
+   @author: Harry New
+
+
+
+Module Contents
+---------------
+
+.. py:class:: BacktestingServer(standard_details: dict, sql_details: dict)
+
+
+   Object representing the SQL server, allowing users to interact without having to directly connect.
+   - Handles backtesting strategies.
+   - Allows results to be uploaded.
+
+   .. py:method:: connect(database: str) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]
+
+      Connecting to MySQL server using SSH.
+
+      :param database: Name of database to connect to.
+      :type database: str
+
+      :returns: * *paramiko.Channel* -- Channel to MySQL server.
+                * *pymysql.cursors.Cursor* -- Cursor to execute SQL queries.
+
+
+   .. py:method:: upload_historical_data(instrument: ig_package.Instrument, dataset: pandas.DataFrame) -> None
+
+      Uploading historical data to the backtesting server.
+
+      :param instrument: Instrument the historical data corresponds to.
+      :type instrument: ig_package.Instrument
+      :param dataset: DataFrame containing the data to be uploaded.
+      :type dataset: pd.DataFrame
+
+
+   .. py:method:: _check_historical_data_summary_exists() -> bool
+
+      Checking if the historical data summary table exists on the MySQL server.
+
+      :returns: Depending on whether the summary table exists or not.
+      :rtype: bool
+
+
+   .. py:method:: _check_instrument_in_historical_data(instrument: ig_package.Instrument) -> bool
+
+      Checking if instrument is already in historical data.
+
+      :param instrument: Instrument to be checked.
+      :type instrument: ig_package.Instrument
+
+      :returns: Boolean depending if instrument is present in historical data.
+      :rtype: bool
+
+
+   .. py:method:: _create_historical_data_summary() -> None
+
+      Creating the historical data summary on the MySQL server.
+
+
+   .. py:method:: _add_historical_data_summary(instrument: ig_package.Instrument) -> None
+
+      Adding instrument to the historical data summary and creating new table for historical data.
+
+      :param instrument: Instrument to add to the historical data summary.
+      :type instrument: ig_package.Instrument
+
+
+
