@@ -15,7 +15,7 @@ from SERVER_DETAILS import get_standard_server_details, get_mysql_server_details
 
 # - - - - - - - - - - - - - - - - - - -
 
-def test_BacktestingServer_init() -> None:
+def test_init() -> None:
   """ Testing the initialisation of the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
@@ -28,7 +28,7 @@ def test_BacktestingServer_init() -> None:
     assert server.sql_details[key]
 
 @pytest.mark.parametrize("iteration", [i for i in range(10)])
-def test_BacktestingServer_connect(iteration) -> None:
+def test_connect(iteration) -> None:
   """ Testing the connect method within the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
@@ -41,7 +41,7 @@ def test_BacktestingServer_connect(iteration) -> None:
   assert server.channel
   assert server.cursor
 
-def test_BacktestingServer_connect_invalid() -> None:
+def test_connect_invalid() -> None:
   """ Testing invalid details with the BacktestingServer object."""
   with pytest.raises(paramiko.ssh_exception.NoValidConnectionsError):
     # Creating backtesting server object.
@@ -49,7 +49,7 @@ def test_BacktestingServer_connect_invalid() -> None:
     # Connecting to the server.
     server.connect(database="test")
 
-def test_BacktestingServer_check_historical_data_summary_exists() -> None:
+def test_check_historical_data_summary_exists() -> None:
   """ Testing check_historical_data_summary_exists() method within the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
@@ -70,7 +70,7 @@ def test_BacktestingServer_check_historical_data_summary_exists() -> None:
   # Deleting table after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")
 
-def test_BacktestingServer_check_instrument_in_historical_data() -> None:
+def test_check_instrument_in_historical_data() -> None:
   """ Testing check_instrument_in_historical_data() method within the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
@@ -93,7 +93,7 @@ def test_BacktestingServer_check_instrument_in_historical_data() -> None:
    # Deleting table after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
 
-def test_BacktestingServer_add_historical_data() -> None:
+def test_add_historical_data() -> None:
   """ Testing add_historical_data() method within the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
@@ -124,7 +124,7 @@ def test_BacktestingServer_add_historical_data() -> None:
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
 
-def test_BacktestingServer_upload_historical_data() -> None:
+def test_upload_historical_data() -> None:
   """ Testing upload_historical_data() method within the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
@@ -140,7 +140,7 @@ def test_BacktestingServer_upload_historical_data() -> None:
   data = test_instrument.get_historical_prices("SECOND","2024:04:15-14:13:00","2024:04:15-14:14:00")
 
   # Uploading historical data.
-  server.upload_historical_data(test_instrument,data)
+  server.upload_historical_data(test_instrument,dataset=data)
 
   # Checking tables were created.
   server.cursor.execute("SHOW TABLES;")
