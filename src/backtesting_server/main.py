@@ -101,19 +101,20 @@ class BacktestingServer():
     # Checking if data is already present.
     if not self._check_instrument_in_historical_data(instrument):
       # Adding new instrument.
-      self._add_historical_data_summary(instrument)
+      self._add_historical_data_summary(instrument, live_tracking)
 
-    # Filtering out NaN values.
-    dataset = dataset.dropna()
-    # Inserting each row into database.
-    logger.info("Inserting data into server-side dataset.")
-    for data_point in dataset.index:
-      insert_statement = f'INSERT INTO {instrument.name.replace(" ","_")}_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)'
-      values = [
-        (str(data_point), float(dataset["Open"][data_point]), float(dataset["High"][data_point]), float(dataset["Low"][data_point]), float(dataset["Close"][data_point])),
-      ]
-      self.cursor.executemany(insert_statement, values)
-
+    # Checking if data.
+    if len(dataset) > 0:
+      # Filtering out NaN values.
+      dataset = dataset.dropna()
+      # Inserting each row into database.
+      logger.info("Inserting data into server-side dataset.")
+      for data_point in dataset.index:
+        insert_statement = f'INSERT INTO {instrument.name.replace(" ","_")}_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)'
+        values = [
+          (str(data_point), float(dataset["Open"][data_point]), float(dataset["High"][data_point]), float(dataset["Low"][data_point]), float(dataset["Close"][data_point])),
+        ]
+        self.cursor.executemany(insert_statement, values)
   def _check_historical_data_summary_exists(self) -> bool:
     """ Checking if the historical data summary table exists on the MySQL server.
         
