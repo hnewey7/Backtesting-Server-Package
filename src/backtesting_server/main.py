@@ -16,6 +16,7 @@ import pymysql.cursors
 import ig_package
 import pandas as pd
 from datetime import datetime
+import time
 
 # - - - - - - - - - - - - - -
 
@@ -199,27 +200,29 @@ class BacktestingServer():
         ----------
         instrument: ig_package.Instrument
           Instrument to upload data for."""
-    # Get current datetime.
-    current_datetime = datetime.now()
+    # Getting current time.
+    current_epoch = time.time()
+    current_datetime = datetime.fromtimestamp(current_epoch)
     # Listing resolutions.
     resolutions = [
-      ("MONTH", ),
-      ("WEEK", datetime(day=7)),
-      ("DAY", datetime(day=1)),
-      ("HOUR_4", datetime(hour=4)),
-      ("HOUR_3", datetime(hour=3)),
-      ("HOUR_2", datetime(hour=2)),
-      ("HOUR", datetime(hour=1)),
+      ("MONTH", 31 * 24 * 60 * 60),
+      ("WEEK", 7 * 24 * 60 * 60),
+      ("DAY", 24 * 60 * 60),
+      ("HOUR_4", 4 * 60 * 60),
+      ("HOUR_3", 3 * 60 * 60),
+      ("HOUR_2", 2 * 60 * 60),
+      ("HOUR",  60 * 60),
     ]
     for resolution in resolutions:
       # Calculating start time and end time
-      start_time = current_datetime - 10 * resolution[1]
-      start_time_str = datetime.strptime(start_time,"%Y:%M:%D-%H:%m:%s")
-      end_time_str = datetime.strptime(current_datetime,"%Y:%M:%D-%H:%m:%s")
+      start_time = current_epoch - 10 * resolution[1]
+      start_time = datetime.fromtimestamp(start_time)
+      start_time_str = start_time.strftime("%Y:%m:%d-%H:%M:%S")
+      end_time_str = current_datetime.strftime("%Y:%m:%d-%H:%M:%S")
       # Getting historical prices.
-      historical_data = instrument.get_historical_prices(resolution,start=start_time_str,end=end_time_str)
+      historical_data = instrument.get_historical_prices(resolution[0],start=start_time_str,end=end_time_str)
       # Uploading data.
-      self.upload_historical_data(instrument,historical_data)
+      self.upload_historical_data(instrument,dataset=historical_data)
 
 # - - - - - - - - - - - - - -
     
