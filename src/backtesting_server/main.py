@@ -188,7 +188,36 @@ class BacktestingServer():
     Close FLOAT(20),\
     PRIMARY KEY (DatetimeIndex)\
     );")
-    
+  
+  def _upload_clean_historical_data(self, instrument: ig_package.Instrument) -> None:
+    """ Uploading historical data for an instrument with no previous data.
+        
+        Parameters
+        ----------
+        instrument: ig_package.Instrument
+          Instrument to upload data for."""
+    # Get current datetime.
+    current_datetime = datetime.now()
+    # Listing resolutions.
+    resolutions = [
+      ("MONTH", ),
+      ("WEEK", datetime(day=7)),
+      ("DAY", datetime(day=1)),
+      ("HOUR_4", datetime(hour=4)),
+      ("HOUR_3", datetime(hour=3)),
+      ("HOUR_2", datetime(hour=2)),
+      ("HOUR", datetime(hour=1)),
+    ]
+    for resolution in resolutions:
+      # Calculating start time and end time
+      start_time = current_datetime - 10 * resolution[1]
+      start_time_str = datetime.strptime(start_time,"%Y:%M:%D-%H:%m:%s")
+      end_time_str = datetime.strptime(current_datetime,"%Y:%M:%D-%H:%m:%s")
+      # Getting historical prices.
+      historical_data = instrument.get_historical_prices(resolution,start=start_time_str,end=end_time_str)
+      # Uploading data.
+      self.upload_historical_data(instrument,historical_data)
+
 # - - - - - - - - - - - - - -
     
 if __name__ == "__main__":
