@@ -110,11 +110,14 @@ class BacktestingServer():
       # Inserting each row into database.
       logger.info("Inserting data into server-side dataset.")
       for data_point in dataset.index:
-        insert_statement = f'INSERT INTO {instrument.name.replace(" ","_")}_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)'
-        values = [
-          (str(data_point), float(dataset["Open"][data_point]), float(dataset["High"][data_point]), float(dataset["Low"][data_point]), float(dataset["Close"][data_point])),
-        ]
-        self.cursor.executemany(insert_statement, values)
+        try:
+          insert_statement = f'INSERT INTO {instrument.name.replace(" ","_")}_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)'
+          values = [
+            (str(data_point), float(dataset["Open"][data_point]), float(dataset["High"][data_point]), float(dataset["Low"][data_point]), float(dataset["Close"][data_point])),
+          ]
+          self.cursor.executemany(insert_statement, values)
+        except pymysql.err.IntegrityError:
+          logging.info("Data point is already present in historical dataset.")
   def _check_historical_data_summary_exists(self) -> bool:
     """ Checking if the historical data summary table exists on the MySQL server.
         
