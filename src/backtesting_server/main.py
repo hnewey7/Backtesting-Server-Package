@@ -83,15 +83,15 @@ class BacktestingServer():
       logger.info("Unable to connect to MySQL server.")
       raise e
 
-  def upload_historical_data(self, instrument:ig_package.Instrument, live_tracking:bool, dataset:pd.DataFrame=[]) -> None:
+  def upload_historical_data(self, instrument:ig_package.Instrument, live_tracking:bool=False, dataset:pd.DataFrame=[]) -> None:
     """ Uploading historical data to the backtesting server.
     
         Parameters
         ----------
         instrument: ig_package.Instrument
           Instrument the historical data corresponds to.
-        live_tracking: bool
-          Enable/disable live tracking of instrument.
+        live_tracking: bool = False
+          OPTIONAL Enable/disable live tracking of instrument.
         dataset: pd.DataFrame = []
           OPTIONAL DataFrame containing the data to be uploaded."""
     # Checking if historical data summary exists.
@@ -166,7 +166,7 @@ class BacktestingServer():
     except:
       logger.info("Failed to create Historical Data Summary.")
 
-  def _add_historical_data_summary(self, instrument: ig_package.Instrument, live_tracking:bool) -> None:
+  def _add_historical_data_summary(self, instrument: ig_package.Instrument, live_tracking:bool=False) -> None:
     """ Adding instrument to the historical data summary and creating new table for historical data.
     
         Parameters
@@ -174,11 +174,10 @@ class BacktestingServer():
         instrument: ig_package.Instrument
           Instrument to add to the historical data summary.
         live_tracking: bool
-          Enable/disable live tracking of instrument."""
+          OPTIONAL Enable/disable live tracking of instrument."""
     logger.info("Adding instrument to HistoricalDataSummary and creating a new table.")
     # Adding instrument to historical data summary.
-    self.cursor.execute(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking)\
-    VALUES ('{instrument.name}', '{instrument.epic}', {live_tracking});")
+    self.cursor.executemany(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking) VALUES (%s, %s, %s)", [(instrument.name, instrument.epic, live_tracking)])
     # Creating new table for storing historical data.
     new_name = instrument.name.replace(" ","_")
     self.cursor.execute(f"CREATE TABLE {new_name}_HistoricalDataset (\
