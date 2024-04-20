@@ -119,6 +119,44 @@ class BacktestingServer():
           self.cursor.executemany(insert_statement, values)
         except pymysql.err.IntegrityError:
           logging.info("Data point is already present in historical dataset.")
+
+  def update_historical_data(self, ig:ig_package.IG) -> None:
+    """ Updating new historical data on instruments being tracked with the BacktestingServer.
+    
+        Parameters
+        ----------
+        API_key: str
+          API key for IG's REST API.
+        username: str
+          Username for IG.
+        password: str
+          Password for IG."""
+    # Requesting all tracked instruments from the HistoricalDataSummary.
+    self.cursor.execute("SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True;")
+    # Getting tracked names and epics.
+    tracked_names = []
+    tracked_epics = []
+    for instrument in self.cursor.fetchall():
+      tracked_names.append(instrument[0])
+      tracked_epics.append(instrument[1])
+    
+    for index,name in enumerate(tracked_names):
+      # Getting previous datetime.
+      self.cursor.execute(f'SELECT DatetimeIndex FROM {name.replace(" ","_")}_HistoricalDataset ORDER BY DatetimeIndex DESC LIMIT 1;')
+      previous_datetime = self.cursor.fetchall()
+      # Getting instrument.
+      instrument = ig_package.Instrument(epic=tracked_epics[index],IG_obj=ig)
+      # Checking if previous datetime.
+      if len(previous_datetime) == 0:
+        # Uploading initial backtesting range of data.
+        self._upload_clean_historical_data(instrument)
+      else:
+        previous_datetime = str(previous_datetime[0][0]).replace("-",":").replace(" ","-")
+        previous_datetime = datetime.strptime(previous_datetime,"%Y:%m:%d-%H:%M:%S")
+        # Uploading on existing historical data.
+        self._upload_on_existing_historical_data(instrument,previous_datetime)
+
+    
   def _check_historical_data_summary_exists(self) -> bool:
     """ Checking if the historical data summary table exists on the MySQL server.
         
