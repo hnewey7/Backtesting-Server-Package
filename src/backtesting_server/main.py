@@ -224,6 +224,40 @@ class BacktestingServer():
       # Uploading data.
       self.upload_historical_data(instrument,dataset=historical_data)
 
+  def _upload_on_existing_historical_data(self, instrument:ig_package.Instrument, previous_datetime: datetime) -> None:
+    """ Uploading up-to-date historical data on instrument already with existing historical data.
+    
+    Parameters
+    ----------
+    instrument: ig_package.Instrument
+      Instrument for uploading recent historical data on.
+    previous_datetime: datetime
+      Datetime of last historical price."""
+    # Getting current time.
+    current_epoch = time.time()
+    current_datetime = datetime.fromtimestamp(current_epoch)
+    current_str = current_datetime.strftime("%Y:%m:%d-%H:%M:%S")
+    # Getting previous datetime as epoch.
+    previous_epoch_time = previous_datetime.timestamp()
+    previous_str = previous_datetime.strftime("%Y:%m:%d-%H:%M:%S")
+    # Listing resolutions.
+    resolutions = [
+      ("MINUTE", 60),
+      ("MINUTE_15", 15*60),
+      ("HOUR", 60*60),
+      ("HOUR_4", 4*60*60),
+      ("DAY", 24*60*60),
+      ("WEEK", 7*24*60*60),
+      ("MONTH", 31*24*60*60)
+    ]
+    # Collecting data for each resolution.
+    for resolution in resolutions:
+      if current_epoch - previous_epoch_time < 100 * resolution[1]:
+        # Getting historical prices.
+        historical_data = instrument.get_historical_prices(resolution[0],start=previous_str,end=current_str)
+        # Uploading data.
+        self.upload_historical_data(instrument,dataset=historical_data)
+
 # - - - - - - - - - - - - - -
     
 if __name__ == "__main__":
