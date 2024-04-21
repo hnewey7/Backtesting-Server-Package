@@ -224,3 +224,42 @@ def test_upload_on_existing_historical_data() -> None:
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+
+def test_update_historical_data() -> None:
+  """ Testing update historical data method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  test_instrument = ig.search_instrument('FTSE 100')
+
+  # Uploading to server with live tracking enabled.
+  server.upload_historical_data(test_instrument,live_tracking=True)
+
+  # Running update historical data.
+  server.update_historical_data(ig)
+
+  # Handling checks.
+  server.cursor.execute(f"Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  initial_results = server.cursor.fetchall()
+  single_result = initial_results[0]
+  assert len(initial_results) > 10
+  assert len(single_result) == 5
+
+  # Running update historical data on existing data.
+  server.update_historical_data(ig)
+
+  # Handling checks.
+  server.cursor.execute(f"Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  results = server.cursor.fetchall()
+  single_result = results[0]
+  assert len(results) > len(initial_results)
+  assert len(single_result) == 5
+
+  # Deleting tables after testing.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
+  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
