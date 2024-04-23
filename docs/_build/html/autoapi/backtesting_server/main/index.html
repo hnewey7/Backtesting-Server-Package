@@ -7,8 +7,8 @@
   <title>backtesting_server.main &mdash; Backtesting Server Package 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
-      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=eafc0fe6" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../../_static/graphviz.css?v=fd3f3429" />
 
   
   <!--[if lt IE 9]>
@@ -18,7 +18,7 @@
         <script src="../../../_static/jquery.js?v=5d32c60e"></script>
         <script src="../../../_static/_sphinx_javascript_frameworks_compat.js?v=2cd50e6c"></script>
         <script src="../../../_static/documentation_options.js?v=01f34227"></script>
-        <script src="../../../_static/doctools.js?v=888ff710"></script>
+        <script src="../../../_static/doctools.js?v=9a2dae69"></script>
         <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/js/theme.js"></script>
     <link rel="index" title="Index" href="../../../genindex.html" />
@@ -120,13 +120,29 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.main.BacktestingServer.upload_historical_data">
-<span class="sig-name descname"><span class="pre">upload_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer.upload_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer.upload_historical_data" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">upload_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer.upload_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer.upload_historical_data" title="Link to this definition"></a></dt>
 <dd><p>Uploading historical data to the backtesting server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>instrument</strong> (<em>ig_package.Instrument</em>) – Instrument the historical data corresponds to.</p></li>
-<li><p><strong>dataset</strong> (<em>pd.DataFrame</em>) – DataFrame containing the data to be uploaded.</p></li>
+<li><p><strong>live_tracking</strong> (<em>bool = False</em>) – OPTIONAL Enable/disable live tracking of instrument.</p></li>
+<li><p><strong>dataset</strong> (<em>pd.DataFrame =</em><em> [</em><em>]</em>) – OPTIONAL DataFrame containing the data to be uploaded.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.main.BacktestingServer.update_historical_data">
+<span class="sig-name descname"><span class="pre">update_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.IG</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer.update_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer.update_historical_data" title="Link to this definition"></a></dt>
+<dd><p>Updating new historical data on instruments being tracked with the BacktestingServer.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>API_key</strong> (<em>str</em>) – API key for IG’s REST API.</p></li>
+<li><p><strong>username</strong> (<em>str</em>) – Username for IG.</p></li>
+<li><p><strong>password</strong> (<em>str</em>) – Password for IG.</p></li>
 </ul>
 </dd>
 </dl>
@@ -171,11 +187,39 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.main.BacktestingServer._add_historical_data_summary">
-<span class="sig-name descname"><span class="pre">_add_historical_data_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer._add_historical_data_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer._add_historical_data_summary" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_add_historical_data_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer._add_historical_data_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer._add_historical_data_summary" title="Link to this definition"></a></dt>
 <dd><p>Adding instrument to the historical data summary and creating new table for historical data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
-<dd class="field-odd"><p><strong>instrument</strong> (<em>ig_package.Instrument</em>) – Instrument to add to the historical data summary.</p>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instrument</strong> (<em>ig_package.Instrument</em>) – Instrument to add to the historical data summary.</p></li>
+<li><p><strong>live_tracking</strong> (<em>bool</em>) – OPTIONAL Enable/disable live tracking of instrument.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.main.BacktestingServer._upload_clean_historical_data">
+<span class="sig-name descname"><span class="pre">_upload_clean_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer._upload_clean_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer._upload_clean_historical_data" title="Link to this definition"></a></dt>
+<dd><p>Uploading historical data for an instrument with no previous data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>instrument</strong> (<em>ig_package.Instrument</em>) – Instrument to upload data for.</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.main.BacktestingServer._upload_on_existing_historical_data">
+<span class="sig-name descname"><span class="pre">_upload_on_existing_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">previous_datetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">datetime.datetime</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer._upload_on_existing_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer._upload_on_existing_historical_data" title="Link to this definition"></a></dt>
+<dd><p>Uploading up-to-date historical data on instrument already with existing historical data.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instrument</strong> (<em>ig_package.Instrument</em>) – Instrument for uploading recent historical data on.</p></li>
+<li><p><strong>previous_datetime</strong> (<em>datetime</em>) – Datetime of last historical price.</p></li>
+</ul>
 </dd>
 </dl>
 </dd></dl>
