@@ -48,3 +48,7 @@ WHERE ID = 1;
 UPDATE HistoricalDataSummary 
 SET InstrumentGroup = ""
 WHERE ID = 1;
+
+-- Adding InstrumentGroup column to existing table.
+ALTER TABLE HistoricalDataSummary
+ADD COLUMN InstrumentGroup SET("") DEFAULT NULL;
