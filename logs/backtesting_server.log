@@ -1,0 +1,1797 @@
+2024-03-22 14:45:37:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 14:45:37:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 14:45:37:INFO:   Authentication (password) successful!
+2024-03-22 14:45:52:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 14:45:52:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 14:45:53:INFO:   Authentication (password) successful!
+2024-03-22 14:46:59:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 14:46:59:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 14:47:00:INFO:   Authentication (password) successful!
+2024-03-22 14:47:00:INFO:   Sending command: mysql -u remote -p
+2024-03-22 14:56:35:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 14:56:35:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 14:56:35:INFO:   Authentication (password) successful!
+2024-03-22 14:56:35:INFO:   Sending command: mysql -u remote -p
+2024-03-22 15:00:40:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:00:40:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:00:40:INFO:   Authentication (password) successful!
+2024-03-22 15:00:40:INFO:   Sending command: mysql -u remote -p
+2024-03-22 15:03:18:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:03:18:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:03:18:INFO:   Authentication (password) successful!
+2024-03-22 15:03:18:INFO:   Sending command: mysql -u remote -p43luC!SnA4=R
+2024-03-22 15:04:17:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:04:17:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:04:18:INFO:   Authentication (password) successful!
+2024-03-22 15:04:18:INFO:   Sending command: mysql -u remote -p43luC!SnA4=R -P 22
+2024-03-22 15:07:23:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:07:23:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:07:24:INFO:   Authentication (password) successful!
+2024-03-22 15:07:24:INFO:   Sending command: mysql -u remote -p
+2024-03-22 15:08:14:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:08:16:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:08:40:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:08:41:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:08:54:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:08:55:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:08:59:INFO:   Authentication (password) successful!
+2024-03-22 15:08:59:INFO:   Sending command: mysql -u remote -p
+2024-03-22 15:10:30:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:10:30:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:10:31:INFO:   Authentication (password) successful!
+2024-03-22 15:10:31:INFO:   Sending command: mysql -u remote -p'43luC!SnA4=R'
+2024-03-22 15:10:48:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:10:48:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:10:48:INFO:   Authentication (password) successful!
+2024-03-22 15:10:48:INFO:   Sending command: mysql -u remote -p'43luC!SnA4=R'
+2024-03-22 15:53:19:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 15:53:19:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 15:53:20:INFO:   Authentication (password) successful!
+2024-03-22 15:53:20:INFO:   Sending command: mysql -u remote -p'43luC!SnA4=R'
+2024-03-22 16:04:26:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:04:26:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:04:27:INFO:   Authentication (password) successful!
+2024-03-22 16:05:07:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:05:08:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:05:35:INFO:   Authentication (password) successful!
+2024-03-22 16:06:04:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:06:05:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:06:05:INFO:   Authentication (password) successful!
+2024-03-22 16:06:30:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:06:30:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:06:30:INFO:   Authentication (password) successful!
+2024-03-22 16:06:54:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:06:54:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:06:54:INFO:   Authentication (password) successful!
+2024-03-22 16:08:13:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:08:13:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:08:14:INFO:   Authentication (password) successful!
+2024-03-22 16:10:03:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:10:05:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:11:00:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:11:00:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:11:00:INFO:   Authentication (password) successful!
+2024-03-22 16:11:19:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:11:19:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:11:19:INFO:   Authentication (password) successful!
+2024-03-22 16:11:41:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:11:41:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:11:42:INFO:   Authentication (password) successful!
+2024-03-22 16:12:08:INFO:   Connecting to server: 159.65.29.163
+2024-03-22 16:12:08:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-03-22 16:12:09:INFO:   Authentication (password) successful!
+2024-04-09 20:04:36:INFO:   Connecting to server: 159.65.29.163
+2024-04-09 20:04:36:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-09 20:04:36:INFO:   Authentication (password) successful!
+2024-04-11 21:58:36:INFO:   Connecting to server: 159.65.29.163
+2024-04-11 21:58:36:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-11 21:58:36:INFO:   Authentication (password) successful!
+2024-04-11 21:58:37:INFO:   Requesting trading session.
+2024-04-11 21:58:40:INFO:   Requesting search for market (FTSE 100).
+2024-04-11 21:58:42:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-11 23:19:54:INFO:   Connecting to server: 159.65.29.163
+2024-04-11 23:19:54:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-11 23:19:54:INFO:   Authentication (password) successful!
+2024-04-11 23:19:55:INFO:   Requesting trading session.
+2024-04-11 23:19:58:INFO:   Requesting search for market (FTSE 100).
+2024-04-11 23:20:00:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-11 23:24:47:INFO:   Connecting to server: 159.65.29.163
+2024-04-11 23:24:47:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-11 23:24:48:INFO:   Authentication (password) successful!
+2024-04-11 23:24:48:INFO:   Requesting trading session.
+2024-04-11 23:24:51:INFO:   Requesting search for market (FTSE 100).
+2024-04-11 23:24:53:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-11 23:25:26:INFO:   Connecting to server: 159.65.29.163
+2024-04-11 23:25:27:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-11 23:25:27:INFO:   Authentication (password) successful!
+2024-04-11 23:25:27:INFO:   Requesting trading session.
+2024-04-11 23:25:30:INFO:   Requesting search for market (FTSE 100).
+2024-04-11 23:25:32:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-11 23:33:42:INFO:   Connecting to server: 159.65.29.163
+2024-04-11 23:33:42:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-11 23:33:42:INFO:   Authentication (password) successful!
+2024-04-11 23:33:43:INFO:   Requesting trading session.
+2024-04-11 23:33:46:INFO:   Requesting search for market (FTSE 100).
+2024-04-11 23:33:48:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-11 23:33:52:INFO:   Historical Data Summary does not exist.
+2024-04-11 23:33:53:INFO:   Created Historical Data Summary.
+2024-04-11 23:35:40:INFO:   Connecting to server: 159.65.29.163
+2024-04-11 23:35:40:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-11 23:35:41:INFO:   Authentication (password) successful!
+2024-04-11 23:35:41:INFO:   Requesting trading session.
+2024-04-11 23:35:45:INFO:   Requesting search for market (FTSE 100).
+2024-04-11 23:35:47:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-11 23:35:51:INFO:   Historical Data Summary exists.
+2024-04-13 19:43:32:INFO:   Connecting to server: 159.65.29.163
+2024-04-13 19:43:33:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-13 19:43:49:INFO:   Authentication (password) successful!
+2024-04-13 19:44:12:INFO:   Connecting to server: 159.65.29.163
+2024-04-13 19:44:12:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-13 19:44:13:INFO:   Authentication (password) successful!
+2024-04-15 14:13:16:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:13:16:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:13:16:INFO:   Authentication (password) successful!
+2024-04-15 14:13:18:INFO:   Requesting trading session.
+2024-04-15 14:13:21:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:13:23:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:13:27:INFO:   Historical Data Summary exists.
+2024-04-15 14:13:27:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-15 14:14:19:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:14:19:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:14:19:INFO:   Authentication (password) successful!
+2024-04-15 14:14:20:INFO:   Requesting trading session.
+2024-04-15 14:14:22:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:14:25:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:14:29:INFO:   Historical Data Summary exists.
+2024-04-15 14:14:29:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:14:56:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:14:56:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:14:56:INFO:   Authentication (password) successful!
+2024-04-15 14:14:56:INFO:   Requesting trading session.
+2024-04-15 14:14:59:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:15:01:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:15:05:INFO:   Historical Data Summary exists.
+2024-04-15 14:15:05:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:15:55:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:15:55:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:15:55:INFO:   Authentication (password) successful!
+2024-04-15 14:15:56:INFO:   Requesting trading session.
+2024-04-15 14:15:58:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:16:00:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:16:05:INFO:   Historical Data Summary exists.
+2024-04-15 14:16:05:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:16:32:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:16:32:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:16:32:INFO:   Authentication (password) successful!
+2024-04-15 14:16:33:INFO:   Requesting trading session.
+2024-04-15 14:16:35:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:16:37:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:16:42:INFO:   Historical Data Summary exists.
+2024-04-15 14:16:42:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:17:51:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:17:51:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:17:52:INFO:   Authentication (password) successful!
+2024-04-15 14:17:53:INFO:   Requesting trading session.
+2024-04-15 14:17:56:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:17:58:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:18:02:INFO:   Historical Data Summary exists.
+2024-04-15 14:18:02:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:21:06:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:21:06:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:21:06:INFO:   Authentication (password) successful!
+2024-04-15 14:21:07:INFO:   Requesting trading session.
+2024-04-15 14:21:10:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:21:12:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:21:16:INFO:   Historical Data Summary exists.
+2024-04-15 14:21:16:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:23:09:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:23:09:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:23:09:INFO:   Authentication (password) successful!
+2024-04-15 14:23:10:INFO:   Requesting trading session.
+2024-04-15 14:23:12:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:23:15:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:23:19:INFO:   Historical Data Summary exists.
+2024-04-15 14:23:19:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:24:03:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:24:03:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:24:04:INFO:   Authentication (password) successful!
+2024-04-15 14:24:04:INFO:   Requesting trading session.
+2024-04-15 14:24:06:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:24:09:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:24:13:INFO:   Historical Data Summary exists.
+2024-04-15 14:24:13:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:29:43:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:29:43:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:29:43:INFO:   Authentication (password) successful!
+2024-04-15 14:29:44:INFO:   Requesting trading session.
+2024-04-15 14:29:46:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:29:48:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:29:52:INFO:   Historical Data Summary exists.
+2024-04-15 14:29:52:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:30:23:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:30:23:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:30:24:INFO:   Authentication (password) successful!
+2024-04-15 14:30:24:INFO:   Requesting trading session.
+2024-04-15 14:30:26:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:30:29:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:30:33:INFO:   Historical Data Summary exists.
+2024-04-15 14:30:33:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:31:25:INFO:   Connecting to server: 159.65.29.163
+2024-04-15 14:31:25:INFO:   Connected (version 2.0, client OpenSSH_9.3p1)
+2024-04-15 14:31:26:INFO:   Authentication (password) successful!
+2024-04-15 14:31:26:INFO:   Requesting trading session.
+2024-04-15 14:31:29:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:31:31:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:31:35:INFO:   Historical Data Summary exists.
+2024-04-15 14:31:35:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 14:40:36:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 14:40:36:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 14:40:37:INFO:   Authentication (password) successful!
+2024-04-15 14:40:37:INFO:   Requesting trading session.
+2024-04-15 14:40:40:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 14:40:42:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 14:40:46:INFO:   Historical Data Summary does not exist.
+2024-04-15 14:40:46:INFO:   Created Historical Data Summary.
+2024-04-15 14:40:47:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-15 21:09:01:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:09:01:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:09:01:INFO:   Authentication (password) successful!
+2024-04-15 21:09:02:INFO:   Requesting trading session.
+2024-04-15 21:09:05:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:09:07:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:09:11:INFO:   Historical Data Summary exists.
+2024-04-15 21:09:11:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:10:19:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:10:19:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:10:19:INFO:   Authentication (password) successful!
+2024-04-15 21:10:19:INFO:   Requesting trading session.
+2024-04-15 21:10:22:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:10:24:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:10:28:INFO:   Historical Data Summary exists.
+2024-04-15 21:10:28:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:11:14:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:11:14:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:11:14:INFO:   Authentication (password) successful!
+2024-04-15 21:11:14:INFO:   Requesting trading session.
+2024-04-15 21:11:17:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:11:19:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:11:23:INFO:   Historical Data Summary exists.
+2024-04-15 21:11:23:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:12:02:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:12:02:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:12:03:INFO:   Authentication (password) successful!
+2024-04-15 21:12:03:INFO:   Requesting trading session.
+2024-04-15 21:12:05:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:12:07:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:12:12:INFO:   Historical Data Summary exists.
+2024-04-15 21:12:12:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:13:15:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:13:15:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:13:15:INFO:   Authentication (password) successful!
+2024-04-15 21:13:15:INFO:   Requesting trading session.
+2024-04-15 21:13:18:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:13:20:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:13:25:INFO:   Historical Data Summary exists.
+2024-04-15 21:13:25:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:16:00:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:16:00:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:16:00:INFO:   Authentication (password) successful!
+2024-04-15 21:16:00:INFO:   Requesting trading session.
+2024-04-15 21:16:03:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:16:05:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:16:09:INFO:   Historical Data Summary exists.
+2024-04-15 21:16:09:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:20:38:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:20:38:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:20:39:INFO:   Authentication (password) successful!
+2024-04-15 21:20:39:INFO:   Requesting trading session.
+2024-04-15 21:20:42:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:20:44:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:20:48:INFO:   Historical Data Summary exists.
+2024-04-15 21:20:48:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:24:41:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:24:41:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:24:41:INFO:   Authentication (password) successful!
+2024-04-15 21:24:41:INFO:   Requesting trading session.
+2024-04-15 21:24:44:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:24:47:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:24:50:INFO:   Historical Data Summary does not exist.
+2024-04-15 21:24:50:INFO:   Created Historical Data Summary.
+2024-04-15 21:24:50:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-15 21:28:37:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:28:37:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:28:37:INFO:   Authentication (password) successful!
+2024-04-15 21:28:37:INFO:   Requesting trading session.
+2024-04-15 21:28:40:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:28:42:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:28:46:INFO:   Historical Data Summary exists.
+2024-04-15 21:28:46:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:29:23:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:29:24:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:29:24:INFO:   Authentication (password) successful!
+2024-04-15 21:29:24:INFO:   Requesting trading session.
+2024-04-15 21:29:27:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:29:29:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:29:33:INFO:   Historical Data Summary exists.
+2024-04-15 21:29:33:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:30:28:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:30:28:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:30:29:INFO:   Authentication (password) successful!
+2024-04-15 21:30:29:INFO:   Requesting trading session.
+2024-04-15 21:30:32:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:30:34:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:30:38:INFO:   Historical Data Summary exists.
+2024-04-15 21:30:38:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:46:20:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:46:20:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:46:20:INFO:   Authentication (password) successful!
+2024-04-15 21:46:21:INFO:   Requesting trading session.
+2024-04-15 21:46:23:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:46:25:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:46:29:INFO:   Historical Data Summary exists.
+2024-04-15 21:46:29:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:47:56:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:47:56:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:47:56:INFO:   Authentication (password) successful!
+2024-04-15 21:47:56:INFO:   Requesting trading session.
+2024-04-15 21:47:59:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:48:01:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:48:05:INFO:   Historical Data Summary exists.
+2024-04-15 21:48:05:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:49:33:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:49:33:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:49:33:INFO:   Authentication (password) successful!
+2024-04-15 21:49:34:INFO:   Requesting trading session.
+2024-04-15 21:49:36:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:49:38:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:49:43:INFO:   Historical Data Summary exists.
+2024-04-15 21:49:43:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:51:04:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:51:04:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:51:04:INFO:   Authentication (password) successful!
+2024-04-15 21:51:04:INFO:   Requesting trading session.
+2024-04-15 21:51:07:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:51:09:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:51:13:INFO:   Historical Data Summary exists.
+2024-04-15 21:51:13:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:52:05:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:52:05:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:52:05:INFO:   Authentication (password) successful!
+2024-04-15 21:52:05:INFO:   Requesting trading session.
+2024-04-15 21:52:08:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:52:10:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:52:14:INFO:   Historical Data Summary exists.
+2024-04-15 21:52:14:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:54:05:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:54:05:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:54:05:INFO:   Authentication (password) successful!
+2024-04-15 21:54:06:INFO:   Requesting trading session.
+2024-04-15 21:54:08:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:54:10:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:54:14:INFO:   Historical Data Summary exists.
+2024-04-15 21:54:14:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:55:37:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:55:37:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:55:37:INFO:   Authentication (password) successful!
+2024-04-15 21:55:37:INFO:   Requesting trading session.
+2024-04-15 21:55:40:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:55:42:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:55:46:INFO:   Historical Data Summary exists.
+2024-04-15 21:55:46:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:57:46:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:57:46:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:57:46:INFO:   Authentication (password) successful!
+2024-04-15 21:57:46:INFO:   Requesting trading session.
+2024-04-15 21:57:49:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:57:51:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:57:55:INFO:   Historical Data Summary exists.
+2024-04-15 21:57:55:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 21:59:22:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 21:59:22:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 21:59:22:INFO:   Authentication (password) successful!
+2024-04-15 21:59:23:INFO:   Requesting trading session.
+2024-04-15 21:59:25:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 21:59:27:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 21:59:31:INFO:   Historical Data Summary exists.
+2024-04-15 21:59:31:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 22:01:05:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 22:01:05:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 22:01:05:INFO:   Authentication (password) successful!
+2024-04-15 22:01:05:INFO:   Requesting trading session.
+2024-04-15 22:01:08:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 22:01:10:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 22:01:14:INFO:   Historical Data Summary exists.
+2024-04-15 22:01:14:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 22:02:05:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 22:02:06:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 22:02:06:INFO:   Authentication (password) successful!
+2024-04-15 22:02:06:INFO:   Requesting trading session.
+2024-04-15 22:02:09:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 22:02:11:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 22:02:15:INFO:   Historical Data Summary exists.
+2024-04-15 22:02:15:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 22:03:40:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 22:03:40:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 22:03:40:INFO:   Authentication (password) successful!
+2024-04-15 22:03:41:INFO:   Requesting trading session.
+2024-04-15 22:03:43:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 22:03:45:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 22:03:50:INFO:   Historical Data Summary exists.
+2024-04-15 22:03:50:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 22:04:33:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 22:04:34:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 22:04:34:INFO:   Authentication (password) successful!
+2024-04-15 22:04:34:INFO:   Requesting trading session.
+2024-04-15 22:04:36:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 22:04:38:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 22:04:43:INFO:   Historical Data Summary exists.
+2024-04-15 22:04:43:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 22:05:44:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 22:05:44:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 22:05:45:INFO:   Authentication (password) successful!
+2024-04-15 22:05:45:INFO:   Requesting trading session.
+2024-04-15 22:05:47:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 22:05:49:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 22:05:53:INFO:   Historical Data Summary exists.
+2024-04-15 22:05:53:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 22:06:31:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 22:06:31:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 22:06:31:INFO:   Authentication (password) successful!
+2024-04-15 22:06:31:INFO:   Requesting trading session.
+2024-04-15 22:06:34:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 22:06:38:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 22:06:41:INFO:   Historical Data Summary exists.
+2024-04-15 22:06:41:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-15 22:08:33:INFO:   Connecting to server: 2.123.180.133
+2024-04-15 22:08:33:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-15 22:08:33:INFO:   Authentication (password) successful!
+2024-04-15 22:08:33:INFO:   Requesting trading session.
+2024-04-15 22:08:36:INFO:   Requesting search for market (FTSE 100).
+2024-04-15 22:08:38:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-15 22:08:42:INFO:   Historical Data Summary exists.
+2024-04-15 22:08:42:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-17 21:19:06:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 21:19:07:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 21:19:08:INFO:   Authentication (password) successful!
+2024-04-17 21:19:08:INFO:   Connecting to MySQL server.
+2024-04-17 21:19:10:INFO:   Successfully connected to MySQL server.
+2024-04-17 21:26:36:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 21:26:36:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 21:26:36:INFO:   Authentication (password) successful!
+2024-04-17 21:26:36:INFO:   Connecting to MySQL server.
+2024-04-17 21:26:37:INFO:   Successfully connected to MySQL server.
+2024-04-17 21:27:47:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 21:27:51:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 21:27:54:INFO:   Authentication (password) successful!
+2024-04-17 21:27:54:INFO:   Connecting to MySQL server.
+2024-04-17 21:27:54:INFO:   Successfully connected to MySQL server.
+2024-04-17 21:35:14:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 21:35:15:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 21:35:15:INFO:   Authentication (password) successful!
+2024-04-17 21:35:15:INFO:   Connecting to MySQL server.
+2024-04-17 21:35:17:INFO:   Successfully connected to MySQL server.
+2024-04-17 23:15:57:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 23:16:04:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 23:16:04:INFO:   Authentication (password) successful!
+2024-04-17 23:16:04:INFO:   Connecting to MySQL server.
+2024-04-17 23:16:04:INFO:   Successfully connected to MySQL server.
+2024-04-17 23:46:56:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 23:46:57:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 23:46:58:INFO:   Authentication (password) successful!
+2024-04-17 23:46:58:INFO:   Connecting to MySQL server.
+2024-04-17 23:47:04:INFO:   Successfully connected to MySQL server.
+2024-04-17 23:50:45:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 23:50:46:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 23:50:47:INFO:   Authentication (password) successful!
+2024-04-17 23:50:47:INFO:   Connecting to MySQL server.
+2024-04-17 23:50:48:INFO:   Successfully connected to MySQL server.
+2024-04-17 23:50:56:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 23:50:56:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 23:50:57:INFO:   Authentication (password) successful!
+2024-04-17 23:50:57:INFO:   Connecting to MySQL server.
+2024-04-17 23:50:57:INFO:   Successfully connected to MySQL server.
+2024-04-17 23:51:14:INFO:   Connecting to server: 2.123.180.133
+2024-04-17 23:51:14:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-17 23:51:14:INFO:   Authentication (password) successful!
+2024-04-17 23:51:14:INFO:   Connecting to MySQL server.
+2024-04-17 23:51:15:INFO:   Successfully connected to MySQL server.
+2024-04-18 00:28:36:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 00:28:36:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 00:28:37:INFO:   Authentication (password) successful!
+2024-04-18 00:28:37:INFO:   Connecting to MySQL server.
+2024-04-18 00:28:40:INFO:   Successfully connected to MySQL server.
+2024-04-18 00:28:40:INFO:   Requesting trading session.
+2024-04-18 00:28:43:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 00:28:45:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 00:29:00:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 00:29:02:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 00:29:02:INFO:   Authentication (password) successful!
+2024-04-18 00:29:02:INFO:   Connecting to MySQL server.
+2024-04-18 00:29:03:INFO:   Successfully connected to MySQL server.
+2024-04-18 00:29:03:INFO:   Requesting trading session.
+2024-04-18 00:29:07:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 00:29:15:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 00:29:15:INFO:   Historical Data Summary does not exist.
+2024-04-18 00:29:15:INFO:   Created Historical Data Summary.
+2024-04-18 00:29:15:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 00:29:15:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 00:29:53:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 00:29:53:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 00:29:53:INFO:   Authentication (password) successful!
+2024-04-18 00:29:53:INFO:   Connecting to MySQL server.
+2024-04-18 00:29:53:INFO:   Successfully connected to MySQL server.
+2024-04-18 00:29:53:INFO:   Requesting trading session.
+2024-04-18 00:29:56:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 00:29:59:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 00:30:01:INFO:   Historical Data Summary exists.
+2024-04-18 00:30:01:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 00:30:01:INFO:   Inserting data into server-side dataset.
+2024-04-18 00:30:50:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 00:30:50:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 00:30:51:INFO:   Authentication (password) successful!
+2024-04-18 00:30:51:INFO:   Connecting to MySQL server.
+2024-04-18 00:30:52:INFO:   Successfully connected to MySQL server.
+2024-04-18 00:30:52:INFO:   Requesting trading session.
+2024-04-18 00:30:55:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 00:30:59:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 00:31:00:INFO:   Historical Data Summary exists.
+2024-04-18 00:31:00:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 00:31:00:INFO:   Requesting trading session.
+2024-04-18 00:36:35:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 00:36:35:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 00:36:36:INFO:   Authentication (password) successful!
+2024-04-18 00:36:36:INFO:   Connecting to MySQL server.
+2024-04-18 00:36:37:INFO:   Successfully connected to MySQL server.
+2024-04-18 00:36:37:INFO:   Requesting trading session.
+2024-04-18 00:36:40:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 00:36:42:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 00:36:44:INFO:   Historical Data Summary does not exist.
+2024-04-18 00:36:44:INFO:   Created Historical Data Summary.
+2024-04-18 00:36:44:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 00:36:44:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 00:36:45:INFO:   Requesting trading session.
+2024-04-18 00:36:48:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 00:37:40:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 00:37:41:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 00:37:42:INFO:   Authentication (password) successful!
+2024-04-18 00:37:42:INFO:   Connecting to MySQL server.
+2024-04-18 00:37:43:INFO:   Successfully connected to MySQL server.
+2024-04-18 00:37:43:INFO:   Requesting trading session.
+2024-04-18 00:37:45:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 00:37:48:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 00:37:49:INFO:   Historical Data Summary does not exist.
+2024-04-18 00:37:50:INFO:   Created Historical Data Summary.
+2024-04-18 00:37:50:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 00:37:50:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 00:37:54:INFO:   Requesting trading session.
+2024-04-18 00:37:57:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 21:54:25:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 21:54:25:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 21:54:25:INFO:   Authentication (password) successful!
+2024-04-18 21:54:25:INFO:   Connecting to MySQL server.
+2024-04-18 21:54:25:INFO:   Successfully connected to MySQL server.
+2024-04-18 21:54:25:INFO:   Requesting trading session.
+2024-04-18 21:54:28:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 21:54:30:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 21:54:34:INFO:   Historical Data Summary does not exist.
+2024-04-18 21:54:34:INFO:   Created Historical Data Summary.
+2024-04-18 21:54:34:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 21:54:34:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 21:54:34:INFO:   Inserting data into server-side dataset.
+2024-04-18 21:54:49:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 21:54:49:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 21:54:50:INFO:   Authentication (password) successful!
+2024-04-18 21:54:50:INFO:   Connecting to MySQL server.
+2024-04-18 21:54:50:INFO:   Successfully connected to MySQL server.
+2024-04-18 21:54:50:INFO:   Requesting trading session.
+2024-04-18 21:54:52:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 21:54:54:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 21:54:59:INFO:   Historical Data Summary exists.
+2024-04-18 21:54:59:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 21:54:59:INFO:   Inserting data into server-side dataset.
+2024-04-18 21:56:26:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 21:56:26:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 21:56:27:INFO:   Authentication (password) successful!
+2024-04-18 21:56:27:INFO:   Connecting to MySQL server.
+2024-04-18 21:56:27:INFO:   Successfully connected to MySQL server.
+2024-04-18 21:56:27:INFO:   Requesting trading session.
+2024-04-18 21:56:30:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 21:56:32:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 21:56:36:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 21:57:21:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 21:57:21:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 21:57:21:INFO:   Authentication (password) successful!
+2024-04-18 21:57:21:INFO:   Connecting to MySQL server.
+2024-04-18 21:57:21:INFO:   Successfully connected to MySQL server.
+2024-04-18 21:57:21:INFO:   Requesting trading session.
+2024-04-18 21:57:24:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 21:57:26:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 21:57:30:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 21:58:20:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 21:58:20:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 21:58:21:INFO:   Authentication (password) successful!
+2024-04-18 21:58:21:INFO:   Connecting to MySQL server.
+2024-04-18 21:58:21:INFO:   Successfully connected to MySQL server.
+2024-04-18 21:58:21:INFO:   Requesting trading session.
+2024-04-18 21:58:23:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 21:58:25:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 21:58:30:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 21:59:31:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 21:59:31:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 21:59:32:INFO:   Authentication (password) successful!
+2024-04-18 21:59:32:INFO:   Connecting to MySQL server.
+2024-04-18 21:59:32:INFO:   Successfully connected to MySQL server.
+2024-04-18 21:59:32:INFO:   Requesting trading session.
+2024-04-18 21:59:34:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 21:59:36:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 21:59:41:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:00:17:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:00:17:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:00:17:INFO:   Authentication (password) successful!
+2024-04-18 22:00:17:INFO:   Connecting to MySQL server.
+2024-04-18 22:00:18:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:00:18:INFO:   Requesting trading session.
+2024-04-18 22:00:20:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:00:22:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:00:26:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:14:46:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:14:46:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:14:46:INFO:   Authentication (password) successful!
+2024-04-18 22:14:46:INFO:   Connecting to MySQL server.
+2024-04-18 22:14:46:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:14:46:INFO:   Requesting trading session.
+2024-04-18 22:14:49:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:14:51:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:15:06:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:15:06:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:15:06:INFO:   Authentication (password) successful!
+2024-04-18 22:15:06:INFO:   Connecting to MySQL server.
+2024-04-18 22:15:06:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:15:06:INFO:   Requesting trading session.
+2024-04-18 22:15:08:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:15:11:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:15:15:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:15:15:INFO:   Created Historical Data Summary.
+2024-04-18 22:15:15:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:15:15:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:15:15:INFO:   Inserting data into server-side dataset.
+2024-04-18 22:15:15:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:18:34:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:18:34:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:18:34:INFO:   Authentication (password) successful!
+2024-04-18 22:18:34:INFO:   Connecting to MySQL server.
+2024-04-18 22:18:35:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:18:35:INFO:   Requesting trading session.
+2024-04-18 22:18:37:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:18:39:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:18:43:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:18:43:INFO:   Created Historical Data Summary.
+2024-04-18 22:18:43:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:18:43:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:18:44:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:20:18:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:20:18:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:20:19:INFO:   Authentication (password) successful!
+2024-04-18 22:20:19:INFO:   Connecting to MySQL server.
+2024-04-18 22:20:19:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:20:19:INFO:   Requesting trading session.
+2024-04-18 22:20:31:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:20:31:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:20:32:INFO:   Authentication (password) successful!
+2024-04-18 22:20:32:INFO:   Connecting to MySQL server.
+2024-04-18 22:20:32:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:20:32:INFO:   Requesting trading session.
+2024-04-18 22:20:34:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:20:36:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:20:41:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:20:41:INFO:   Created Historical Data Summary.
+2024-04-18 22:20:41:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:20:41:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:20:41:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:22:53:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:22:53:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:22:53:INFO:   Authentication (password) successful!
+2024-04-18 22:22:53:INFO:   Connecting to MySQL server.
+2024-04-18 22:22:53:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:22:53:INFO:   Requesting trading session.
+2024-04-18 22:22:56:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:22:58:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:23:02:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:23:02:INFO:   Created Historical Data Summary.
+2024-04-18 22:23:02:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:23:02:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:23:02:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:24:19:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:24:19:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:24:19:INFO:   Authentication (password) successful!
+2024-04-18 22:24:19:INFO:   Connecting to MySQL server.
+2024-04-18 22:24:19:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:24:19:INFO:   Requesting trading session.
+2024-04-18 22:24:22:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:24:24:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:24:28:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:24:28:INFO:   Created Historical Data Summary.
+2024-04-18 22:24:28:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:24:28:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:24:28:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:26:39:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:26:39:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:26:39:INFO:   Authentication (password) successful!
+2024-04-18 22:26:39:INFO:   Connecting to MySQL server.
+2024-04-18 22:26:39:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:26:39:INFO:   Requesting trading session.
+2024-04-18 22:26:42:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:26:44:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:26:48:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:26:48:INFO:   Created Historical Data Summary.
+2024-04-18 22:26:48:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:26:48:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:26:48:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:27:29:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:27:29:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:27:29:INFO:   Authentication (password) successful!
+2024-04-18 22:27:29:INFO:   Connecting to MySQL server.
+2024-04-18 22:27:29:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:27:29:INFO:   Requesting trading session.
+2024-04-18 22:27:32:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:27:34:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:27:38:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:27:38:INFO:   Created Historical Data Summary.
+2024-04-18 22:27:38:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:27:38:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:27:38:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:28:31:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:28:31:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:28:31:INFO:   Authentication (password) successful!
+2024-04-18 22:28:31:INFO:   Connecting to MySQL server.
+2024-04-18 22:28:31:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:28:31:INFO:   Requesting trading session.
+2024-04-18 22:28:34:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:28:36:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:28:40:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:28:40:INFO:   Created Historical Data Summary.
+2024-04-18 22:28:40:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:28:40:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:28:40:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:29:16:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:29:16:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:29:17:INFO:   Authentication (password) successful!
+2024-04-18 22:29:17:INFO:   Connecting to MySQL server.
+2024-04-18 22:29:17:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:29:17:INFO:   Requesting trading session.
+2024-04-18 22:29:19:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:29:21:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:29:26:INFO:   Historical Data Summary exists.
+2024-04-18 22:29:26:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 22:29:26:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:31:23:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:31:23:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:31:23:INFO:   Authentication (password) successful!
+2024-04-18 22:31:23:INFO:   Connecting to MySQL server.
+2024-04-18 22:31:23:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:31:23:INFO:   Requesting trading session.
+2024-04-18 22:31:26:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:31:28:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:31:32:INFO:   Historical Data Summary exists.
+2024-04-18 22:31:32:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 22:31:32:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:32:04:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:32:04:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:32:04:INFO:   Authentication (password) successful!
+2024-04-18 22:32:04:INFO:   Connecting to MySQL server.
+2024-04-18 22:32:05:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:32:05:INFO:   Requesting trading session.
+2024-04-18 22:32:07:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:32:09:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:32:13:INFO:   Historical Data Summary exists.
+2024-04-18 22:32:13:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 22:32:13:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:32:34:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:32:34:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:32:34:INFO:   Authentication (password) successful!
+2024-04-18 22:32:34:INFO:   Connecting to MySQL server.
+2024-04-18 22:32:35:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:32:35:INFO:   Requesting trading session.
+2024-04-18 22:32:37:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:32:39:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:32:44:INFO:   Historical Data Summary exists.
+2024-04-18 22:32:44:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 22:32:44:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:34:09:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:34:09:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:34:09:INFO:   Authentication (password) successful!
+2024-04-18 22:34:09:INFO:   Connecting to MySQL server.
+2024-04-18 22:34:10:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:34:10:INFO:   Requesting trading session.
+2024-04-18 22:34:12:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:34:14:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:34:18:INFO:   Historical Data Summary exists.
+2024-04-18 22:34:18:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 22:34:18:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:49:57:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:49:59:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:49:59:INFO:   Authentication (password) successful!
+2024-04-18 22:49:59:INFO:   Connecting to MySQL server.
+2024-04-18 22:49:59:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:49:59:INFO:   Requesting trading session.
+2024-04-18 22:50:02:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:50:04:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:50:08:INFO:   Historical Data Summary exists.
+2024-04-18 22:50:08:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 22:50:08:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:53:42:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:53:42:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:53:42:INFO:   Authentication (password) successful!
+2024-04-18 22:53:42:INFO:   Connecting to MySQL server.
+2024-04-18 22:53:42:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:53:42:INFO:   Requesting trading session.
+2024-04-18 22:53:45:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:53:47:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:53:51:INFO:   Historical Data Summary exists.
+2024-04-18 22:53:51:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 22:53:51:INFO:   Requesting instrument details (FTSE 100).
+2024-04-18 22:54:28:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:54:28:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:54:28:INFO:   Authentication (password) successful!
+2024-04-18 22:54:28:INFO:   Connecting to MySQL server.
+2024-04-18 22:54:28:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:54:28:INFO:   Requesting trading session.
+2024-04-18 22:54:31:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:54:33:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:54:37:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:54:37:INFO:   Created Historical Data Summary.
+2024-04-18 22:54:37:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:54:37:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:54:38:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:55:27:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 22:55:28:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 22:55:28:INFO:   Authentication (password) successful!
+2024-04-18 22:55:28:INFO:   Connecting to MySQL server.
+2024-04-18 22:55:28:INFO:   Successfully connected to MySQL server.
+2024-04-18 22:55:28:INFO:   Requesting trading session.
+2024-04-18 22:55:30:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 22:55:33:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 22:55:37:INFO:   Historical Data Summary does not exist.
+2024-04-18 22:55:37:INFO:   Created Historical Data Summary.
+2024-04-18 22:55:37:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 22:55:37:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 22:55:37:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:03:26:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:03:26:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:03:26:INFO:   Authentication (password) successful!
+2024-04-18 23:03:26:INFO:   Connecting to MySQL server.
+2024-04-18 23:03:27:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:03:27:INFO:   Requesting trading session.
+2024-04-18 23:03:37:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:03:37:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:03:38:INFO:   Authentication (password) successful!
+2024-04-18 23:03:38:INFO:   Connecting to MySQL server.
+2024-04-18 23:03:38:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:03:38:INFO:   Requesting trading session.
+2024-04-18 23:03:41:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:03:43:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:03:47:INFO:   Historical Data Summary does not exist.
+2024-04-18 23:03:47:INFO:   Created Historical Data Summary.
+2024-04-18 23:03:47:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 23:03:47:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 23:03:47:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:04:59:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:04:59:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:04:59:INFO:   Authentication (password) successful!
+2024-04-18 23:04:59:INFO:   Connecting to MySQL server.
+2024-04-18 23:04:59:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:04:59:INFO:   Requesting trading session.
+2024-04-18 23:05:02:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:05:04:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:05:08:INFO:   Historical Data Summary does not exist.
+2024-04-18 23:05:08:INFO:   Created Historical Data Summary.
+2024-04-18 23:05:08:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 23:05:08:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 23:05:09:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:09:51:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:09:51:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:09:51:INFO:   Authentication (password) successful!
+2024-04-18 23:09:51:INFO:   Connecting to MySQL server.
+2024-04-18 23:09:51:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:09:51:INFO:   Requesting trading session.
+2024-04-18 23:09:54:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:09:56:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:10:00:INFO:   Historical Data Summary does not exist.
+2024-04-18 23:10:00:INFO:   Created Historical Data Summary.
+2024-04-18 23:10:00:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 23:10:00:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 23:10:00:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:10:54:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:10:54:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:10:54:INFO:   Authentication (password) successful!
+2024-04-18 23:10:54:INFO:   Connecting to MySQL server.
+2024-04-18 23:10:55:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:10:55:INFO:   Requesting trading session.
+2024-04-18 23:10:57:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:10:59:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:11:04:INFO:   Historical Data Summary exists.
+2024-04-18 23:11:04:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:11:04:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:11:30:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:11:30:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:11:31:INFO:   Authentication (password) successful!
+2024-04-18 23:11:31:INFO:   Connecting to MySQL server.
+2024-04-18 23:11:31:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:11:31:INFO:   Requesting trading session.
+2024-04-18 23:11:41:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:11:42:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:11:42:INFO:   Authentication (password) successful!
+2024-04-18 23:11:42:INFO:   Connecting to MySQL server.
+2024-04-18 23:11:42:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:11:42:INFO:   Requesting trading session.
+2024-04-18 23:11:45:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:11:47:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:11:51:INFO:   Historical Data Summary does not exist.
+2024-04-18 23:11:51:INFO:   Created Historical Data Summary.
+2024-04-18 23:11:51:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 23:11:51:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 23:11:51:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:13:34:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:13:34:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:13:35:INFO:   Authentication (password) successful!
+2024-04-18 23:13:35:INFO:   Connecting to MySQL server.
+2024-04-18 23:13:35:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:13:35:INFO:   Requesting trading session.
+2024-04-18 23:13:38:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:13:40:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:13:44:INFO:   Historical Data Summary does not exist.
+2024-04-18 23:13:44:INFO:   Created Historical Data Summary.
+2024-04-18 23:13:45:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 23:13:45:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 23:13:45:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:13:48:INFO:   Historical Data Summary exists.
+2024-04-18 23:13:49:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:13:50:INFO:   Historical Data Summary exists.
+2024-04-18 23:13:51:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:13:53:INFO:   Historical Data Summary exists.
+2024-04-18 23:13:53:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:13:55:INFO:   Historical Data Summary exists.
+2024-04-18 23:13:55:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:13:57:INFO:   Historical Data Summary exists.
+2024-04-18 23:13:57:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:13:59:INFO:   Historical Data Summary exists.
+2024-04-18 23:13:59:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:14:01:INFO:   Historical Data Summary exists.
+2024-04-18 23:14:01:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:16:07:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:16:07:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:16:07:INFO:   Authentication (password) successful!
+2024-04-18 23:16:07:INFO:   Connecting to MySQL server.
+2024-04-18 23:16:07:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:16:07:INFO:   Requesting trading session.
+2024-04-18 23:16:10:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:16:12:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:16:16:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:16:20:INFO:   Historical Data Summary exists.
+2024-04-18 23:16:20:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:16:20:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:16:22:INFO:   Historical Data Summary exists.
+2024-04-18 23:16:22:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:16:22:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:18:15:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:18:15:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:18:15:INFO:   Authentication (password) successful!
+2024-04-18 23:18:15:INFO:   Connecting to MySQL server.
+2024-04-18 23:18:15:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:18:15:INFO:   Requesting trading session.
+2024-04-18 23:18:18:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:18:20:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:18:24:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:19:12:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:19:12:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:19:12:INFO:   Authentication (password) successful!
+2024-04-18 23:19:12:INFO:   Connecting to MySQL server.
+2024-04-18 23:19:12:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:19:12:INFO:   Requesting trading session.
+2024-04-18 23:19:15:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:19:17:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:19:21:INFO:   Historical Data Summary does not exist.
+2024-04-18 23:19:21:INFO:   Created Historical Data Summary.
+2024-04-18 23:19:21:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-18 23:19:21:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-18 23:19:21:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-18 23:19:25:INFO:   Historical Data Summary exists.
+2024-04-18 23:19:25:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:19:25:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:19:27:INFO:   Historical Data Summary exists.
+2024-04-18 23:19:27:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:19:27:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:19:27:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:29:INFO:   Historical Data Summary exists.
+2024-04-18 23:19:29:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:19:29:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:19:30:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:32:INFO:   Historical Data Summary exists.
+2024-04-18 23:19:32:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:19:32:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:19:32:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:34:INFO:   Historical Data Summary exists.
+2024-04-18 23:19:34:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:19:34:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:19:34:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:34:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:36:INFO:   Historical Data Summary exists.
+2024-04-18 23:19:36:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:19:36:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:19:36:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:36:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:36:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:36:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:36:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:36:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:36:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:38:INFO:   Historical Data Summary exists.
+2024-04-18 23:19:38:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-18 23:19:38:INFO:   Inserting data into server-side dataset.
+2024-04-18 23:19:38:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:38:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:38:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:38:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:38:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:38:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:19:38:INFO:   Data point is already present in historical dataset.
+2024-04-18 23:59:23:INFO:   Connecting to server: 2.123.180.133
+2024-04-18 23:59:24:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-18 23:59:24:INFO:   Authentication (password) successful!
+2024-04-18 23:59:24:INFO:   Connecting to MySQL server.
+2024-04-18 23:59:25:INFO:   Successfully connected to MySQL server.
+2024-04-18 23:59:25:INFO:   Requesting trading session.
+2024-04-18 23:59:28:INFO:   Requesting search for market (FTSE 100).
+2024-04-18 23:59:30:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 00:00:00:INFO:   Connecting to server: 2.123.180.133
+2024-04-19 00:00:00:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-19 00:00:00:INFO:   Authentication (password) successful!
+2024-04-19 00:00:00:INFO:   Connecting to MySQL server.
+2024-04-19 00:00:00:INFO:   Successfully connected to MySQL server.
+2024-04-19 00:00:00:INFO:   Requesting trading session.
+2024-04-19 00:00:04:INFO:   Requesting search for market (FTSE 100).
+2024-04-19 00:00:05:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 00:00:09:INFO:   Historical Data Summary does not exist.
+2024-04-19 00:00:09:INFO:   Created Historical Data Summary.
+2024-04-19 00:00:09:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-19 00:00:09:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-19 00:00:09:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 00:00:13:INFO:   Historical Data Summary exists.
+2024-04-19 00:00:13:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 00:00:13:INFO:   Inserting data into server-side dataset.
+2024-04-19 00:00:15:INFO:   Historical Data Summary exists.
+2024-04-19 00:00:15:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 00:00:15:INFO:   Inserting data into server-side dataset.
+2024-04-19 00:00:15:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:17:INFO:   Historical Data Summary exists.
+2024-04-19 00:00:17:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 00:00:17:INFO:   Inserting data into server-side dataset.
+2024-04-19 00:00:17:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:19:INFO:   Historical Data Summary exists.
+2024-04-19 00:00:19:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 00:00:19:INFO:   Inserting data into server-side dataset.
+2024-04-19 00:00:19:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:19:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:21:INFO:   Historical Data Summary exists.
+2024-04-19 00:00:21:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 00:00:21:INFO:   Inserting data into server-side dataset.
+2024-04-19 00:00:22:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:22:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:23:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:23:INFO:   Historical Data Summary exists.
+2024-04-19 00:00:23:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 00:00:23:INFO:   Inserting data into server-side dataset.
+2024-04-19 00:00:24:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:24:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:24:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:24:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:24:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:25:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:25:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:25:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:26:INFO:   Historical Data Summary exists.
+2024-04-19 00:00:26:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 00:00:26:INFO:   Inserting data into server-side dataset.
+2024-04-19 00:00:26:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:26:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:27:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:27:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:27:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:27:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:00:27:INFO:   Data point is already present in historical dataset.
+2024-04-19 00:02:31:INFO:   Connecting to server: 2.123.180.133
+2024-04-19 00:02:31:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-19 00:02:32:INFO:   Authentication (password) successful!
+2024-04-19 00:02:32:INFO:   Connecting to MySQL server.
+2024-04-19 00:02:32:INFO:   Successfully connected to MySQL server.
+2024-04-19 00:02:32:INFO:   Requesting trading session.
+2024-04-19 00:02:36:INFO:   Requesting search for market (FTSE 100).
+2024-04-19 00:02:37:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 00:02:42:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 08:57:18:INFO:   Connecting to server: 2.123.180.133
+2024-04-19 08:57:18:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-19 08:57:19:INFO:   Authentication (password) successful!
+2024-04-19 08:57:19:INFO:   Connecting to MySQL server.
+2024-04-19 08:57:19:INFO:   Successfully connected to MySQL server.
+2024-04-19 08:57:19:INFO:   Requesting trading session.
+2024-04-19 08:57:22:INFO:   Requesting search for market (FTSE 100).
+2024-04-19 08:57:51:INFO:   Connecting to server: 2.123.180.133
+2024-04-19 08:57:52:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-19 08:57:52:INFO:   Authentication (password) successful!
+2024-04-19 08:57:52:INFO:   Connecting to MySQL server.
+2024-04-19 08:57:53:INFO:   Successfully connected to MySQL server.
+2024-04-19 08:57:53:INFO:   Requesting trading session.
+2024-04-19 08:57:56:INFO:   Requesting search for market (FTSE 100).
+2024-04-19 08:57:57:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 08:58:00:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 08:59:44:INFO:   Connecting to server: 2.123.180.133
+2024-04-19 08:59:44:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-19 08:59:45:INFO:   Authentication (password) successful!
+2024-04-19 08:59:45:INFO:   Connecting to MySQL server.
+2024-04-19 08:59:46:INFO:   Successfully connected to MySQL server.
+2024-04-19 08:59:46:INFO:   Requesting trading session.
+2024-04-19 08:59:49:INFO:   Requesting search for market (FTSE 100).
+2024-04-19 08:59:51:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 08:59:53:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 08:59:57:INFO:   Historical Data Summary exists.
+2024-04-19 08:59:58:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 08:59:58:INFO:   Inserting data into server-side dataset.
+2024-04-19 08:59:58:INFO:   Data point is already present in historical dataset.
+2024-04-19 08:59:59:INFO:   Historical Data Summary exists.
+2024-04-19 09:00:00:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 09:00:00:INFO:   Inserting data into server-side dataset.
+2024-04-19 09:00:00:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:00:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:00:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:00:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:00:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:01:INFO:   Historical Data Summary exists.
+2024-04-19 09:00:02:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 09:00:02:INFO:   Inserting data into server-side dataset.
+2024-04-19 09:00:02:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:02:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:02:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:04:INFO:   Historical Data Summary exists.
+2024-04-19 09:00:04:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 09:00:04:INFO:   Inserting data into server-side dataset.
+2024-04-19 09:00:04:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:04:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:04:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:06:INFO:   Historical Data Summary exists.
+2024-04-19 09:00:06:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 09:00:06:INFO:   Inserting data into server-side dataset.
+2024-04-19 09:00:06:INFO:   Data point is already present in historical dataset.
+2024-04-19 09:00:08:INFO:   Historical Data Summary exists.
+2024-04-19 09:00:08:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 09:00:10:INFO:   Historical Data Summary exists.
+2024-04-19 09:00:10:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:23:39:INFO:   Connecting to server: 2.123.180.133
+2024-04-19 15:23:40:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-19 15:23:40:INFO:   Authentication (password) successful!
+2024-04-19 15:23:40:INFO:   Connecting to MySQL server.
+2024-04-19 15:23:41:INFO:   Successfully connected to MySQL server.
+2024-04-19 15:23:41:INFO:   Requesting trading session.
+2024-04-19 15:23:44:INFO:   Requesting search for market (FTSE 100).
+2024-04-19 15:23:46:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 15:23:48:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 15:23:52:INFO:   Historical Data Summary exists.
+2024-04-19 15:23:52:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:23:52:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:23:53:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:54:INFO:   Historical Data Summary exists.
+2024-04-19 15:23:54:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:23:54:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:23:54:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:54:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:54:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:54:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:57:INFO:   Historical Data Summary exists.
+2024-04-19 15:23:57:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:23:57:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:23:57:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:57:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:57:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:58:INFO:   Historical Data Summary exists.
+2024-04-19 15:23:59:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:23:59:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:23:59:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:23:59:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:24:01:INFO:   Historical Data Summary exists.
+2024-04-19 15:24:01:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:24:02:INFO:   Historical Data Summary exists.
+2024-04-19 15:24:03:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:24:05:INFO:   Historical Data Summary exists.
+2024-04-19 15:24:05:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:27:08:INFO:   Connecting to server: 2.123.180.133
+2024-04-19 15:27:09:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-19 15:27:09:INFO:   Authentication (password) successful!
+2024-04-19 15:27:09:INFO:   Connecting to MySQL server.
+2024-04-19 15:27:10:INFO:   Successfully connected to MySQL server.
+2024-04-19 15:27:10:INFO:   Requesting trading session.
+2024-04-19 15:27:13:INFO:   Requesting search for market (FTSE 100).
+2024-04-19 15:27:15:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 15:27:17:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-19 15:27:21:INFO:   Historical Data Summary exists.
+2024-04-19 15:27:21:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:27:21:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:27:21:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:27:24:INFO:   Historical Data Summary exists.
+2024-04-19 15:27:24:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:27:24:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:27:24:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:27:24:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:27:26:INFO:   Historical Data Summary exists.
+2024-04-19 15:27:26:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:27:26:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:27:26:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:27:28:INFO:   Historical Data Summary exists.
+2024-04-19 15:27:28:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:27:28:INFO:   Inserting data into server-side dataset.
+2024-04-19 15:27:28:INFO:   Data point is already present in historical dataset.
+2024-04-19 15:27:30:INFO:   Historical Data Summary exists.
+2024-04-19 15:27:30:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:27:32:INFO:   Historical Data Summary exists.
+2024-04-19 15:27:32:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-19 15:27:34:INFO:   Historical Data Summary exists.
+2024-04-19 15:27:34:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 09:23:47:INFO:   Connecting to server: 2.123.180.133
+2024-04-20 09:23:47:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-20 09:23:47:INFO:   Authentication (password) successful!
+2024-04-20 09:23:47:INFO:   Connecting to MySQL server.
+2024-04-20 09:23:48:INFO:   Successfully connected to MySQL server.
+2024-04-20 09:23:48:INFO:   Requesting trading session.
+2024-04-20 09:23:50:INFO:   Requesting search for market (FTSE 100).
+2024-04-20 09:23:52:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-20 09:23:54:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-20 09:23:58:INFO:   Historical Data Summary exists.
+2024-04-20 09:23:58:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 09:23:58:INFO:   Inserting data into server-side dataset.
+2024-04-20 09:24:00:INFO:   Historical Data Summary exists.
+2024-04-20 09:24:00:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 09:24:00:INFO:   Inserting data into server-side dataset.
+2024-04-20 09:24:00:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:00:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:00:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:00:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:00:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:00:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:02:INFO:   Historical Data Summary exists.
+2024-04-20 09:24:02:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 09:24:02:INFO:   Inserting data into server-side dataset.
+2024-04-20 09:24:02:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:03:INFO:   Data point is already present in historical dataset.
+2024-04-20 09:24:05:INFO:   Historical Data Summary exists.
+2024-04-20 09:24:05:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 09:24:07:INFO:   Historical Data Summary exists.
+2024-04-20 09:24:07:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 09:24:09:INFO:   Historical Data Summary exists.
+2024-04-20 09:24:09:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:31:12:INFO:   Connecting to server: 2.123.180.133
+2024-04-20 17:31:12:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-20 17:31:13:INFO:   Authentication (password) successful!
+2024-04-20 17:31:13:INFO:   Connecting to MySQL server.
+2024-04-20 17:31:13:INFO:   Successfully connected to MySQL server.
+2024-04-20 17:31:13:INFO:   Requesting trading session.
+2024-04-20 17:31:17:INFO:   Requesting search for market (FTSE 100).
+2024-04-20 17:31:21:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-20 17:31:22:INFO:   Historical Data Summary does not exist.
+2024-04-20 17:31:22:INFO:   Created Historical Data Summary.
+2024-04-20 17:31:22:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-20 17:31:22:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-20 17:31:22:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-20 17:31:26:INFO:   Historical Data Summary exists.
+2024-04-20 17:31:26:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:31:26:INFO:   Inserting data into server-side dataset.
+2024-04-20 17:31:28:INFO:   Historical Data Summary exists.
+2024-04-20 17:31:28:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:31:28:INFO:   Inserting data into server-side dataset.
+2024-04-20 17:31:29:INFO:   Data point is already present in historical dataset.
+2024-04-20 17:31:30:INFO:   Historical Data Summary exists.
+2024-04-20 17:31:30:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:31:30:INFO:   Inserting data into server-side dataset.
+2024-04-20 17:31:31:INFO:   Data point is already present in historical dataset.
+2024-04-20 17:31:32:INFO:   Historical Data Summary exists.
+2024-04-20 17:31:33:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:31:33:INFO:   Inserting data into server-side dataset.
+2024-04-20 17:31:34:INFO:   Historical Data Summary exists.
+2024-04-20 17:31:34:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:31:34:INFO:   Inserting data into server-side dataset.
+2024-04-20 17:31:34:INFO:   Data point is already present in historical dataset.
+2024-04-20 17:31:36:INFO:   Historical Data Summary exists.
+2024-04-20 17:31:37:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:31:39:INFO:   Historical Data Summary exists.
+2024-04-20 17:31:39:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:32:43:INFO:   Connecting to server: 2.123.180.133
+2024-04-20 17:32:43:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-20 17:32:44:INFO:   Authentication (password) successful!
+2024-04-20 17:32:44:INFO:   Connecting to MySQL server.
+2024-04-20 17:32:45:INFO:   Successfully connected to MySQL server.
+2024-04-20 17:32:45:INFO:   Requesting trading session.
+2024-04-20 17:32:48:INFO:   Requesting search for market (FTSE 100).
+2024-04-20 17:32:50:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-20 17:32:52:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-20 17:32:56:INFO:   Historical Data Summary exists.
+2024-04-20 17:32:56:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:32:56:INFO:   Inserting data into server-side dataset.
+2024-04-20 17:32:56:INFO:   Data point is already present in historical dataset.
+2024-04-20 17:32:58:INFO:   Historical Data Summary exists.
+2024-04-20 17:32:58:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:32:58:INFO:   Inserting data into server-side dataset.
+2024-04-20 17:32:58:INFO:   Data point is already present in historical dataset.
+2024-04-20 17:33:00:INFO:   Historical Data Summary exists.
+2024-04-20 17:33:00:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:33:03:INFO:   Historical Data Summary exists.
+2024-04-20 17:33:03:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:33:05:INFO:   Historical Data Summary exists.
+2024-04-20 17:33:05:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-20 17:33:07:INFO:   Historical Data Summary exists.
+2024-04-20 17:33:07:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:50:39:INFO:   Connecting to server: 2.123.180.133
+2024-04-23 16:50:39:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-23 16:50:40:INFO:   Authentication (password) successful!
+2024-04-23 16:50:40:INFO:   Connecting to MySQL server.
+2024-04-23 16:50:40:INFO:   Successfully connected to MySQL server.
+2024-04-23 16:50:40:INFO:   Requesting trading session.
+2024-04-23 16:55:04:INFO:   Connecting to server: 2.123.180.133
+2024-04-23 16:55:04:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-23 16:55:05:INFO:   Authentication (password) successful!
+2024-04-23 16:55:05:INFO:   Connecting to MySQL server.
+2024-04-23 16:55:06:INFO:   Successfully connected to MySQL server.
+2024-04-23 16:55:06:INFO:   Requesting trading session.
+2024-04-23 16:55:08:INFO:   Requesting search for market (NASDAQ).
+2024-04-23 16:55:11:INFO:   Requesting instrument details (IX.D.NASDAQ.CASH.IP).
+2024-04-23 16:55:13:INFO:   Historical Data Summary does not exist.
+2024-04-23 16:55:13:INFO:   Created Historical Data Summary.
+2024-04-23 16:55:13:INFO:   Instrument (US Tech 100) could not be found in the historical data summary.
+2024-04-23 16:55:13:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-23 16:55:13:INFO:   Requesting search for market (US500).
+2024-04-23 16:55:15:INFO:   Requesting instrument details (IX.D.SPTRD.DAILY.IP).
+2024-04-23 16:55:17:INFO:   Historical Data Summary exists.
+2024-04-23 16:55:17:INFO:   Instrument (US 500) could not be found in the historical data summary.
+2024-04-23 16:55:17:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-23 16:55:17:INFO:   Requesting search for market (DOW JONES).
+2024-04-23 16:55:19:INFO:   Requesting instrument details (IX.D.DOW.DAILY.IP).
+2024-04-23 16:55:21:INFO:   Historical Data Summary exists.
+2024-04-23 16:55:21:INFO:   Instrument (Wall Street) could not be found in the historical data summary.
+2024-04-23 16:55:21:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-23 16:55:21:INFO:   Requesting search for market (CAC40).
+2024-04-23 16:55:23:INFO:   Requesting instrument details (IX.D.CAC.DAILY.IP).
+2024-04-23 16:55:25:INFO:   Historical Data Summary exists.
+2024-04-23 16:55:25:INFO:   Instrument (France 40) could not be found in the historical data summary.
+2024-04-23 16:55:25:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-23 16:55:25:INFO:   Requesting search for market (FTSE100).
+2024-04-23 16:55:27:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-23 16:55:30:INFO:   Historical Data Summary exists.
+2024-04-23 16:55:30:INFO:   Instrument (FTSE 100) could not be found in the historical data summary.
+2024-04-23 16:55:30:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-23 16:55:30:INFO:   Requesting search for market (RUSSELL 2000).
+2024-04-23 16:55:32:INFO:   Requesting instrument details (IX.D.RUSSELL.DAILY.IP).
+2024-04-23 16:55:34:INFO:   Historical Data Summary exists.
+2024-04-23 16:55:34:INFO:   Instrument (US Russell 2000) could not be found in the historical data summary.
+2024-04-23 16:55:34:INFO:   Adding instrument to HistoricalDataSummary and creating a new table.
+2024-04-23 16:56:49:INFO:   Connecting to server: 2.123.180.133
+2024-04-23 16:56:50:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-23 16:56:50:INFO:   Authentication (password) successful!
+2024-04-23 16:56:50:INFO:   Connecting to MySQL server.
+2024-04-23 16:56:51:INFO:   Successfully connected to MySQL server.
+2024-04-23 16:56:51:INFO:   Requesting trading session.
+2024-04-23 16:56:54:INFO:   Requesting instrument details (IX.D.NASDAQ.CASH.IP).
+2024-04-23 16:56:58:INFO:   Historical Data Summary exists.
+2024-04-23 16:56:58:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:56:58:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:00:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:00:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:57:00:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:01:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:02:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:02:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:57:02:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:03:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:03:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:04:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:04:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:57:04:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:05:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:06:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:07:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:57:07:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:07:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:07:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:08:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:09:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:09:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:57:09:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:09:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:09:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:09:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:09:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:10:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:10:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:11:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:11:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:57:11:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:11:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:11:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:12:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:12:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:12:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:12:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:12:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:12:INFO:   Requesting instrument details (IX.D.SPTRD.DAILY.IP).
+2024-04-23 16:57:15:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:15:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:57:15:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:18:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:18:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:57:18:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:18:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:20:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:20:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:57:20:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:20:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:21:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:22:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:22:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:57:22:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:23:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:24:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:24:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:57:24:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:24:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:25:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:25:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:26:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:26:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:57:26:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:26:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:27:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:27:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:27:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:27:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:27:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:28:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:28:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:57:28:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:28:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:29:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:29:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:29:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:29:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:29:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:29:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:30:INFO:   Requesting instrument details (IX.D.DOW.DAILY.IP).
+2024-04-23 16:57:33:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:33:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:57:33:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:35:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:35:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:57:35:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:36:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:37:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:37:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:57:37:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:37:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:38:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:40:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:40:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:57:40:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:40:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:42:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:42:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:57:42:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:42:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:42:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:43:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:44:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:44:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:57:44:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:45:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:45:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:45:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:46:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:46:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:57:46:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:46:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:46:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:46:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:47:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:47:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:47:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:47:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:47:INFO:   Requesting instrument details (IX.D.CAC.DAILY.IP).
+2024-04-23 16:57:50:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:50:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 16:57:50:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:52:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:53:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 16:57:53:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:53:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:55:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:55:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 16:57:55:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:55:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:56:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:57:57:INFO:   Historical Data Summary exists.
+2024-04-23 16:57:57:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 16:57:57:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:57:58:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:00:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:00:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 16:58:00:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:00:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:00:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:01:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:02:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:02:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 16:58:02:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:03:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:04:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:04:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 16:58:04:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:04:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:04:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:04:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:05:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:05:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:05:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:05:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:05:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-23 16:58:08:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:08:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:58:08:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:10:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:10:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:58:10:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:11:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:12:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:13:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:58:13:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:13:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:13:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:15:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:15:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:58:15:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:15:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:17:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:17:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:58:17:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:17:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:18:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:18:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:19:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:19:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:58:19:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:19:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:20:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:20:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:20:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:20:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:20:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:21:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:21:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 16:58:21:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:23:INFO:   Requesting instrument details (IX.D.RUSSELL.DAILY.IP).
+2024-04-23 16:58:25:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:26:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 16:58:26:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:28:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:28:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 16:58:28:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:29:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:30:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:30:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 16:58:30:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:30:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:31:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:32:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:32:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 16:58:32:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:33:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:34:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:34:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 16:58:34:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:34:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:35:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:35:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:36:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:36:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 16:58:36:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:37:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:37:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:37:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:37:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:37:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:37:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:39:INFO:   Historical Data Summary exists.
+2024-04-23 16:58:39:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 16:58:39:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:58:39:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:39:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:39:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:40:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:40:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:40:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:58:40:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:12:INFO:   Connecting to server: 2.123.180.133
+2024-04-23 16:59:12:INFO:   Connected (version 2.0, client OpenSSH_for_Windows_8.6)
+2024-04-23 16:59:13:INFO:   Authentication (password) successful!
+2024-04-23 16:59:13:INFO:   Connecting to MySQL server.
+2024-04-23 16:59:14:INFO:   Successfully connected to MySQL server.
+2024-04-23 16:59:14:INFO:   Requesting trading session.
+2024-04-23 16:59:17:INFO:   Requesting instrument details (IX.D.NASDAQ.CASH.IP).
+2024-04-23 16:59:20:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:20:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:59:20:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:20:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:25:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:26:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:59:26:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:26:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:26:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:26:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:26:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:28:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:28:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:59:28:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:28:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:30:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:30:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:59:30:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:30:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:32:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:32:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:59:34:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:34:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:59:36:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:36:INFO:   Instrument (US Tech 100) is already in the historical data summary.
+2024-04-23 16:59:36:INFO:   Requesting instrument details (IX.D.SPTRD.DAILY.IP).
+2024-04-23 16:59:40:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:40:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:59:40:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:40:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:44:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:44:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:59:44:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:46:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:46:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:59:46:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:46:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:48:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:48:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:59:48:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:48:INFO:   Data point is already present in historical dataset.
+2024-04-23 16:59:50:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:50:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:59:52:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:52:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:59:54:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:54:INFO:   Instrument (US 500) is already in the historical data summary.
+2024-04-23 16:59:54:INFO:   Requesting instrument details (IX.D.DOW.DAILY.IP).
+2024-04-23 16:59:58:INFO:   Historical Data Summary exists.
+2024-04-23 16:59:58:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 16:59:58:INFO:   Inserting data into server-side dataset.
+2024-04-23 16:59:58:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:01:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:01:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 17:00:01:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:01:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:02:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:03:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:03:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 17:00:03:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:03:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:05:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:05:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 17:00:05:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:06:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:08:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:08:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 17:00:10:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:10:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 17:00:12:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:12:INFO:   Instrument (Wall Street) is already in the historical data summary.
+2024-04-23 17:00:12:INFO:   Requesting instrument details (IX.D.CAC.DAILY.IP).
+2024-04-23 17:00:16:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:16:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 17:00:16:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:16:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:21:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:21:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 17:00:21:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:21:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:21:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:21:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:21:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:22:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:23:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:23:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 17:00:23:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:23:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:23:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:25:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:25:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 17:00:25:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:25:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:27:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:27:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 17:00:29:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:29:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 17:00:31:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:31:INFO:   Instrument (France 40) is already in the historical data summary.
+2024-04-23 17:00:31:INFO:   Requesting instrument details (IX.D.FTSE.DAILY.IP).
+2024-04-23 17:00:35:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:36:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 17:00:36:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:36:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:40:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:40:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 17:00:40:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:41:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:41:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:41:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:41:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:41:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:42:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:42:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 17:00:42:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:42:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:42:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:44:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:44:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 17:00:44:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:44:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:47:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:47:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 17:00:49:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:49:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 17:00:51:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:51:INFO:   Instrument (FTSE 100) is already in the historical data summary.
+2024-04-23 17:00:51:INFO:   Requesting instrument details (IX.D.RUSSELL.DAILY.IP).
+2024-04-23 17:00:55:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:55:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 17:00:55:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:55:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:59:INFO:   Historical Data Summary exists.
+2024-04-23 17:00:59:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 17:00:59:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:00:59:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:59:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:59:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:00:59:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:01:00:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:01:01:INFO:   Historical Data Summary exists.
+2024-04-23 17:01:01:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 17:01:01:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:01:01:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:01:01:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:01:03:INFO:   Historical Data Summary exists.
+2024-04-23 17:01:03:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 17:01:03:INFO:   Inserting data into server-side dataset.
+2024-04-23 17:01:03:INFO:   Data point is already present in historical dataset.
+2024-04-23 17:01:05:INFO:   Historical Data Summary exists.
+2024-04-23 17:01:05:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 17:01:08:INFO:   Historical Data Summary exists.
+2024-04-23 17:01:08:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
+2024-04-23 17:01:10:INFO:   Historical Data Summary exists.
+2024-04-23 17:01:10:INFO:   Instrument (US Russell 2000) is already in the historical data summary.
