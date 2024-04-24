@@ -124,7 +124,7 @@ def test_add_historical_data() -> None:
 
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
-  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(' ','_')}_HistoricalDataset;")
 
 def test_upload_historical_data() -> None:
   """ Testing upload_historical_data() method within the BacktestingServer object."""
@@ -148,7 +148,7 @@ def test_upload_historical_data() -> None:
   server.cursor.execute("SHOW TABLES;")
   result_string = str(server.cursor.fetchall())
   assert "historicaldatasummary" in result_string
-  assert f"{test_instrument.name.replace(" ","_")}_historicaldataset".lower() in result_string
+  assert f"{test_instrument.name.replace(' ','_')}_historicaldataset".lower() in result_string
 
   # Checking data added.
   data = data.dropna()
@@ -162,7 +162,7 @@ def test_upload_historical_data() -> None:
 
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
-  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
 
 def test_upload_clean_historical_data() -> None:
   """ Testing upload clean historical data method which uploads range of data with various resolutions for initial backtesting."""
@@ -183,7 +183,7 @@ def test_upload_clean_historical_data() -> None:
   server._upload_clean_historical_data(test_instrument)
 
   # Handling checks.
-  server.cursor.execute(f"Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
   results = server.cursor.fetchall()
   single_result = results[0]
   assert len(results) > 10
@@ -191,7 +191,7 @@ def test_upload_clean_historical_data() -> None:
 
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
-  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
 
 def test_upload_on_existing_historical_data() -> None:
   """ Testing the upload on existing historical data method."""
@@ -215,7 +215,7 @@ def test_upload_on_existing_historical_data() -> None:
   server._upload_on_existing_historical_data(test_instrument,previous_datetime)
 
   # Handling checks.
-  server.cursor.execute(f"Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
   results = server.cursor.fetchall()
   single_result = results[0]
   assert len(results) > 1
@@ -223,7 +223,7 @@ def test_upload_on_existing_historical_data() -> None:
 
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
-  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
 
 def test_update_historical_data() -> None:
   """ Testing update historical data method."""
@@ -244,7 +244,7 @@ def test_update_historical_data() -> None:
   server.update_historical_data(ig)
 
   # Handling checks.
-  server.cursor.execute(f"Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
   initial_results = server.cursor.fetchall()
   single_result = initial_results[0]
   assert len(initial_results) > 10
@@ -254,7 +254,7 @@ def test_update_historical_data() -> None:
   server.update_historical_data(ig)
 
   # Handling checks.
-  server.cursor.execute(f"Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
   results = server.cursor.fetchall()
   single_result = results[0]
   assert len(results) > len(initial_results)
@@ -262,4 +262,4 @@ def test_update_historical_data() -> None:
 
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
-  server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;")
+  server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
