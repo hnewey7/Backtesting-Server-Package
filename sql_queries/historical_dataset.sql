@@ -12,7 +12,13 @@ PRIMARY KEY (DatetimeIndex)
 
 -- Adding to table.
 INSERT INTO HistoricalDataset (DatetimeIndex, Open, High, Low, Close)
-VALUES ("2024-04-11 21:21:00", 100, 120, 90, 110);
+VALUES ("2024-04-11 21:19:00", 100, 120, 90, 110);
 
 -- Getting historical dataset.
 SELECT * FROM HistoricalDataset;
+
+-- Getting final data point.
+SELECT DatetimeIndex FROM HistoricalDataset ORDER BY DatetimeIndex DESC LIMIT 1;
+
+-- Deleting table.
+DROP TABLE HistoricalDataset;
