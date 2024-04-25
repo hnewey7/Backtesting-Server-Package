@@ -324,8 +324,42 @@ class BacktestingServer():
     except:
       logger.info("Could not load Instrument Groups.")
       return None
-# - - - - - - - - - - - - - -
     
+# - - - - - - - - - - - - - -
+
+class InstrumentGroup():
+  """ Class for representing a group of instruments on the Backtesting Server. These instruments can have entire actions performed on them, allowing for easy management of specific instruments."""
+
+  def __init__(self, name:str, cursor:pymysql.cursors.Cursor) -> None:
+    self.name: str = name
+    self.cursor: pymysql.cursors.Cursor = cursor
+
+    # Getting instrument names.
+    self.instrument_names: list[str] = self._get_instrument_names()
+
+  def _get_instrument_names(self) -> list[str] | None:
+    """ Getting all instrument names associated with the Instrument Group.
+    
+      Returns
+      -------
+      list[str] | None
+        List of instrument names or None."""
+    try:
+      # Selecting instrument names with group tag.
+      self.cursor.execute('Select InstrumentName from HistoricalDataSummary WHERE InstrumentGroup = {}'.format(self.name))
+      results = self.cursor.fetchall()
+      # Creating list of names.
+      instrument_names: list[str] = []
+      for instrument_name in results:
+        instrument_names.append(instrument_name[0])
+      logger.info("Successfully got all instrument names for {}.".format(self.name))
+      return instrument_names
+    except:
+      logger.info("Could not get instrument names for {}.".format(self.name))
+      return None
+    
+# - - - - - - - - - - - - - -
+
 if __name__ == "__main__":
 
   with open("logging_config.json") as f:
