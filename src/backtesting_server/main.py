@@ -5,6 +5,7 @@ Created on Tuesday 19th March 2024.
 @author: Harry New
 
 '''
+from __future__ import annotations
 
 import json
 import logging.config
@@ -17,7 +18,7 @@ import ig_package
 import pandas as pd
 from datetime import datetime
 import time
-from __future__ import annotations
+
 
 # - - - - - - - - - - - - - -
 
