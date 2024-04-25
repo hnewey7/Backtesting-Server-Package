@@ -17,6 +17,7 @@ import ig_package
 import pandas as pd
 from datetime import datetime
 import time
+from __future__ import annotations
 
 # - - - - - - - - - - - - - -
 
@@ -44,6 +45,8 @@ class BacktestingServer():
     
     self.channel: paramiko.Channel = None
     self.cursor: pymysql.cursors.Cursor = None
+
+    self.instrument_groups: list[InstrumentGroup] = []
 
   def connect(self, database:str) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]:
     """ Connecting to MySQL server using SSH.
@@ -79,6 +82,10 @@ class BacktestingServer():
       # Adding channel and cursor to server.
       self.channel = channel
       self.cursor = cursor
+
+      # Getting all instrument groups from server.
+      self.instrument_groups = self._get_instrument_groups()
+
       return channel, cursor
     except Exception as e:
       logger.info("Unable to connect to MySQL server.")
@@ -202,6 +209,7 @@ class BacktestingServer():
       InstrumentName VARCHAR(20),\
       Epic VARCHAR(100),\
       LiveTracking BOOL DEFAULT False,\
+      InstrumentGroup SET("") DEFAULT NULL,\
       PRIMARY KEY (ID)\
       );')
       logger.info("Created Historical Data Summary.")
@@ -296,6 +304,26 @@ class BacktestingServer():
         # Uploading data.
         self.upload_historical_data(instrument,dataset=historical_data)
 
+  def _get_instrument_groups(self) -> list[InstrumentGroup] | None:
+    """ Getting all instrument groups from the Backtesting Server
+    
+      Returns
+      -------
+      list[InstrumentGroup] | None
+        List of all InstrumentGroups stored on the server or None."""
+    try:
+      # Getting instrument groups from groups table.
+      self.cursor.execute("SELECT GroupName FROM InstrumentGroups;")
+      results = self.cursor.fetchall()
+      # Creating InstrumentGroup objects.
+      instrument_groups: list[InstrumentGroup] = []
+      for instrument_group in results:
+        instrument_groups.append(InstrumentGroup(instrument_group[0]))
+      logger.info("Successfully got all Instrument Groups.")
+      return instrument_groups
+    except:
+      logger.info("Could not load Instrument Groups.")
+      return None
 # - - - - - - - - - - - - - -
     
 if __name__ == "__main__":
