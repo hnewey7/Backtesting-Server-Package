@@ -38,12 +38,26 @@ class BacktestingServer():
           Details for the standard server including 'server', 'username' and 'password'.
         sql_details: dict
           Details for the sql server including 'server', 'username' and 'password'."""
-    # Getting details.
-    self.standard_details = standard_details
-    self.sql_details = sql_details
-    
-    self.channel: paramiko.Channel = None
-    self.cursor: pymysql.cursors.Cursor = None
+    # Checking parameter type.
+    if type(standard_details) != dict and type(sql_details) != dict:
+      logger.info("Invalid parameter type, please input dict type only.")
+      raise TypeError
+    # Checking keys.
+    details = {
+      'server': '', 
+      'username': '',
+      'password': ''
+    }
+    if standard_details.keys() != details.keys() or sql_details.keys() != details.keys():
+      logger.info("Invalid keys in details provided.")
+      raise KeyError
+    else:
+      # Getting details.
+      self.standard_details = standard_details
+      self.sql_details = sql_details
+      
+      self.channel: paramiko.Channel = None
+      self.cursor: pymysql.cursors.Cursor = None
 
   def connect(self, database:str) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]:
     """ Connecting to MySQL server using SSH.
