@@ -307,6 +307,22 @@ class BacktestingServer():
         # Uploading data.
         self.upload_historical_data(instrument,dataset=historical_data)
 
+  def add_instrument_group(self, name: str) -> None:
+    """ Creating an instrument group list for grouping various instruments together.
+    
+      Parameters
+      ----------
+      name: str
+        Name of the instrument group."""
+  
+  def del_instrument_group(self, name: str) -> None:
+    """ Deleting the instrument group.
+    
+      Parameters
+      ----------
+      name: str
+        Name of the instrument group."""
+    
   def _get_instrument_groups(self) -> list[InstrumentGroup] | None:
     """ Getting all instrument groups from the Backtesting Server
     
