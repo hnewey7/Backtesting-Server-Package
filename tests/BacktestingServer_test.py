@@ -39,6 +39,16 @@ def test_init_invalid_type(standard_details,sql_details) -> None:
   with pytest.raises(TypeError):
     server = BacktestingServer(standard_details=standard_details,sql_details=sql_details)
 
+@pytest.mark.parametrize(("standard_details","sql_details"),
+                         [({'server':'','username':''},{'server':'','username':'','password':''}),
+                          ({'server':'','username':'','password':''},{'server':'','username':''}),
+                          ({'server':'','username':'','password':'','bs':''},{'server':'','username':'','password':''}),
+                          ({'server':'','username':'','password':''},{'server':'','username':'','password':'','bs':''})])
+def test_init_invalid_keys(standard_details,sql_details) -> None:
+  """ Testing initialisation with invalid keys in details."""
+  with pytest.raises(KeyError):
+    server = BacktestingServer(standard_details=standard_details,sql_details=sql_details)
+
 @pytest.mark.parametrize("iteration", [i for i in range(10)])
 def test_connect(iteration) -> None:
   """ Testing the connect method within the BacktestingServer object."""
