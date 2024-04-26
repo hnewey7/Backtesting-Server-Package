@@ -17,6 +17,7 @@ from datetime import datetime, timedelta
 import time
 
 # - - - - - - - - - - - - - - - - - - -
+# INITIALISATION TESTS.
 
 def test_init() -> None:
   """ Testing the initialisation of the BacktestingServer object."""
@@ -49,6 +50,9 @@ def test_init_invalid_keys(standard_details,sql_details) -> None:
   with pytest.raises(KeyError):
     server = BacktestingServer(standard_details=standard_details,sql_details=sql_details)
 
+# - - - - - - - - - - - - - - - - - - -
+# CONNECTION TESTS.
+
 @pytest.mark.parametrize("iteration", [i for i in range(10)])
 def test_connect(iteration) -> None:
   """ Testing the connect method within the BacktestingServer object."""
@@ -74,6 +78,17 @@ def test_connect_invalid() -> None:
     server = BacktestingServer(standard_details={"server":"", "username":"", "password":""},sql_details={"server":"", "username":"", "password":""})
     # Connecting to the server.
     server.connect(database="test")
+
+def test_connect_invalid_database() -> None:
+  """ Testing connect method with an invalid database."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  with pytest.raises(pymysql.err.OperationalError):
+    channel, cursor = server.connect(database="invalid")
+
+# - - - - - - - - - - - - - - - - - - -
+# HISTORICAL DATA TESTS.
 
 def test_check_historical_data_summary_exists() -> None:
   """ Testing check_historical_data_summary_exists() method within the BacktestingServer object."""
