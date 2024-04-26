@@ -172,7 +172,7 @@ class BacktestingServer():
 
     
   def _check_historical_data_summary_exists(self) -> bool:
-    """ Checking if the historical data summary table exists on the MySQL server.
+    """ Checking if the historical data summary table exists on the MySQL server. Handles this by requesting entire table and checking for response.
         
         Returns
         -------
