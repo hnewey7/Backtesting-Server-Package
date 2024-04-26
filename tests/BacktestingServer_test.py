@@ -10,6 +10,7 @@ import ig_package
 import paramiko.ssh_exception
 import pytest
 import paramiko
+import pymysql
 from backtesting_server import BacktestingServer
 from SERVER_DETAILS import get_standard_server_details, get_mysql_server_details, get_ig_details
 from datetime import datetime, timedelta
@@ -38,9 +39,13 @@ def test_connect(iteration) -> None:
 
   # Handling assertions.
   assert channel
+  assert type(channel) == paramiko.Channel
   assert cursor
+  assert type(cursor) == pymysql.cursors.Cursor
   assert server.channel
+  assert type(server.channel) == paramiko.Channel
   assert server.cursor
+  assert type(server.cursor) == pymysql.cursors.Cursor
 
 def test_connect_invalid() -> None:
   """ Testing invalid details with the BacktestingServer object."""
