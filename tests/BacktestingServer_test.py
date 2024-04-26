@@ -91,7 +91,12 @@ def test_connect_invalid_database() -> None:
 # HISTORICAL DATA TESTS.
 
 def test_check_historical_data_summary_exists() -> None:
-  """ Testing check_historical_data_summary_exists() method within the BacktestingServer object."""
+  """ Testing check_historical_data_summary_exists() method within the BacktestingServer object.
+    - Connects to server and 'test' database.
+    - Deletes any existing historical data summary.
+    - Asserts if method returns false.
+    - Creates a new data.
+    - Asserts if method returns true."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
