@@ -29,6 +29,16 @@ def test_init() -> None:
   assert server.channel == None
   assert server.cursor == None 
 
+@pytest.mark.parametrize(("standard_details","sql_details"), 
+                         [(None,None),
+                          ("Test","Test"),
+                          (1,1),
+                          (1.2,1.2)])
+def test_init_invalid_type(standard_details,sql_details) -> None:
+  """ Testing initialisation with invalid parameters."""
+  with pytest.raises(TypeError):
+    server = BacktestingServer(standard_details=standard_details,sql_details=sql_details)
+
 @pytest.mark.parametrize("iteration", [i for i in range(10)])
 def test_connect(iteration) -> None:
   """ Testing the connect method within the BacktestingServer object."""
