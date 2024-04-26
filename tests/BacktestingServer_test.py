@@ -23,11 +23,10 @@ def test_init() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
 
   # Handling assertions.
-  assert server.standard_details
-  assert server.sql_details
-  for key in ["server","username","password"]:
-    assert server.standard_details[key] 
-    assert server.sql_details[key]
+  assert server.standard_details == get_standard_server_details()
+  assert server.sql_details == get_mysql_server_details()
+  assert server.channel == None
+  assert server.cursor == None 
 
 @pytest.mark.parametrize("iteration", [i for i in range(10)])
 def test_connect(iteration) -> None:
