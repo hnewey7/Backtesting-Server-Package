@@ -92,7 +92,7 @@ class BacktestingServer():
       logger.info("Unable to connect to MySQL server.")
       raise e
 
-  def upload_historical_data(self, instrument:ig_package.Instrument, live_tracking:bool=False, dataset:pd.DataFrame=[]) -> None:
+  def upload_historical_data(self, instrument:ig_package.Instrument, live_tracking:bool=False, dataset:pd.DataFrame=[], groups: list[InstrumentGroup] = []) -> None:
     """ Uploading historical data to the backtesting server.
     
         Parameters
@@ -102,7 +102,9 @@ class BacktestingServer():
         live_tracking: bool = False
           OPTIONAL Enable/disable live tracking of instrument.
         dataset: pd.DataFrame = []
-          OPTIONAL DataFrame containing the data to be uploaded."""
+          OPTIONAL DataFrame containing the data to be uploaded.
+        groups: list[InstrumentGroup] = []
+          OPTIONAL List of Instrument Groups to add the instrument to."""
     # Checking if historical data summary exists.
     if not self._check_historical_data_summary_exists():
       # Creating summary table.
