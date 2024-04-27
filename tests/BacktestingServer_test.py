@@ -163,6 +163,10 @@ def test_add_historical_data() -> None:
   # Checking if added to summary.
   server.cursor.execute(f"SELECT * FROM HistoricalDataSummary WHERE Epic='{test_instrument.epic}';")
   assert len(server.cursor.fetchall()) > 0
+
+  # Checking through check instrument in historical data method.
+  assert server._check_instrument_in_historical_data(test_instrument)
+
   # Checking if table added.
   try:
     server.cursor.execute(f"SELECT * FROM {test_instrument.name.replace(' ','_')}_HistoricalDataset;")
