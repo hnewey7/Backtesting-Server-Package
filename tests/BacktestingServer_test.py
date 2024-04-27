@@ -129,6 +129,10 @@ def test_check_instrument_in_historical_data() -> None:
   ig_details = get_ig_details()
   ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
   test_instrument = ig.search_instrument('FTSE 100')
+
+  # Checking before instrument is added.
+  assert not server._check_instrument_in_historical_data(test_instrument)
+
   # Inserting test instrument.
   server.cursor.execute(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic)\
   VALUES ('{test_instrument.name}', '{test_instrument.epic}');")
