@@ -357,6 +357,22 @@ class BacktestingServer():
     except:
       logger.info("Unable to create the Instrument Groups table.")
 
+  def _check_instrument_groups_table(self) -> bool:
+    """ Checking if instrument groups tables exists within the database.
+    
+      Returns 
+      -------
+      bool
+        Boolean if instrument groups table exists or not."""
+    try:
+      # Getting instrument groups from groups table.
+      self.cursor.execute("SELECT * FROM InstrumentGroups;")
+      logger.info("Successfully found Instrument Groups table in database.")
+      return True
+    except:
+      logger.info("Could not find Instrument Groups table in database.")
+      return False
+    
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():
