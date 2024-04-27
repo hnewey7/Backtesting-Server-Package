@@ -263,3 +263,23 @@ def test_update_historical_data() -> None:
   # Deleting tables after testing.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
+
+def test_create_instrument_groups_table() -> None:
+  """ Testing the create instrument groups table method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+
+  # Checking no table.
+  assert not server._check_instrument_groups_table()
+
+  # Creating table.
+  server._create_instrument_groups_table()
+
+  # Checking table is present.
+  assert server._check_instrument_groups_table()
+
+  # Deleting table.
+  server.cursor.execute("DROP TABLE InstrumentGroups;")
+
