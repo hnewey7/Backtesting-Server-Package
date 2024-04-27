@@ -324,7 +324,7 @@ class BacktestingServer():
         Name of the instrument group."""
     
   def _get_instrument_groups(self) -> list[InstrumentGroup] | None:
-    """ Getting all instrument groups from the Backtesting Server
+    """ Getting all instrument groups from the Backtesting Server.
     
       Returns
       -------
@@ -343,7 +343,20 @@ class BacktestingServer():
     except:
       logger.info("Could not load Instrument Groups.")
       return None
-    
+  
+  def _create_instrument_groups_table(self) -> None:
+    """ Creating instrument groups table on the database."""
+    # Creating instrument groups table.
+    try:
+      self.cursor.execute('CREATE TABLE InstrumentGroups (\
+      ID INT NOT NULL AUTO_INCREMENT,\
+      GroupName VARCHAR(20),\
+      PRIMARY KEY (ID)\
+      );')
+      logger.info("Successfully created Instrument Groups table.")
+    except:
+      logger.info("Unable to create the Instrument Groups table.")
+
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():
