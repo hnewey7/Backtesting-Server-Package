@@ -84,8 +84,9 @@ class BacktestingServer():
       self.channel = channel
       self.cursor = cursor
 
-      # Getting all instrument groups from server.
-      self.instrument_groups = self._get_instrument_groups()
+      if self._check_instrument_groups_table:
+        # Getting all instrument groups from server.
+        self.instrument_groups = self._get_instrument_groups()
 
       return channel, cursor
     except Exception as e:
