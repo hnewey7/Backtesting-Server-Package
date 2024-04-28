@@ -113,7 +113,7 @@ class BacktestingServer():
     # Checking if data is already present.
     if not self._check_instrument_in_historical_data(instrument):
       # Adding new instrument.
-      self._add_historical_data_summary(instrument, live_tracking)
+      self._add_historical_data_summary(instrument, live_tracking, groups)
 
     # Checking if data.
     if len(dataset) > 0:
@@ -220,7 +220,7 @@ class BacktestingServer():
     except:
       logger.info("Failed to create Historical Data Summary.")
 
-  def _add_historical_data_summary(self, instrument: ig_package.Instrument, live_tracking:bool=False) -> None:
+  def _add_historical_data_summary(self, instrument: ig_package.Instrument, live_tracking:bool=False, groups: list[InstrumentGroup] = []) -> None:
     """ Adding instrument to the historical data summary and creating new table for historical data.
     
         Parameters
@@ -228,10 +228,21 @@ class BacktestingServer():
         instrument: ig_package.Instrument
           Instrument to add to the historical data summary.
         live_tracking: bool
-          OPTIONAL Enable/disable live tracking of instrument."""
+          OPTIONAL Enable/disable live tracking of instrument.
+        groups: list[InstrumentGroups]
+          OPTIONAL List of Instrument Groups."""
     logger.info("Adding instrument to HistoricalDataSummary and creating a new table.")
-    # Adding instrument to historical data summary.
-    self.cursor.executemany(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking) VALUES (%s, %s, %s)", [(instrument.name, instrument.epic, live_tracking)])
+    # Creating string for Instrument Groups.
+    if len(groups) != 0:
+      group_string = ""
+      for group in groups:
+        group_string += f"{group.name},"
+      group_string = f"{group_string[:-1]}"
+      # Adding instrument to historical data summary.
+      self.cursor.executemany(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking, InstrumentGroup) VALUES (%s, %s, %s, %s)", [(instrument.name, instrument.epic, live_tracking, group_string)])
+    else:
+      # Adding instrument to historical data summary.
+      self.cursor.executemany(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking) VALUES (%s, %s, %s)", [(instrument.name, instrument.epic, live_tracking)])
     # Creating new table for storing historical data.
     new_name = instrument.name.replace(" ","_")
     self.cursor.execute(f"CREATE TABLE {new_name}_HistoricalDataset (\
