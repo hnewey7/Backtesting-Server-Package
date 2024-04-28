@@ -330,6 +330,8 @@ class BacktestingServer():
         self.instrument_groups = [new_group]
       else:
         self.instrument_groups.append(new_group)
+      # Updating group data type in historical summary.
+      self._update_groups_in_historical_data()
     except:
       logger.info(f"Unable to add, {name}, to the instrument groups table.")
   
@@ -348,6 +350,8 @@ class BacktestingServer():
         # Removing instrument group object.
         self.instrument_groups.remove(instrument_group)
         logger.info(f"Successfully removed Instrument Group, {name}.")
+        # Updating group data type in historical summary.
+        self._update_groups_in_historical_data()
         return
     logger.info(f"Unable to find Instrument Group, {name}.")
     
@@ -404,7 +408,26 @@ class BacktestingServer():
     except:
       logger.info("Could not find Instrument Groups table in database.")
       return False
-    
+  
+  def _update_groups_in_historical_data(self) -> None:
+    """ Updating the Historical Data Summary for any new Instrument Groups that have been added."""
+    try:
+      # Getting instrument groups from the table.
+      self.cursor.execute("SELECT GroupName FROM InstrumentGroups;")
+      results = self.cursor.fetchall()
+      # Creating new query to send.
+      if len(results) != 0:
+        group_list = ""
+        for group in results:
+          group_list += f"'{group[0]}',"
+      else:
+        group_list = "'',"
+      self.cursor.execute(f"ALTER TABLE HistoricalDataSummary\
+      MODIFY COLUMN InstrumentGroup SET({group_list[:-1]}) DEFAULT NULL;")
+      logger.info("Successfully updated the Historical Data Summary.")
+    except:
+      logger.info("Could not update the Historical Data Summary.")
+
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():
