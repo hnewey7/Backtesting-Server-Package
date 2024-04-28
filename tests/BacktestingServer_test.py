@@ -330,3 +330,21 @@ def test_del_instrument_group() -> None:
   # Removing table.
   server.cursor.execute("DROP TABLE InstrumentGroups;")
 
+def test_get_instrument_groups() -> None:
+  """ Testing the get instrument groups method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+
+  # Adding instrument groups.
+  server.add_instrument_group("test")
+
+  # Getting instrument grous.
+  instrument_groups = server._get_instrument_groups()
+  assert len(instrument_groups) == 1
+  assert instrument_groups[0].name == "test"
+  assert instrument_groups[0].cursor == server.cursor
+
+  # Removing table.
+  server.cursor.execute("DROP TABLE InstrumentGroups;")
