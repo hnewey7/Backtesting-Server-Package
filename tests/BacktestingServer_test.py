@@ -283,3 +283,23 @@ def test_create_instrument_groups_table() -> None:
   # Deleting table.
   server.cursor.execute("DROP TABLE InstrumentGroups;")
 
+def test_add_instrument_group() -> None:
+  """ Testing adding a new instrument group."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+
+  # Creating the instrument groups table.
+  server._create_instrument_groups_table()
+  # Adding the instrument group.
+  server.add_instrument_group("test")
+  
+  # Checking the instrument group is present.
+  server.cursor.execute("SELECT * FROM InstrumentGroups WHERE GroupName = 'test';")
+  result = server.cursor.fetchall()
+  assert len(result) == 1
+
+  # Removing table.
+  server.cursor.execute("DROP TABLE InstrumentGroups;")
+
