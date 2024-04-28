@@ -164,6 +164,36 @@ def test_upload_historical_data() -> None:
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
 
+def test_upload_historical_data_with_group() -> None:
+  """ Testing the upload historical data method with the group features."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Creating table.
+  server._create_historical_data_summary()
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  test_instrument = ig.search_instrument('FTSE 100')
+
+  # Creating an instrument group.
+  server.add_instrument_group("test")
+
+  # Uploading instrument with group tag.
+  server.upload_historical_data(test_instrument,True,groups=server.instrument_groups)
+
+  # Checking if tag in historical data summary.
+  server.cursor.execute("Select InstrumentName From HistoricalDataSummary WHERE InstrumentGroup = 'test';")
+  result = server.cursor.fetchall()
+  assert result[0][0] == test_instrument.name
+
+  # Deleting tables after testing.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
+  server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
+  server.cursor.execute("DROP TABLE InstrumentGroups;")
+
 def test_upload_clean_historical_data() -> None:
   """ Testing upload clean historical data method which uploads range of data with various resolutions for initial backtesting."""
   # Creating backtesting server object.
