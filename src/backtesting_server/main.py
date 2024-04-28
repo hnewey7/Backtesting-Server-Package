@@ -316,7 +316,7 @@ class BacktestingServer():
       name: str
         Name of the instrument group."""
     # Creating instrument groups table if not present.
-    if self._check_instrument_groups_table():
+    if not self._check_instrument_groups_table():
       self._create_instrument_groups_table()
 
     try:
