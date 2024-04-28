@@ -363,9 +363,13 @@ class BacktestingServer():
       self.cursor.execute("SELECT GroupName FROM InstrumentGroups;")
       results = self.cursor.fetchall()
       # Creating InstrumentGroup objects.
-      instrument_groups: list[InstrumentGroup] = []
+      instrument_groups = []
       for instrument_group in results:
-        instrument_groups.append(InstrumentGroup(instrument_group[0]))
+        new_instrument_group = InstrumentGroup(instrument_group[0],self.cursor)
+        if not instrument_groups:
+          instrument_groups = [new_instrument_group]
+        else:
+          instrument_groups.append(new_instrument_group)
       logger.info("Successfully got all Instrument Groups.")
       return instrument_groups
     except:
