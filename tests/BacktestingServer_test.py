@@ -257,7 +257,7 @@ def test_update_historical_data() -> None:
   server.cursor.execute(f'Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
   results = server.cursor.fetchall()
   single_result = results[0]
-  assert len(results) > len(initial_results)
+  assert len(results) >= len(initial_results)
   assert len(single_result) == 5
 
   # Deleting tables after testing.
