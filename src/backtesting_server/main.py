@@ -318,13 +318,18 @@ class BacktestingServer():
     # Creating instrument groups table if not present.
     if self._check_instrument_groups_table():
       self._create_instrument_groups_table()
+
     try:
       # Inserting new group.
       self.cursor.execute(f'INSERT INTO InstrumentGroups (GroupName)\
       VALUES ("{name}");')
       logger.info(f"Added group, {name}, to the instrument groups table.")
       # Creating instrument object.
-      self.instrument_groups.append(InstrumentGroup(name,self.cursor))
+      new_group = InstrumentGroup(name,self.cursor)
+      if not self.instrument_groups:
+        self.instrument_groups = [new_group]
+      else:
+        self.instrument_groups.append(new_group)
     except:
       logger.info(f"Unable to add, {name}, to the instrument groups table.")
   
