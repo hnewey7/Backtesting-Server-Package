@@ -270,16 +270,12 @@ def test_create_instrument_groups_table() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
-
   # Checking no table.
   assert not server._check_instrument_groups_table()
-
   # Creating table.
   server._create_instrument_groups_table()
-
   # Checking table is present.
   assert server._check_instrument_groups_table()
-
   # Deleting table.
   server.cursor.execute("DROP TABLE InstrumentGroups;")
 
@@ -304,16 +300,32 @@ def test_add_instrument_group() -> None:
   # Removing table.
   server.cursor.execute("DROP TABLE InstrumentGroups;")
 
+def test_del_instrument_group() -> None:
+  """ Testing deleting an instrument group method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
 
   # Creating the instrument groups table.
   server._create_instrument_groups_table()
   # Adding the instrument group.
   server.add_instrument_group("test")
-  
+
   # Checking the instrument group is present.
   server.cursor.execute("SELECT * FROM InstrumentGroups WHERE GroupName = 'test';")
   result = server.cursor.fetchall()
   assert len(result) == 1
+  assert len(server.instrument_groups) == 1
+
+  # Removing instrument group
+  server.del_instrument_group("test")
+
+  # Checking the instrument group is present.
+  server.cursor.execute("SELECT * FROM InstrumentGroups WHERE GroupName = 'test';")
+  result = server.cursor.fetchall()
+  assert len(result) == 0
+  assert len(server.instrument_groups) == 0
 
   # Removing table.
   server.cursor.execute("DROP TABLE InstrumentGroups;")
