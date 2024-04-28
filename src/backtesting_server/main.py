@@ -340,6 +340,16 @@ class BacktestingServer():
       ----------
       name: str
         Name of the instrument group."""
+    # Getting instrument group.
+    for instrument_group in self.instrument_groups:
+      if instrument_group.name == name:
+        # Remove group from server.
+        self.cursor.execute(f"DELETE FROM InstrumentGroups WHERE GroupName = '{name}';")
+        # Removing instrument group object.
+        self.instrument_groups.remove(instrument_group)
+        logger.info(f"Successfully removed Instrument Group, {name}.")
+        return
+    logger.info(f"Unable to find Instrument Group, {name}.")
     
   def _get_instrument_groups(self) -> list[InstrumentGroup] | None:
     """ Getting all instrument groups from the Backtesting Server.
