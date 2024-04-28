@@ -290,6 +290,21 @@ def test_add_instrument_group() -> None:
   # Connecting to the server.
   server.connect(database="test")
 
+  # Adding the instrument group.
+  server.add_instrument_group("test")
+  
+  # Checking the instrument group is present in server.
+  server.cursor.execute("SELECT * FROM InstrumentGroups WHERE GroupName = 'test';")
+  result = server.cursor.fetchall()
+  assert len(result) == 1
+
+  # Checking instrument group object is present.
+  assert len(server.instrument_groups) == 1
+
+  # Removing table.
+  server.cursor.execute("DROP TABLE InstrumentGroups;")
+
+
   # Creating the instrument groups table.
   server._create_instrument_groups_table()
   # Adding the instrument group.
