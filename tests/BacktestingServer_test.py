@@ -348,3 +348,53 @@ def test_get_instrument_groups() -> None:
 
   # Removing table.
   server.cursor.execute("DROP TABLE InstrumentGroups;")
+
+def test_update_groups_in_historical_data() -> None:
+  """ Testing method to update the groups type in the historical data summary table."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+
+  # Creating historical data summary.
+  server._create_historical_data_summary()
+  # Checking data type of group column.
+  server.cursor.execute("SHOW FIELDS FROM HistoricalDataSummary WHERE Field = 'InstrumentGroup';")
+  results = server.cursor.fetchall()
+  assert results[0][1] == "set('')"
+
+  # Adding instrument groups.
+  server.add_instrument_group("test")
+
+  # Checking data type of group column.
+  server.cursor.execute("SHOW FIELDS FROM HistoricalDataSummary WHERE Field = 'InstrumentGroup';")
+  results = server.cursor.fetchall()
+  assert results[0][1] == "set('test')"
+
+  # Adding instrument groups.
+  server.add_instrument_group("test2")
+
+  # Checking data type of group column.
+  server.cursor.execute("SHOW FIELDS FROM HistoricalDataSummary WHERE Field = 'InstrumentGroup';")
+  results = server.cursor.fetchall()
+  assert results[0][1] == "set('test','test2')"
+
+  # Deleting instrument groups.
+  server.del_instrument_group("test2")
+
+  # Checking data type of group column.
+  server.cursor.execute("SHOW FIELDS FROM HistoricalDataSummary WHERE Field = 'InstrumentGroup';")
+  results = server.cursor.fetchall()
+  assert results[0][1] == "set('test')"
+
+  # Deleting instrument groups.
+  server.del_instrument_group("test")
+
+  # Checking data type of group column.
+  server.cursor.execute("SHOW FIELDS FROM HistoricalDataSummary WHERE Field = 'InstrumentGroup';")
+  results = server.cursor.fetchall()
+  assert results[0][1] == "set('')"
+
+  # Removing table.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")
+  server.cursor.execute("DROP TABLE InstrumentGroups;")
