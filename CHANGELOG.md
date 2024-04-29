@@ -2,6 +2,34 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.3.0](https://github.com/mokkapps/changelog-generator-demo/compare/v0.2.0...v0.3.0) (2024-04-29)
+
+
+### Features
+
+* added del_instrument_group method ([94a6edd](https://github.com/mokkapps/changelog-generator-demo/commits/94a6edd02fac836e4cc2e3e43a605812cc5632e7))
+* added get instrument groups method ([94d3ab6](https://github.com/mokkapps/changelog-generator-demo/commits/94d3ab67e7648adcfed39baa6c87b78caad72ee5))
+* adding add group and del group method ([676a99c](https://github.com/mokkapps/changelog-generator-demo/commits/676a99c10ea7e3ed3f275f922cd9c15233725767))
+* adding add instrument group method ([37a4b14](https://github.com/mokkapps/changelog-generator-demo/commits/37a4b14ad9649b8e5fe48e6161043b2db9bb15a8))
+* adding check instrument groups table method ([f9ceea4](https://github.com/mokkapps/changelog-generator-demo/commits/f9ceea4000891c77a10a4f8e8672c0762146247b))
+* adding group list parameter to the update historical data method ([dd1d92c](https://github.com/mokkapps/changelog-generator-demo/commits/dd1d92c497f4b97dfe6fd341db7d7a57dc4d8fb8))
+* adding groups parameter to upload historical data ([9f17dc1](https://github.com/mokkapps/changelog-generator-demo/commits/9f17dc1b212e2efde3c088bc9e594ebcaaf445ad))
+* adding update groups in historcail data ([838a5b3](https://github.com/mokkapps/changelog-generator-demo/commits/838a5b3125e5582a6fb829e00a8b656bfd039068))
+* create instrument groups table ([ed2e83f](https://github.com/mokkapps/changelog-generator-demo/commits/ed2e83f0f2e6c8e2fb9d423a5a0e3289b65f6c8c))
+* **groups:** adding group parameter to upload historical data ([0fdb9f3](https://github.com/mokkapps/changelog-generator-demo/commits/0fdb9f309453085a130c0c5527649a9038557129))
+* instrument group class with get_instrument_name method ([6b3e034](https://github.com/mokkapps/changelog-generator-demo/commits/6b3e0349b605e29053d1f97556d313e952b6dc9e))
+
+
+### Bug Fixes
+
+* adding create historical data summary to add instrument group method ([eb174f9](https://github.com/mokkapps/changelog-generator-demo/commits/eb174f97919e4efc2ab58c02cc23a99e61e0bbb1))
+* adding type checking to server class init ([ad63b2b](https://github.com/mokkapps/changelog-generator-demo/commits/ad63b2b0fb161ac0326955478aa0a65e5ba45ecf))
+* bug with add instrument group ([aba2537](https://github.com/mokkapps/changelog-generator-demo/commits/aba2537e5bf147a9a66860c5501c2dae67ad245b))
+* bug with add instrument group method ([7a29e2f](https://github.com/mokkapps/changelog-generator-demo/commits/7a29e2f96933149acb55fe7b6db597ed51e40a6e))
+* bug with get instrument groups ([4da2f39](https://github.com/mokkapps/changelog-generator-demo/commits/4da2f39ad5f2959e1d4d305896ec7a16c3c68552))
+* bug with importing annotations ([5b4d41b](https://github.com/mokkapps/changelog-generator-demo/commits/5b4d41b061b635a3fe5bb55634426cb84d842716))
+* getting instrument groups only if table is present ([7c660fa](https://github.com/mokkapps/changelog-generator-demo/commits/7c660fa16899c8d848681ac7df320ee173c2cdb7))
+
 ## [0.2.0](https://github.com/mokkapps/changelog-generator-demo/compare/v0.1.4...v0.2.0) (2024-04-21)
 
 ### [0.1.4](https://github.com/mokkapps/changelog-generator-demo/compare/v0.1.3...v0.1.4) (2024-04-21)
