@@ -166,8 +166,7 @@ class BacktestingServer():
         previous_datetime = datetime.strptime(previous_datetime,"%Y:%m:%d-%H:%M:%S")
         # Uploading on existing historical data.
         self._upload_on_existing_historical_data(instrument,previous_datetime)
-
-    
+ 
   def _check_historical_data_summary_exists(self) -> bool:
     """ Checking if the historical data summary table exists on the MySQL server.
         
@@ -329,7 +328,10 @@ class BacktestingServer():
     # Creating instrument groups table if not present.
     if not self._check_instrument_groups_table():
       self._create_instrument_groups_table()
-
+    # Creating historical data summary.
+    if not self._check_historical_data_summary_exists():
+      self._create_historical_data_summary()
+      
     try:
       # Inserting new group.
       self.cursor.execute(f'INSERT INTO InstrumentGroups (GroupName)\
