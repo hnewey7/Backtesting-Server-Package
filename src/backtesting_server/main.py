@@ -131,23 +131,30 @@ class BacktestingServer():
         except pymysql.err.IntegrityError:
           logging.info("Data point is already present in historical dataset.")
 
-  def update_historical_data(self, ig:ig_package.IG) -> None:
+  def update_historical_data(self, ig:ig_package.IG, groups:list[InstrumentGroup] = []) -> None:
     """ Updating new historical data on instruments being tracked with the BacktestingServer.
     
         Parameters
         ----------
-        API_key: str
-          API key for IG's REST API.
-        username: str
-          Username for IG.
-        password: str
-          Password for IG."""
-    # Requesting all tracked instruments from the HistoricalDataSummary.
-    self.cursor.execute("SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True;")
+        ig: ig_package.IG
+          IG object to interact with IG Group's API.
+        groups: list[InstrumentGroup] = []
+          OPTIONAL List of Instrument Groups to update."""
+    if len(groups) == 0:
+      # Requesting all tracked instruments from the HistoricalDataSummary.
+      self.cursor.execute("SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True;")
+      results = self.cursor.fetchall()
+    else:
+      # Requesting specific groups.
+      results = []
+      for group in groups:
+        self.cursor.execute("SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True and InstrumentGroup='{}';".format(group.name))
+        results.extend(self.cursor.fetchall())
+
     # Getting tracked names and epics.
     tracked_names = []
     tracked_epics = []
-    for instrument in self.cursor.fetchall():
+    for instrument in results:
       tracked_names.append(instrument[0])
       tracked_epics.append(instrument[1])
     
