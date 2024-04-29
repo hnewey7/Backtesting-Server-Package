@@ -20,11 +20,19 @@ mysql_server_details = {
   "password":""
 }
 
+<<<<<<< HEAD
 # IG Group's REST API details.
 ig_details = {
   "key": "",
   "username": "",
   "password": ""
+=======
+# IG Group details.
+ig_details = {
+  "key":"",
+  "username":"",
+  "password":""
+>>>>>>> groups_feature
 }
 
 # - - - - - - - - - - - - - - - -
@@ -48,10 +56,19 @@ def get_mysql_server_details() -> dict:
   return mysql_server_details
 
 def get_ig_details() -> dict:
+<<<<<<< HEAD
   """ Getting IG Group REST API details.
   
   Returns
   -------
   dict
     Contains 'key', 'username' and 'password'."""
+=======
+  """ Getting IG Group details.
+  
+    Returns
+    -------
+    dict
+      Contains 'key', 'username' and 'password'."""
+>>>>>>> groups_feature
   return ig_details

@@ -5,6 +5,7 @@ Created on Tuesday 19th March 2024.
 @author: Harry New
 
 '''
+from __future__ import annotations
 
 import json
 import logging.config
@@ -17,6 +18,7 @@ import ig_package
 import pandas as pd
 from datetime import datetime
 import time
+
 
 # - - - - - - - - - - - - - -
 
@@ -59,6 +61,8 @@ class BacktestingServer():
       self.channel: paramiko.Channel = None
       self.cursor: pymysql.cursors.Cursor = None
 
+    self.instrument_groups: list[InstrumentGroup] = []
+
   def connect(self, database:str) -> tuple[paramiko.Channel, pymysql.cursors.Cursor] | tuple[None, None]:
     """ Connecting to MySQL server using SSH.
         
@@ -93,12 +97,17 @@ class BacktestingServer():
       # Adding channel and cursor to server.
       self.channel = channel
       self.cursor = cursor
+
+      if self._check_instrument_groups_table:
+        # Getting all instrument groups from server.
+        self.instrument_groups = self._get_instrument_groups()
+
       return channel, cursor
     except Exception as e:
       logger.info("Unable to connect to MySQL server.")
       raise e
 
-  def upload_historical_data(self, instrument:ig_package.Instrument, live_tracking:bool=False, dataset:pd.DataFrame=[]) -> None:
+  def upload_historical_data(self, instrument:ig_package.Instrument, live_tracking:bool=False, dataset:pd.DataFrame=[], groups: list[InstrumentGroup] = []) -> None:
     """ Uploading historical data to the backtesting server.
     
         Parameters
@@ -108,7 +117,9 @@ class BacktestingServer():
         live_tracking: bool = False
           OPTIONAL Enable/disable live tracking of instrument.
         dataset: pd.DataFrame = []
-          OPTIONAL DataFrame containing the data to be uploaded."""
+          OPTIONAL DataFrame containing the data to be uploaded.
+        groups: list[InstrumentGroup] = []
+          OPTIONAL List of Instrument Groups to add the instrument to."""
     # Checking if historical data summary exists.
     if not self._check_historical_data_summary_exists():
       # Creating summary table.
@@ -116,7 +127,7 @@ class BacktestingServer():
     # Checking if data is already present.
     if not self._check_instrument_in_historical_data(instrument):
       # Adding new instrument.
-      self._add_historical_data_summary(instrument, live_tracking)
+      self._add_historical_data_summary(instrument, live_tracking, groups)
 
     # Checking if data.
     if len(dataset) > 0:
@@ -134,23 +145,30 @@ class BacktestingServer():
         except pymysql.err.IntegrityError:
           logging.info("Data point is already present in historical dataset.")
 
-  def update_historical_data(self, ig:ig_package.IG) -> None:
+  def update_historical_data(self, ig:ig_package.IG, groups:list[InstrumentGroup] = []) -> None:
     """ Updating new historical data on instruments being tracked with the BacktestingServer.
     
         Parameters
         ----------
-        API_key: str
-          API key for IG's REST API.
-        username: str
-          Username for IG.
-        password: str
-          Password for IG."""
-    # Requesting all tracked instruments from the HistoricalDataSummary.
-    self.cursor.execute("SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True;")
+        ig: ig_package.IG
+          IG object to interact with IG Group's API.
+        groups: list[InstrumentGroup] = []
+          OPTIONAL List of Instrument Groups to update."""
+    if len(groups) == 0:
+      # Requesting all tracked instruments from the HistoricalDataSummary.
+      self.cursor.execute("SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True;")
+      results = self.cursor.fetchall()
+    else:
+      # Requesting specific groups.
+      results = []
+      for group in groups:
+        self.cursor.execute("SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True and InstrumentGroup='{}';".format(group.name))
+        results.extend(self.cursor.fetchall())
+
     # Getting tracked names and epics.
     tracked_names = []
     tracked_epics = []
-    for instrument in self.cursor.fetchall():
+    for instrument in results:
       tracked_names.append(instrument[0])
       tracked_epics.append(instrument[1])
     
@@ -169,8 +187,7 @@ class BacktestingServer():
         previous_datetime = datetime.strptime(previous_datetime,"%Y:%m:%d-%H:%M:%S")
         # Uploading on existing historical data.
         self._upload_on_existing_historical_data(instrument,previous_datetime)
-
-    
+ 
   def _check_historical_data_summary_exists(self) -> bool:
     """ Checking if the historical data summary table exists on the MySQL server. Handles this by requesting entire table and checking for response.
         
@@ -216,13 +233,14 @@ class BacktestingServer():
       InstrumentName VARCHAR(20),\
       Epic VARCHAR(100),\
       LiveTracking BOOL DEFAULT False,\
+      InstrumentGroup SET("") DEFAULT NULL,\
       PRIMARY KEY (ID)\
       );')
       logger.info("Created Historical Data Summary.")
     except:
       logger.info("Failed to create Historical Data Summary.")
 
-  def _add_historical_data_summary(self, instrument: ig_package.Instrument, live_tracking:bool=False) -> None:
+  def _add_historical_data_summary(self, instrument: ig_package.Instrument, live_tracking:bool=False, groups: list[InstrumentGroup] = []) -> None:
     """ Adding instrument to the historical data summary and creating new table for historical data.
     
         Parameters
@@ -230,10 +248,21 @@ class BacktestingServer():
         instrument: ig_package.Instrument
           Instrument to add to the historical data summary.
         live_tracking: bool
-          OPTIONAL Enable/disable live tracking of instrument."""
+          OPTIONAL Enable/disable live tracking of instrument.
+        groups: list[InstrumentGroups]
+          OPTIONAL List of Instrument Groups."""
     logger.info("Adding instrument to HistoricalDataSummary and creating a new table.")
-    # Adding instrument to historical data summary.
-    self.cursor.executemany(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking) VALUES (%s, %s, %s)", [(instrument.name, instrument.epic, live_tracking)])
+    # Creating string for Instrument Groups.
+    if len(groups) != 0:
+      group_string = ""
+      for group in groups:
+        group_string += f"{group.name},"
+      group_string = f"{group_string[:-1]}"
+      # Adding instrument to historical data summary.
+      self.cursor.executemany(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking, InstrumentGroup) VALUES (%s, %s, %s, %s)", [(instrument.name, instrument.epic, live_tracking, group_string)])
+    else:
+      # Adding instrument to historical data summary.
+      self.cursor.executemany(f"INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking) VALUES (%s, %s, %s)", [(instrument.name, instrument.epic, live_tracking)])
     # Creating new table for storing historical data.
     new_name = instrument.name.replace(" ","_")
     self.cursor.execute(f"CREATE TABLE {new_name}_HistoricalDataset (\
@@ -310,8 +339,164 @@ class BacktestingServer():
         # Uploading data.
         self.upload_historical_data(instrument,dataset=historical_data)
 
-# - - - - - - - - - - - - - -
+  def add_instrument_group(self, name: str) -> None:
+    """ Creating an instrument group list for grouping various instruments together.
     
+      Parameters
+      ----------
+      name: str
+        Name of the instrument group."""
+    # Creating instrument groups table if not present.
+    if not self._check_instrument_groups_table():
+      self._create_instrument_groups_table()
+    # Creating historical data summary.
+    if not self._check_historical_data_summary_exists():
+      self._create_historical_data_summary()
+      
+    try:
+      # Inserting new group.
+      self.cursor.execute(f'INSERT INTO InstrumentGroups (GroupName)\
+      VALUES ("{name}");')
+      logger.info(f"Added group, {name}, to the instrument groups table.")
+      # Creating instrument object.
+      new_group = InstrumentGroup(name,self.cursor)
+      if not self.instrument_groups:
+        self.instrument_groups = [new_group]
+      else:
+        self.instrument_groups.append(new_group)
+      # Updating group data type in historical summary.
+      self._update_groups_in_historical_data()
+    except:
+      logger.info(f"Unable to add, {name}, to the instrument groups table.")
+  
+  def del_instrument_group(self, name: str) -> None:
+    """ Deleting the instrument group.
+    
+      Parameters
+      ----------
+      name: str
+        Name of the instrument group."""
+    # Getting instrument group.
+    for instrument_group in self.instrument_groups:
+      if instrument_group.name == name:
+        # Remove group from server.
+        self.cursor.execute(f"DELETE FROM InstrumentGroups WHERE GroupName = '{name}';")
+        # Removing instrument group object.
+        self.instrument_groups.remove(instrument_group)
+        logger.info(f"Successfully removed Instrument Group, {name}.")
+        # Updating group data type in historical summary.
+        self._update_groups_in_historical_data()
+        return
+    logger.info(f"Unable to find Instrument Group, {name}.")
+    
+  def _get_instrument_groups(self) -> list[InstrumentGroup] | None:
+    """ Getting all instrument groups from the Backtesting Server.
+    
+      Returns
+      -------
+      list[InstrumentGroup] | None
+        List of all InstrumentGroups stored on the server or None."""
+    try:
+      # Getting instrument groups from groups table.
+      self.cursor.execute("SELECT GroupName FROM InstrumentGroups;")
+      results = self.cursor.fetchall()
+      # Creating InstrumentGroup objects.
+      instrument_groups = []
+      for instrument_group in results:
+        new_instrument_group = InstrumentGroup(instrument_group[0],self.cursor)
+        if not instrument_groups:
+          instrument_groups = [new_instrument_group]
+        else:
+          instrument_groups.append(new_instrument_group)
+      logger.info("Successfully got all Instrument Groups.")
+      return instrument_groups
+    except:
+      logger.info("Could not load Instrument Groups.")
+      return None
+  
+  def _create_instrument_groups_table(self) -> None:
+    """ Creating instrument groups table on the database."""
+    # Creating instrument groups table.
+    try:
+      self.cursor.execute('CREATE TABLE InstrumentGroups (\
+      ID INT NOT NULL AUTO_INCREMENT,\
+      GroupName VARCHAR(20),\
+      PRIMARY KEY (ID)\
+      );')
+      logger.info("Successfully created Instrument Groups table.")
+    except:
+      logger.info("Unable to create the Instrument Groups table.")
+
+  def _check_instrument_groups_table(self) -> bool:
+    """ Checking if instrument groups tables exists within the database.
+    
+      Returns 
+      -------
+      bool
+        Boolean if instrument groups table exists or not."""
+    try:
+      # Getting instrument groups from groups table.
+      self.cursor.execute("SELECT * FROM InstrumentGroups;")
+      logger.info("Successfully found Instrument Groups table in database.")
+      return True
+    except:
+      logger.info("Could not find Instrument Groups table in database.")
+      return False
+  
+  def _update_groups_in_historical_data(self) -> None:
+    """ Updating the Historical Data Summary for any new Instrument Groups that have been added."""
+    try:
+      # Getting instrument groups from the table.
+      self.cursor.execute("SELECT GroupName FROM InstrumentGroups;")
+      results = self.cursor.fetchall()
+      # Creating new query to send.
+      if len(results) != 0:
+        group_list = ""
+        for group in results:
+          group_list += f"'{group[0]}',"
+      else:
+        group_list = "'',"
+      self.cursor.execute(f"ALTER TABLE HistoricalDataSummary\
+      MODIFY COLUMN InstrumentGroup SET({group_list[:-1]}) DEFAULT NULL;")
+      logger.info("Successfully updated the Historical Data Summary.")
+    except:
+      logger.info("Could not update the Historical Data Summary.")
+
+# - - - - - - - - - - - - - -
+
+class InstrumentGroup():
+  """ Class for representing a group of instruments on the Backtesting Server. These instruments can have entire actions performed on them, allowing for easy management of specific instruments."""
+
+  def __init__(self, name:str, cursor:pymysql.cursors.Cursor) -> None:
+    self.name: str = name
+    self.cursor: pymysql.cursors.Cursor = cursor
+
+    # Getting instrument names.
+    self.instrument_names: list[str] = self._get_instrument_names()
+
+  def _get_instrument_names(self) -> list[str] | None:
+    """ Getting all instrument names associated with the Instrument Group.
+    
+      Returns
+      -------
+      list[str] | None
+        List of instrument names or None."""
+    try:
+      # Selecting instrument names with group tag.
+      self.cursor.execute('Select InstrumentName from HistoricalDataSummary WHERE InstrumentGroup = {}'.format(self.name))
+      results = self.cursor.fetchall()
+      # Creating list of names.
+      instrument_names: list[str] = []
+      for instrument_name in results:
+        instrument_names.append(instrument_name[0])
+      logger.info("Successfully got all instrument names for {}.".format(self.name))
+      return instrument_names
+    except:
+      logger.info("Could not get instrument names for {}.".format(self.name))
+      return None
+    
+# - - - - - - - - - - - - - -
+
 if __name__ == "__main__":
 
   with open("logging_config.json") as f:
