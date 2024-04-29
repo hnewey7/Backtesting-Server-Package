@@ -17,6 +17,21 @@ import time
 
 # - - - - - - - - - - - - - - - - - - -
 
+def reset_mysql_tables(server: BacktestingServer) -> None:
+  """ Resetting tables in the MySQL server.
+  
+    Parameters
+    ----------
+    server: BacktestingServer
+      Server containing tables."""
+  # Getting all table names.
+  server.cursor.execute("SHOW TABLES")
+  results = server.cursor.fetchall()
+  # Dropping tables.
+  for table in results:
+    server.cursor.execute("DROP TABLE {};".format(table[0]))
+
+# - - - - - - - - - - - - - - - - - - -
 def test_init() -> None:
   """ Testing the initialisation of the BacktestingServer object."""
   # Creating backtesting server object.
@@ -57,12 +72,10 @@ def test_check_historical_data_summary_exists() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
 
-  # Deleting any existing tables.
-  try:
-    server.cursor.execute("DROP TABLE HistoricalDataSummary;")
-  except:
-    pass
+  # Checking table doesn't exist.
   assert not server._check_historical_data_summary_exists()
 
   # Creating table.
@@ -78,6 +91,8 @@ def test_check_instrument_in_historical_data() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
   # Creating table.
   server._create_historical_data_summary()
 
@@ -101,6 +116,8 @@ def test_add_historical_data() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
   # Creating table.
   server._create_historical_data_summary()
 
@@ -132,6 +149,8 @@ def test_upload_historical_data() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
   # Creating table.
   server._create_historical_data_summary()
 
@@ -170,6 +189,8 @@ def test_upload_historical_data_with_group() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
   # Creating table.
   server._create_historical_data_summary()
 
@@ -200,6 +221,8 @@ def test_upload_clean_historical_data() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
 
   # Getting test instrument.
   ig_details = get_ig_details()
@@ -229,6 +252,8 @@ def test_upload_on_existing_historical_data() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
 
   # Getting test instrument.
   ig_details = get_ig_details()
@@ -261,6 +286,8 @@ def test_update_historical_data() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
 
   # Getting test instrument.
   ig_details = get_ig_details()
@@ -300,6 +327,8 @@ def test_create_instrument_groups_table() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
   # Checking no table.
   assert not server._check_instrument_groups_table()
   # Creating table.
@@ -315,6 +344,8 @@ def test_add_instrument_group() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
 
   # Adding the instrument group.
   server.add_instrument_group("test")
@@ -336,6 +367,8 @@ def test_del_instrument_group() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
 
   # Creating the instrument groups table.
   server._create_instrument_groups_table()
@@ -366,6 +399,8 @@ def test_get_instrument_groups() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
 
   # Adding instrument groups.
   server.add_instrument_group("test")
@@ -385,9 +420,11 @@ def test_update_groups_in_historical_data() -> None:
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
   server.connect(database="test")
-
-  # Creating historical data summary.
+  # Resetting table.
+  reset_mysql_tables(server)
+  # Creating hisorical data summary.
   server._create_historical_data_summary()
+
   # Checking data type of group column.
   server.cursor.execute("SHOW FIELDS FROM HistoricalDataSummary WHERE Field = 'InstrumentGroup';")
   results = server.cursor.fetchall()
