@@ -33,7 +33,7 @@ Module Contents
                 * *pymysql.cursors.Cursor* -- Cursor to execute SQL queries.
 
 
-   .. py:method:: upload_historical_data(instrument: ig_package.Instrument, live_tracking: bool = False, dataset: pandas.DataFrame = []) -> None
+   .. py:method:: upload_historical_data(instrument: ig_package.Instrument, live_tracking: bool = False, dataset: pandas.DataFrame = [], groups: list[InstrumentGroup] = []) -> None
 
       Uploading historical data to the backtesting server.
 
@@ -43,23 +43,23 @@ Module Contents
       :type live_tracking: bool = False
       :param dataset: OPTIONAL DataFrame containing the data to be uploaded.
       :type dataset: pd.DataFrame = []
+      :param groups: OPTIONAL List of Instrument Groups to add the instrument to.
+      :type groups: list[InstrumentGroup] = []
 
 
-   .. py:method:: update_historical_data(ig: ig_package.IG) -> None
+   .. py:method:: update_historical_data(ig: ig_package.IG, groups: list[InstrumentGroup] = []) -> None
 
       Updating new historical data on instruments being tracked with the BacktestingServer.
 
-      :param API_key: API key for IG's REST API.
-      :type API_key: str
-      :param username: Username for IG.
-      :type username: str
-      :param password: Password for IG.
-      :type password: str
+      :param ig: IG object to interact with IG Group's API.
+      :type ig: ig_package.IG
+      :param groups: OPTIONAL List of Instrument Groups to update.
+      :type groups: list[InstrumentGroup] = []
 
 
    .. py:method:: _check_historical_data_summary_exists() -> bool
 
-      Checking if the historical data summary table exists on the MySQL server.
+      Checking if the historical data summary table exists on the MySQL server. Handles this by requesting entire table and checking for response.
 
       :returns: Depending on whether the summary table exists or not.
       :rtype: bool
@@ -81,7 +81,7 @@ Module Contents
       Creating the historical data summary on the MySQL server.
 
 
-   .. py:method:: _add_historical_data_summary(instrument: ig_package.Instrument, live_tracking: bool = False) -> None
+   .. py:method:: _add_historical_data_summary(instrument: ig_package.Instrument, live_tracking: bool = False, groups: list[InstrumentGroup] = []) -> None
 
       Adding instrument to the historical data summary and creating new table for historical data.
 
@@ -89,6 +89,8 @@ Module Contents
       :type instrument: ig_package.Instrument
       :param live_tracking: OPTIONAL Enable/disable live tracking of instrument.
       :type live_tracking: bool
+      :param groups: OPTIONAL List of Instrument Groups.
+      :type groups: list[InstrumentGroups]
 
 
    .. py:method:: _upload_clean_historical_data(instrument: ig_package.Instrument) -> None
@@ -107,6 +109,62 @@ Module Contents
       :type instrument: ig_package.Instrument
       :param previous_datetime: Datetime of last historical price.
       :type previous_datetime: datetime
+
+
+   .. py:method:: add_instrument_group(name: str) -> None
+
+      Creating an instrument group list for grouping various instruments together.
+
+      :param name: Name of the instrument group.
+      :type name: str
+
+
+   .. py:method:: del_instrument_group(name: str) -> None
+
+      Deleting the instrument group.
+
+      :param name: Name of the instrument group.
+      :type name: str
+
+
+   .. py:method:: _get_instrument_groups() -> list[InstrumentGroup] | None
+
+      Getting all instrument groups from the Backtesting Server.
+
+      :returns: List of all InstrumentGroups stored on the server or None.
+      :rtype: list[InstrumentGroup] | None
+
+
+   .. py:method:: _create_instrument_groups_table() -> None
+
+      Creating instrument groups table on the database.
+
+
+   .. py:method:: _check_instrument_groups_table() -> bool
+
+      Checking if instrument groups tables exists within the database.
+
+      :returns: Boolean if instrument groups table exists or not.
+      :rtype: bool
+
+
+   .. py:method:: _update_groups_in_historical_data() -> None
+
+      Updating the Historical Data Summary for any new Instrument Groups that have been added.
+
+
+
+.. py:class:: InstrumentGroup(name: str, cursor: pymysql.cursors.Cursor)
+
+
+   Class for representing a group of instruments on the Backtesting Server. These instruments can have entire actions performed on them, allowing for easy management of specific instruments.
+
+   .. py:method:: _get_instrument_names() -> list[str] | None
+
+      Getting all instrument names associated with the Instrument Group.
+
+      :returns: List of instrument names or None.
+      :rtype: list[str] | None
 
 
 

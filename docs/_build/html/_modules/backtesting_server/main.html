@@ -6,7 +6,7 @@
   <title>backtesting_server.main &mdash; Backtesting Server Package 0.1.0 documentation</title>
       <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=80d5e7a1" />
       <link rel="stylesheet" type="text/css" href="../../_static/css/theme.css?v=19f00094" />
-      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css" />
+      <link rel="stylesheet" type="text/css" href="../../_static/mystnb.4510f1fc1dee50b3e5859aac5469c37c29e427902b24a333a5f9fcb2f0b3ac41.css?v=be8a1c11" />
       <link rel="stylesheet" type="text/css" href="../../_static/graphviz.css?v=fd3f3429" />
 
   
@@ -81,6 +81,7 @@
 <span class="sd">@author: Harry New</span>
 
 <span class="sd">&#39;&#39;&#39;</span>
+<span class="kn">from</span> <span class="nn">__future__</span> <span class="kn">import</span> <span class="n">annotations</span>
 
 <span class="kn">import</span> <span class="nn">json</span>
 <span class="kn">import</span> <span class="nn">logging.config</span>
@@ -93,6 +94,7 @@
 <span class="kn">import</span> <span class="nn">pandas</span> <span class="k">as</span> <span class="nn">pd</span>
 <span class="kn">from</span> <span class="nn">datetime</span> <span class="kn">import</span> <span class="n">datetime</span>
 <span class="kn">import</span> <span class="nn">time</span>
+
 
 <span class="c1"># - - - - - - - - - - - - - -</span>
 
@@ -116,12 +118,28 @@
 <span class="sd">          Details for the standard server including &#39;server&#39;, &#39;username&#39; and &#39;password&#39;.</span>
 <span class="sd">        sql_details: dict</span>
 <span class="sd">          Details for the sql server including &#39;server&#39;, &#39;username&#39; and &#39;password&#39;.&quot;&quot;&quot;</span>
-    <span class="c1"># Getting details.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">standard_details</span> <span class="o">=</span> <span class="n">standard_details</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">sql_details</span> <span class="o">=</span> <span class="n">sql_details</span>
-    
-    <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">:</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">Channel</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">:</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="kc">None</span>
+    <span class="c1"># Checking parameter type.</span>
+    <span class="k">if</span> <span class="nb">type</span><span class="p">(</span><span class="n">standard_details</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">dict</span> <span class="ow">and</span> <span class="nb">type</span><span class="p">(</span><span class="n">sql_details</span><span class="p">)</span> <span class="o">!=</span> <span class="nb">dict</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Invalid parameter type, please input dict type only.&quot;</span><span class="p">)</span>
+      <span class="k">raise</span> <span class="ne">TypeError</span>
+    <span class="c1"># Checking keys.</span>
+    <span class="n">details</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s1">&#39;server&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span> 
+      <span class="s1">&#39;username&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span><span class="p">,</span>
+      <span class="s1">&#39;password&#39;</span><span class="p">:</span> <span class="s1">&#39;&#39;</span>
+    <span class="p">}</span>
+    <span class="k">if</span> <span class="n">standard_details</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">!=</span> <span class="n">details</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="ow">or</span> <span class="n">sql_details</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">!=</span> <span class="n">details</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Invalid keys in details provided.&quot;</span><span class="p">)</span>
+      <span class="k">raise</span> <span class="ne">KeyError</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="c1"># Getting details.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">standard_details</span> <span class="o">=</span> <span class="n">standard_details</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">sql_details</span> <span class="o">=</span> <span class="n">sql_details</span>
+      
+      <span class="bp">self</span><span class="o">.</span><span class="n">channel</span><span class="p">:</span> <span class="n">paramiko</span><span class="o">.</span><span class="n">Channel</span> <span class="o">=</span> <span class="kc">None</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">:</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="kc">None</span>
+
+    <span class="bp">self</span><span class="o">.</span><span class="n">instrument_groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InstrumentGroup</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
 
 <div class="viewcode-block" id="BacktestingServer.connect">
 <a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.connect">[docs]</a>
@@ -159,6 +177,11 @@
       <span class="c1"># Adding channel and cursor to server.</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">channel</span> <span class="o">=</span> <span class="n">channel</span>
       <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">cursor</span>
+
+      <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_instrument_groups_table</span><span class="p">:</span>
+        <span class="c1"># Getting all instrument groups from server.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument_groups</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_instrument_groups</span><span class="p">()</span>
+
       <span class="k">return</span> <span class="n">channel</span><span class="p">,</span> <span class="n">cursor</span>
     <span class="k">except</span> <span class="ne">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
       <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Unable to connect to MySQL server.&quot;</span><span class="p">)</span>
@@ -167,7 +190,7 @@
 
 <div class="viewcode-block" id="BacktestingServer.upload_historical_data">
 <a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.upload_historical_data">[docs]</a>
-  <span class="k">def</span> <span class="nf">upload_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">=</span><span class="p">[])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">upload_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">dataset</span><span class="p">:</span><span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="o">=</span><span class="p">[],</span> <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InstrumentGroup</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Uploading historical data to the backtesting server.</span>
 <span class="sd">    </span>
 <span class="sd">        Parameters</span>
@@ -177,7 +200,9 @@
 <span class="sd">        live_tracking: bool = False</span>
 <span class="sd">          OPTIONAL Enable/disable live tracking of instrument.</span>
 <span class="sd">        dataset: pd.DataFrame = []</span>
-<span class="sd">          OPTIONAL DataFrame containing the data to be uploaded.&quot;&quot;&quot;</span>
+<span class="sd">          OPTIONAL DataFrame containing the data to be uploaded.</span>
+<span class="sd">        groups: list[InstrumentGroup] = []</span>
+<span class="sd">          OPTIONAL List of Instrument Groups to add the instrument to.&quot;&quot;&quot;</span>
     <span class="c1"># Checking if historical data summary exists.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_historical_data_summary_exists</span><span class="p">():</span>
       <span class="c1"># Creating summary table.</span>
@@ -185,7 +210,7 @@
     <span class="c1"># Checking if data is already present.</span>
     <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_instrument_in_historical_data</span><span class="p">(</span><span class="n">instrument</span><span class="p">):</span>
       <span class="c1"># Adding new instrument.</span>
-      <span class="bp">self</span><span class="o">.</span><span class="n">_add_historical_data_summary</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_add_historical_data_summary</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">,</span> <span class="n">groups</span><span class="p">)</span>
 
     <span class="c1"># Checking if data.</span>
     <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">dataset</span><span class="p">)</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
@@ -206,23 +231,30 @@
 
 <div class="viewcode-block" id="BacktestingServer.update_historical_data">
 <a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.update_historical_data">[docs]</a>
-  <span class="k">def</span> <span class="nf">update_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ig</span><span class="p">:</span><span class="n">ig_package</span><span class="o">.</span><span class="n">IG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">update_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ig</span><span class="p">:</span><span class="n">ig_package</span><span class="o">.</span><span class="n">IG</span><span class="p">,</span> <span class="n">groups</span><span class="p">:</span><span class="nb">list</span><span class="p">[</span><span class="n">InstrumentGroup</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Updating new historical data on instruments being tracked with the BacktestingServer.</span>
 <span class="sd">    </span>
 <span class="sd">        Parameters</span>
 <span class="sd">        ----------</span>
-<span class="sd">        API_key: str</span>
-<span class="sd">          API key for IG&#39;s REST API.</span>
-<span class="sd">        username: str</span>
-<span class="sd">          Username for IG.</span>
-<span class="sd">        password: str</span>
-<span class="sd">          Password for IG.&quot;&quot;&quot;</span>
-    <span class="c1"># Requesting all tracked instruments from the HistoricalDataSummary.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True;&quot;</span><span class="p">)</span>
+<span class="sd">        ig: ig_package.IG</span>
+<span class="sd">          IG object to interact with IG Group&#39;s API.</span>
+<span class="sd">        groups: list[InstrumentGroup] = []</span>
+<span class="sd">          OPTIONAL List of Instrument Groups to update.&quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="c1"># Requesting all tracked instruments from the HistoricalDataSummary.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True;&quot;</span><span class="p">)</span>
+      <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="c1"># Requesting specific groups.</span>
+      <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT InstrumentName, Epic FROM HistoricalDataSummary WHERE LiveTracking=True and InstrumentGroup=&#39;</span><span class="si">{}</span><span class="s2">&#39;;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">group</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+        <span class="n">results</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">())</span>
+
     <span class="c1"># Getting tracked names and epics.</span>
     <span class="n">tracked_names</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="n">tracked_epics</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">instrument</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">():</span>
+    <span class="k">for</span> <span class="n">instrument</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
       <span class="n">tracked_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instrument</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
       <span class="n">tracked_epics</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instrument</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     
@@ -242,12 +274,11 @@
         <span class="c1"># Uploading on existing historical data.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">_upload_on_existing_historical_data</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span><span class="n">previous_datetime</span><span class="p">)</span></div>
 
-
-    
+ 
 <div class="viewcode-block" id="BacktestingServer._check_historical_data_summary_exists">
 <a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._check_historical_data_summary_exists">[docs]</a>
   <span class="k">def</span> <span class="nf">_check_historical_data_summary_exists</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking if the historical data summary table exists on the MySQL server.</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking if the historical data summary table exists on the MySQL server. Handles this by requesting entire table and checking for response.</span>
 <span class="sd">        </span>
 <span class="sd">        Returns</span>
 <span class="sd">        -------</span>
@@ -297,6 +328,7 @@
 <span class="s1">      InstrumentName VARCHAR(20),</span><span class="se">\</span>
 <span class="s1">      Epic VARCHAR(100),</span><span class="se">\</span>
 <span class="s1">      LiveTracking BOOL DEFAULT False,</span><span class="se">\</span>
+<span class="s1">      InstrumentGroup SET(&quot;&quot;) DEFAULT NULL,</span><span class="se">\</span>
 <span class="s1">      PRIMARY KEY (ID)</span><span class="se">\</span>
 <span class="s1">      );&#39;</span><span class="p">)</span>
       <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Created Historical Data Summary.&quot;</span><span class="p">)</span>
@@ -306,7 +338,7 @@
 
 <div class="viewcode-block" id="BacktestingServer._add_historical_data_summary">
 <a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._add_historical_data_summary">[docs]</a>
-  <span class="k">def</span> <span class="nf">_add_historical_data_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">_add_historical_data_summary</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">:</span><span class="nb">bool</span><span class="o">=</span><span class="kc">False</span><span class="p">,</span> <span class="n">groups</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">InstrumentGroup</span><span class="p">]</span> <span class="o">=</span> <span class="p">[])</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Adding instrument to the historical data summary and creating new table for historical data.</span>
 <span class="sd">    </span>
 <span class="sd">        Parameters</span>
@@ -314,10 +346,21 @@
 <span class="sd">        instrument: ig_package.Instrument</span>
 <span class="sd">          Instrument to add to the historical data summary.</span>
 <span class="sd">        live_tracking: bool</span>
-<span class="sd">          OPTIONAL Enable/disable live tracking of instrument.&quot;&quot;&quot;</span>
+<span class="sd">          OPTIONAL Enable/disable live tracking of instrument.</span>
+<span class="sd">        groups: list[InstrumentGroups]</span>
+<span class="sd">          OPTIONAL List of Instrument Groups.&quot;&quot;&quot;</span>
     <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Adding instrument to HistoricalDataSummary and creating a new table.&quot;</span><span class="p">)</span>
-    <span class="c1"># Adding instrument to historical data summary.</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking) VALUES (%s, %s, %s)&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">instrument</span><span class="o">.</span><span class="n">epic</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">)])</span>
+    <span class="c1"># Creating string for Instrument Groups.</span>
+    <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">groups</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+      <span class="n">group_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+      <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">groups</span><span class="p">:</span>
+        <span class="n">group_string</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">group</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s2">,&quot;</span>
+      <span class="n">group_string</span> <span class="o">=</span> <span class="sa">f</span><span class="s2">&quot;</span><span class="si">{</span><span class="n">group_string</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">&quot;</span>
+      <span class="c1"># Adding instrument to historical data summary.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking, InstrumentGroup) VALUES (%s, %s, %s, %s)&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">instrument</span><span class="o">.</span><span class="n">epic</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">,</span> <span class="n">group_string</span><span class="p">)])</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="c1"># Adding instrument to historical data summary.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">executemany</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;INSERT INTO HistoricalDataSummary (InstrumentName, Epic, LiveTracking) VALUES (%s, %s, %s)&quot;</span><span class="p">,</span> <span class="p">[(</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="p">,</span> <span class="n">instrument</span><span class="o">.</span><span class="n">epic</span><span class="p">,</span> <span class="n">live_tracking</span><span class="p">)])</span>
     <span class="c1"># Creating new table for storing historical data.</span>
     <span class="n">new_name</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;CREATE TABLE </span><span class="si">{</span><span class="n">new_name</span><span class="si">}</span><span class="s2">_HistoricalDataset (</span><span class="se">\</span>
@@ -399,40 +442,202 @@
         <span class="n">historical_data</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">get_historical_prices</span><span class="p">(</span><span class="n">resolution</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">start</span><span class="o">=</span><span class="n">previous_str</span><span class="p">,</span><span class="n">end</span><span class="o">=</span><span class="n">current_str</span><span class="p">)</span>
         <span class="c1"># Uploading data.</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">upload_historical_data</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span><span class="n">dataset</span><span class="o">=</span><span class="n">historical_data</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer.add_instrument_group">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.add_instrument_group">[docs]</a>
+  <span class="k">def</span> <span class="nf">add_instrument_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Creating an instrument group list for grouping various instruments together.</span>
+<span class="sd">    </span>
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">      name: str</span>
+<span class="sd">        Name of the instrument group.&quot;&quot;&quot;</span>
+    <span class="c1"># Creating instrument groups table if not present.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_instrument_groups_table</span><span class="p">():</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_create_instrument_groups_table</span><span class="p">()</span>
+    <span class="c1"># Creating historical data summary.</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">_check_historical_data_summary_exists</span><span class="p">():</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_create_historical_data_summary</span><span class="p">()</span>
+      
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Inserting new group.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;INSERT INTO InstrumentGroups (GroupName)</span><span class="se">\</span>
+<span class="s1">      VALUES (&quot;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&quot;);&#39;</span><span class="p">)</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Added group, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, to the instrument groups table.&quot;</span><span class="p">)</span>
+      <span class="c1"># Creating instrument object.</span>
+      <span class="n">new_group</span> <span class="o">=</span> <span class="n">InstrumentGroup</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">)</span>
+      <span class="k">if</span> <span class="ow">not</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument_groups</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument_groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_group</span><span class="p">]</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_group</span><span class="p">)</span>
+      <span class="c1"># Updating group data type in historical summary.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">_update_groups_in_historical_data</span><span class="p">()</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to add, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">, to the instrument groups table.&quot;</span><span class="p">)</span></div>
+
+  
+<div class="viewcode-block" id="BacktestingServer.del_instrument_group">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.del_instrument_group">[docs]</a>
+  <span class="k">def</span> <span class="nf">del_instrument_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Deleting the instrument group.</span>
+<span class="sd">    </span>
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">      name: str</span>
+<span class="sd">        Name of the instrument group.&quot;&quot;&quot;</span>
+    <span class="c1"># Getting instrument group.</span>
+    <span class="k">for</span> <span class="n">instrument_group</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument_groups</span><span class="p">:</span>
+      <span class="k">if</span> <span class="n">instrument_group</span><span class="o">.</span><span class="n">name</span> <span class="o">==</span> <span class="n">name</span><span class="p">:</span>
+        <span class="c1"># Remove group from server.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;DELETE FROM InstrumentGroups WHERE GroupName = &#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">&#39;;&quot;</span><span class="p">)</span>
+        <span class="c1"># Removing instrument group object.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">instrument_groups</span><span class="o">.</span><span class="n">remove</span><span class="p">(</span><span class="n">instrument_group</span><span class="p">)</span>
+        <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Successfully removed Instrument Group, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span>
+        <span class="c1"># Updating group data type in historical summary.</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">_update_groups_in_historical_data</span><span class="p">()</span>
+        <span class="k">return</span>
+    <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;Unable to find Instrument Group, </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s2">.&quot;</span><span class="p">)</span></div>
+
+    
+<div class="viewcode-block" id="BacktestingServer._get_instrument_groups">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._get_instrument_groups">[docs]</a>
+  <span class="k">def</span> <span class="nf">_get_instrument_groups</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">InstrumentGroup</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Getting all instrument groups from the Backtesting Server.</span>
+<span class="sd">    </span>
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">      list[InstrumentGroup] | None</span>
+<span class="sd">        List of all InstrumentGroups stored on the server or None.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Getting instrument groups from groups table.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT GroupName FROM InstrumentGroups;&quot;</span><span class="p">)</span>
+      <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+      <span class="c1"># Creating InstrumentGroup objects.</span>
+      <span class="n">instrument_groups</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">instrument_group</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">new_instrument_group</span> <span class="o">=</span> <span class="n">InstrumentGroup</span><span class="p">(</span><span class="n">instrument_group</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">instrument_groups</span><span class="p">:</span>
+          <span class="n">instrument_groups</span> <span class="o">=</span> <span class="p">[</span><span class="n">new_instrument_group</span><span class="p">]</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="n">instrument_groups</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_instrument_group</span><span class="p">)</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully got all Instrument Groups.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="n">instrument_groups</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Could not load Instrument Groups.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">None</span></div>
+
+  
+<div class="viewcode-block" id="BacktestingServer._create_instrument_groups_table">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._create_instrument_groups_table">[docs]</a>
+  <span class="k">def</span> <span class="nf">_create_instrument_groups_table</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Creating instrument groups table on the database.&quot;&quot;&quot;</span>
+    <span class="c1"># Creating instrument groups table.</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;CREATE TABLE InstrumentGroups (</span><span class="se">\</span>
+<span class="s1">      ID INT NOT NULL AUTO_INCREMENT,</span><span class="se">\</span>
+<span class="s1">      GroupName VARCHAR(20),</span><span class="se">\</span>
+<span class="s1">      PRIMARY KEY (ID)</span><span class="se">\</span>
+<span class="s1">      );&#39;</span><span class="p">)</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully created Instrument Groups table.&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Unable to create the Instrument Groups table.&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer._check_instrument_groups_table">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._check_instrument_groups_table">[docs]</a>
+  <span class="k">def</span> <span class="nf">_check_instrument_groups_table</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking if instrument groups tables exists within the database.</span>
+<span class="sd">    </span>
+<span class="sd">      Returns </span>
+<span class="sd">      -------</span>
+<span class="sd">      bool</span>
+<span class="sd">        Boolean if instrument groups table exists or not.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Getting instrument groups from groups table.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM InstrumentGroups;&quot;</span><span class="p">)</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully found Instrument Groups table in database.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">True</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Could not find Instrument Groups table in database.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">False</span></div>
+
+  
+<div class="viewcode-block" id="BacktestingServer._update_groups_in_historical_data">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._update_groups_in_historical_data">[docs]</a>
+  <span class="k">def</span> <span class="nf">_update_groups_in_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Updating the Historical Data Summary for any new Instrument Groups that have been added.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Getting instrument groups from the table.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT GroupName FROM InstrumentGroups;&quot;</span><span class="p">)</span>
+      <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+      <span class="c1"># Creating new query to send.</span>
+      <span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">results</span><span class="p">)</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">group_list</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="k">for</span> <span class="n">group</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+          <span class="n">group_list</span> <span class="o">+=</span> <span class="sa">f</span><span class="s2">&quot;&#39;</span><span class="si">{</span><span class="n">group</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s2">&#39;,&quot;</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="n">group_list</span> <span class="o">=</span> <span class="s2">&quot;&#39;&#39;,&quot;</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s2">&quot;ALTER TABLE HistoricalDataSummary</span><span class="se">\</span>
+<span class="s2">      MODIFY COLUMN InstrumentGroup SET(</span><span class="si">{</span><span class="n">group_list</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s2">) DEFAULT NULL;&quot;</span><span class="p">)</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully updated the Historical Data Summary.&quot;</span><span class="p">)</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Could not update the Historical Data Summary.&quot;</span><span class="p">)</span></div>
 </div>
 
 
 <span class="c1"># - - - - - - - - - - - - - -</span>
+
+<div class="viewcode-block" id="InstrumentGroup">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.InstrumentGroup">[docs]</a>
+<span class="k">class</span> <span class="nc">InstrumentGroup</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; Class for representing a group of instruments on the Backtesting Server. These instruments can have entire actions performed on them, allowing for easy management of specific instruments.&quot;&quot;&quot;</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span><span class="nb">str</span><span class="p">,</span> <span class="n">cursor</span><span class="p">:</span><span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">Cursor</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="n">name</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="p">:</span> <span class="n">pymysql</span><span class="o">.</span><span class="n">cursors</span><span class="o">.</span><span class="n">Cursor</span> <span class="o">=</span> <span class="n">cursor</span>
+
+    <span class="c1"># Getting instrument names.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">instrument_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_instrument_names</span><span class="p">()</span>
+
+<div class="viewcode-block" id="InstrumentGroup._get_instrument_names">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.InstrumentGroup._get_instrument_names">[docs]</a>
+  <span class="k">def</span> <span class="nf">_get_instrument_names</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Getting all instrument names associated with the Instrument Group.</span>
+<span class="sd">    </span>
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">      list[str] | None</span>
+<span class="sd">        List of instrument names or None.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Selecting instrument names with group tag.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s1">&#39;Select InstrumentName from HistoricalDataSummary WHERE InstrumentGroup = </span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+      <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+      <span class="c1"># Creating list of names.</span>
+      <span class="n">instrument_names</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">instrument_name</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">instrument_names</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">instrument_name</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Successfully got all instrument names for </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">instrument_names</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Could not get instrument names for </span><span class="si">{}</span><span class="s2">.&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="p">))</span>
+      <span class="k">return</span> <span class="kc">None</span></div>
+</div>
+
     
+<span class="c1"># - - - - - - - - - - - - - -</span>
+
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
 
   <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s2">&quot;logging_config.json&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
     <span class="n">config_dict</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">load</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
     <span class="n">logging</span><span class="o">.</span><span class="n">config</span><span class="o">.</span><span class="n">dictConfig</span><span class="p">(</span><span class="n">config_dict</span><span class="p">)</span>
 
-  <span class="n">backtesting</span> <span class="o">=</span> <span class="n">BacktestingServer</span><span class="p">({</span>
-    <span class="s2">&quot;server&quot;</span><span class="p">:</span><span class="s2">&quot;2.123.180.133&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;hnewe&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;DexteR12712&quot;</span>
-<span class="p">}</span> <span class="p">,{</span>
-    <span class="s2">&quot;server&quot;</span><span class="p">:</span><span class="s2">&quot;2.123.180.133&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;username&quot;</span><span class="p">:</span><span class="s2">&quot;root&quot;</span><span class="p">,</span>
-    <span class="s2">&quot;password&quot;</span><span class="p">:</span><span class="s2">&quot;Archie12712&quot;</span>
-<span class="p">}</span>
-<span class="p">)</span>
-  <span class="n">channel</span><span class="p">,</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">backtesting</span><span class="o">.</span><span class="n">connect</span><span class="p">(</span><span class="n">database</span><span class="o">=</span><span class="s2">&quot;test&quot;</span><span class="p">)</span>
-  
-  <span class="n">ig</span> <span class="o">=</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">IG</span><span class="p">(</span><span class="s2">&quot;e9365a5085ccd18ccc2c2d1d91ce51ad3a6e69f8&quot;</span><span class="p">,</span><span class="s2">&quot;harrynewey&quot;</span><span class="p">,</span><span class="s2">&quot;Archie12712&quot;</span><span class="p">)</span>
-
-  <span class="n">instrument</span> <span class="o">=</span> <span class="n">ig</span><span class="o">.</span><span class="n">search_instrument</span><span class="p">(</span><span class="s2">&quot;FTSE 100&quot;</span><span class="p">)</span>
-
-  <span class="c1">#backtesting.upload_historical_data(instrument,live_tracking=True)</span>
-  <span class="n">backtesting</span><span class="o">.</span><span class="n">update_historical_data</span><span class="p">(</span><span class="n">ig</span><span class="p">)</span>
-<span class="w">  </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">  cursor.execute(&quot;DESC Strategies;&quot;)</span>
-<span class="sd">  result = cursor.fetchall()</span>
-<span class="sd">  print(result)</span>
-<span class="sd">  &quot;&quot;&quot;</span>
+  <span class="n">backtesting</span> <span class="o">=</span> <span class="n">BacktestingServer</span><span class="p">()</span>
+  <span class="n">channel</span><span class="p">,</span><span class="n">cursor</span> <span class="o">=</span> <span class="n">backtesting</span><span class="o">.</span><span class="n">connect</span><span class="p">()</span>
+  <span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;DESC Strategies;&quot;</span><span class="p">)</span>
+  <span class="n">result</span> <span class="o">=</span> <span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+  <span class="nb">print</span><span class="p">(</span><span class="n">result</span><span class="p">)</span>
 </pre></div>
 
            </div>
