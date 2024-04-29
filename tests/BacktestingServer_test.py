@@ -321,6 +321,63 @@ def test_update_historical_data() -> None:
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
 
+def test_update_historical_data_with_groups() -> None:
+  """ Testing the update historical data method but with specific instrument groups."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  test_instrument = ig.search_instrument('FTSE 100')
+  test_2_instrument = ig.search_instrument('SP 500')
+
+  # Adding an instrument group.
+  server.add_instrument_group("test")
+  server.add_instrument_group("test2")
+
+  # Uploading to server with live tracking enabled.
+  server.upload_historical_data(test_instrument,live_tracking=True,groups=[server.instrument_groups[0]])
+  server.upload_historical_data(test_2_instrument,live_tracking=True,groups=[server.instrument_groups[1]])
+
+  # Running update historical data.
+  server.update_historical_data(ig,groups=[server.instrument_groups[0]])
+
+  # Handling checks of instrument that should have updated.
+  server.cursor.execute(f'Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
+  initial_results = server.cursor.fetchall()
+  single_result = initial_results[0]
+  assert len(initial_results) > 10
+  assert len(single_result) == 5
+  # Handling checks of instrument that didn't update.
+  server.cursor.execute(f'Select * FROM {test_2_instrument.name.replace(" ","_")}_HistoricalDataset;')
+  second_results = server.cursor.fetchall()
+  assert len(second_results) == 0
+
+  # Running update historical data on existing data.
+  server.update_historical_data(ig,groups=[server.instrument_groups[0]])
+
+  # Handling checks of instrument that should have updated.
+  server.cursor.execute(f'Select * FROM {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
+  results = server.cursor.fetchall()
+  single_result = results[0]
+  assert len(results) >= len(initial_results)
+  assert len(single_result) == 5
+  # Handling checks of instrument that didn't update.
+  server.cursor.execute(f'Select * FROM {test_2_instrument.name.replace(" ","_")}_HistoricalDataset;')
+  second_other_results = server.cursor.fetchall()
+  assert len(second_other_results) == 0
+
+  # Deleting tables after testing.
+  server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
+  server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
+  server.cursor.execute(f'DROP TABLE {test_2_instrument.name.replace(" ","_")}_HistoricalDataset;')
+  server.cursor.execute("DROP TABLE InstrumentGroups;")
+
 def test_create_instrument_groups_table() -> None:
   """ Testing the create instrument groups table method."""
   # Creating backtesting server object.
