@@ -17,7 +17,6 @@ from datetime import datetime, timedelta
 import time
 
 # - - - - - - - - - - - - - - - - - - -
-# INITIALISATION TESTS.
 
 def reset_mysql_tables(server: BacktestingServer) -> None:
   """ Resetting tables in the MySQL server.
@@ -34,6 +33,8 @@ def reset_mysql_tables(server: BacktestingServer) -> None:
     server.cursor.execute("DROP TABLE {};".format(table[0]))
 
 # - - - - - - - - - - - - - - - - - - -
+# INITIALISATION TESTS.
+
 def test_init() -> None:
   """ Testing the initialisation of the BacktestingServer object."""
   # Creating backtesting server object.
@@ -429,6 +430,9 @@ def test_update_historical_data_with_groups() -> None:
   server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
   server.cursor.execute(f'DROP TABLE {test_2_instrument.name.replace(" ","_")}_HistoricalDataset;')
   server.cursor.execute("DROP TABLE InstrumentGroups;")
+
+# - - - - - - - - - - - - - - - - - - -
+# INSTRUMENT GROUP TESTS.
 
 def test_create_instrument_groups_table() -> None:
   """ Testing the create instrument groups table method."""
