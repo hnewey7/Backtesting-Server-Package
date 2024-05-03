@@ -461,8 +461,12 @@ def test_add_instrument_group() -> None:
   reset_mysql_tables(server)
 
   # Adding the instrument group.
-  server.add_instrument_group("test")
+  instrument_group = server.add_instrument_group("test")
   
+  # Checking valid instrument group returned.
+  assert instrument_group.name == "test"
+  assert instrument_group.cursor == server.cursor
+
   # Checking the instrument group is present in server.
   server.cursor.execute("SELECT * FROM InstrumentGroups WHERE GroupName = 'test';")
   result = server.cursor.fetchall()
@@ -486,7 +490,11 @@ def test_del_instrument_group() -> None:
   # Creating the instrument groups table.
   server._create_instrument_groups_table()
   # Adding the instrument group.
-  server.add_instrument_group("test")
+  instrument_group = server.add_instrument_group("test")
+
+  # Checking valid instrument group returned.
+  assert instrument_group.name == "test"
+  assert instrument_group.cursor == server.cursor
 
   # Checking the instrument group is present.
   server.cursor.execute("SELECT * FROM InstrumentGroups WHERE GroupName = 'test';")
@@ -495,7 +503,11 @@ def test_del_instrument_group() -> None:
   assert len(server.instrument_groups) == 1
 
   # Removing instrument group
-  server.del_instrument_group("test")
+  instrument_group = server.del_instrument_group("test")
+
+  # Checking valid instrument group returned.
+  assert instrument_group.name == "test"
+  assert instrument_group.cursor == server.cursor
 
   # Checking the instrument group is present.
   server.cursor.execute("SELECT * FROM InstrumentGroups WHERE GroupName = 'test';")
