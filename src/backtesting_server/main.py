@@ -339,13 +339,18 @@ class BacktestingServer():
         # Uploading data.
         self.upload_instrument(instrument,dataset=historical_data)
 
-  def add_instrument_group(self, name: str) -> None:
+  def add_instrument_group(self, name: str) -> InstrumentGroup | None:
     """ Creating an instrument group list for grouping various instruments together.
     
       Parameters
       ----------
       name: str
-        Name of the instrument group."""
+        Name of the instrument group.
+        
+      Returns
+      -------
+      InstrumentGroup | None
+        Instrument group created."""
     # Creating instrument groups table if not present.
     if not self._check_instrument_groups_table():
       self._create_instrument_groups_table()
@@ -366,16 +371,23 @@ class BacktestingServer():
         self.instrument_groups.append(new_group)
       # Updating group data type in historical summary.
       self._update_groups_in_historical_data()
+      return new_group
     except:
       logger.info(f"Unable to add, {name}, to the instrument groups table.")
+      return None
   
-  def del_instrument_group(self, name: str) -> None:
+  def del_instrument_group(self, name: str) -> InstrumentGroup | None:
     """ Deleting the instrument group.
     
       Parameters
       ----------
       name: str
-        Name of the instrument group."""
+        Name of the instrument group.
+        
+      Returns
+      -------
+      InstrumentGroup
+        Instrument group deleted."""
     # Getting instrument group.
     for instrument_group in self.instrument_groups:
       if instrument_group.name == name:
@@ -386,8 +398,9 @@ class BacktestingServer():
         logger.info(f"Successfully removed Instrument Group, {name}.")
         # Updating group data type in historical summary.
         self._update_groups_in_historical_data()
-        return
+        return instrument_group
     logger.info(f"Unable to find Instrument Group, {name}.")
+    return None
     
   def _get_instrument_groups(self) -> list[InstrumentGroup] | None:
     """ Getting all instrument groups from the Backtesting Server.
