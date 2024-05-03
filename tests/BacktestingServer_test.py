@@ -196,8 +196,8 @@ def test_add_historical_data() -> None:
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f"DROP TABLE {test_instrument.name.replace(' ','_')}_HistoricalDataset;")
 
-def test_upload_historical_data() -> None:
-  """ Testing upload_historical_data() method within the BacktestingServer object."""
+def test_upload_instrument() -> None:
+  """ Testing upload_instrument() method within the BacktestingServer object."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
   # Connecting to the server.
@@ -214,7 +214,7 @@ def test_upload_historical_data() -> None:
   data = test_instrument.get_historical_prices("SECOND","2024:04:15-14:13:00","2024:04:15-14:14:00")
 
   # Uploading historical data.
-  server.upload_historical_data(test_instrument,dataset=data)
+  server.upload_instrument(test_instrument,dataset=data)
 
   # Checking tables were created.
   server.cursor.execute("SHOW TABLES;")
@@ -236,7 +236,7 @@ def test_upload_historical_data() -> None:
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")  
   server.cursor.execute(f'DROP TABLE {test_instrument.name.replace(" ","_")}_HistoricalDataset;')
 
-def test_upload_historical_data_with_group() -> None:
+def test_upload_instrument_with_group() -> None:
   """ Testing the upload historical data method with the group features."""
   # Creating backtesting server object.
   server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
@@ -256,7 +256,7 @@ def test_upload_historical_data_with_group() -> None:
   server.add_instrument_group("test")
 
   # Uploading instrument with group tag.
-  server.upload_historical_data(test_instrument,True,groups=server.instrument_groups)
+  server.upload_instrument(test_instrument,True,groups=server.instrument_groups)
 
   # Checking if tag in historical data summary.
   server.cursor.execute("Select InstrumentName From HistoricalDataSummary WHERE InstrumentGroup = 'test';")
@@ -283,7 +283,7 @@ def test_upload_clean_historical_data() -> None:
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Uploading to server with live tracking enabled.
-  server.upload_historical_data(test_instrument,live_tracking=True)
+  server.upload_instrument(test_instrument,live_tracking=True)
 
   # Running clean historical data.
   server._upload_clean_historical_data(test_instrument)
@@ -314,7 +314,7 @@ def test_upload_on_existing_historical_data() -> None:
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Uploading to server with live tracking enabled.
-  server.upload_historical_data(test_instrument,live_tracking=True)
+  server.upload_instrument(test_instrument,live_tracking=True)
 
   # Getting current datetime.
   previous_datetime = datetime.now() - timedelta(days=10)
@@ -348,7 +348,7 @@ def test_update_historical_data() -> None:
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Uploading to server with live tracking enabled.
-  server.upload_historical_data(test_instrument,live_tracking=True)
+  server.upload_instrument(test_instrument,live_tracking=True)
 
   # Running update historical data.
   server.update_historical_data(ig)
@@ -394,8 +394,8 @@ def test_update_historical_data_with_groups() -> None:
   server.add_instrument_group("test2")
 
   # Uploading to server with live tracking enabled.
-  server.upload_historical_data(test_instrument,live_tracking=True,groups=[server.instrument_groups[0]])
-  server.upload_historical_data(test_2_instrument,live_tracking=True,groups=[server.instrument_groups[1]])
+  server.upload_instrument(test_instrument,live_tracking=True,groups=[server.instrument_groups[0]])
+  server.upload_instrument(test_2_instrument,live_tracking=True,groups=[server.instrument_groups[1]])
 
   # Running update historical data.
   server.update_historical_data(ig,groups=[server.instrument_groups[0]])

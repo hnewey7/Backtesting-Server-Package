@@ -107,8 +107,8 @@ class BacktestingServer():
       logger.info("Unable to connect to MySQL server.")
       raise e
 
-  def upload_historical_data(self, instrument:ig_package.Instrument, live_tracking:bool=False, dataset:pd.DataFrame=[], groups: list[InstrumentGroup] = []) -> None:
-    """ Uploading historical data to the backtesting server.
+  def upload_instrument(self, instrument:ig_package.Instrument, live_tracking:bool=False, dataset:pd.DataFrame=[], groups: list[InstrumentGroup] = []) -> None:
+    """ Uploading instrument to the backtesting server.
     
         Parameters
         ----------
@@ -303,7 +303,7 @@ class BacktestingServer():
       # Getting historical prices.
       historical_data = instrument.get_historical_prices(resolution[0],start=start_time_str,end=end_time_str)
       # Uploading data.
-      self.upload_historical_data(instrument,dataset=historical_data)
+      self.upload_instrument(instrument,dataset=historical_data)
 
   def _upload_on_existing_historical_data(self, instrument:ig_package.Instrument, previous_datetime: datetime) -> None:
     """ Uploading up-to-date historical data on instrument already with existing historical data.
@@ -337,7 +337,7 @@ class BacktestingServer():
         # Getting historical prices.
         historical_data = instrument.get_historical_prices(resolution[0],start=previous_str,end=current_str)
         # Uploading data.
-        self.upload_historical_data(instrument,dataset=historical_data)
+        self.upload_instrument(instrument,dataset=historical_data)
 
   def add_instrument_group(self, name: str) -> None:
     """ Creating an instrument group list for grouping various instruments together.

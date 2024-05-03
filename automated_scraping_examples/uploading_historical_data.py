@@ -57,4 +57,4 @@ if __name__ == "__main__":
     instrument = ig.search_instrument(instrument_name)
 
     # Uploading instrument.
-    server.upload_historical_data(instrument,True)
+    server.upload_instrument(instrument,True)
