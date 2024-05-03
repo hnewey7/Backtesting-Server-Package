@@ -496,7 +496,7 @@ class InstrumentGroup():
         List of instrument names or None."""
     try:
       # Selecting instrument names with group tag.
-      self.cursor.execute('Select InstrumentName from HistoricalDataSummary WHERE InstrumentGroup = {}'.format(self.name))
+      self.cursor.execute('Select InstrumentName from HistoricalDataSummary WHERE InstrumentGroup = "{}"'.format(self.name))
       results = self.cursor.fetchall()
       # Creating list of names.
       instrument_names: list[str] = []
