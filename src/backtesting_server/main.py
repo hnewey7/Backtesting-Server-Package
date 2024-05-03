@@ -507,6 +507,27 @@ class InstrumentGroup():
     except:
       logger.info("Could not get instrument names for {}.".format(self.name))
       return None
+  
+  def _get_instrument_epics(self) -> list[str] | None:
+    """ Getting all instrument epics associated with the Instrument Group.
+      
+      Returns
+      -------
+      list[str] | None"""
+    try:
+      # Selecting instrument epics with group tag.
+      self.cursor.execute('Select Epic from HistoricalDataSummary WHERE InstrumentGroup = "{}"'.format(self.name))
+      results = self.cursor.fetchall()
+      # Creating list of epics.
+      instrument_epics: list[str] = []
+      for instrument_epic in results:
+        instrument_epics.append(instrument_epic[0])
+      logger.info("Successfully got all instrument epics for {}.".format(self.name))
+      return instrument_epics
+    except:
+      logger.info("Could not get instrument epics for {}.".format(self.name))
+      return None
+
     
 # - - - - - - - - - - - - - -
 
