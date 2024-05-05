@@ -22,9 +22,9 @@ mysql_server_details = {
 
 # IG Group's REST API details.
 ig_details = {
-  "key": "",
-  "username": "",
-  "password": ""
+  "password": "",
+  "acc_type": "",
+  "acc_number": ""
 }
 
 # - - - - - - - - - - - - - - - -
