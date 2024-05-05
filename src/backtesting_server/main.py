@@ -528,6 +528,25 @@ class InstrumentGroup():
       logger.info("Could not get instrument epics for {}.".format(self.name))
       return None
 
+  def get_instruments(self,ig:ig_package.IG) -> list[ig_package.Instrument]:
+    """ Getting instruments from IG associated with the Instrument Group.
+
+      Parameters
+      ----------
+      ig: ig_package.IG
+        IG object to interact with IG REST API.
+
+      Returns
+      -------
+      list[ig_package.Instrument]
+        List of Instrument objects from the Instrument Group."""
+    # Getting epics.
+    epics = self._get_instrument_epics()
+    # Creating instruments.
+    instrument_list = []
+    for epic in epics:
+      instrument_list.append(ig_package.Instrument(epic,ig))
+    return instrument_list
     
 # - - - - - - - - - - - - - -
 
