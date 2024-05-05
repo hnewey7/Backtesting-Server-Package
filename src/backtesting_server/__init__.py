@@ -6,4 +6,4 @@ Created on Tuesday 9th April 2024.
 
 '''
 
-from .main import BacktestingServer
+from .main import BacktestingServer, InstrumentGroup
