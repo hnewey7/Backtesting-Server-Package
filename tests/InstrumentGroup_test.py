@@ -73,3 +73,31 @@ def test_init_with_instruments() -> None:
     assert name == test_instrument.name
   for epic in instrument_epics:
     assert epic == test_instrument.epic
+
+def test_get_instruments() -> None:
+  """ Testing the get_instruments() method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
+
+  # Connecting to IG.
+  ig = IG(ig_details["key"],ig_details["username"],ig_details["password"])
+
+  # Getting test instrument.
+  test_instrument = ig.search_instrument("FTSE 100")
+
+  # Adding group with instruments.
+  instrument_group = server.add_instrument_group("test")
+
+  # Uploading instrument with group.
+  server.upload_instrument(test_instrument,True,groups=[instrument_group])
+
+  # Getting instruments from Instrument Group.
+  instruments = instrument_group.get_instruments(ig)
+
+  assert instruments[0].name == test_instrument.name
+  assert instruments[0].epic == test_instrument.epic
+  assert instruments[0].IG_obj == test_instrument.IG_obj
