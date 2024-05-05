@@ -143,7 +143,7 @@ def test_check_instrument_in_historical_data() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Checking before instrument is added.
@@ -172,7 +172,7 @@ def test_add_historical_data() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Adding historical data
@@ -209,7 +209,7 @@ def test_upload_instrument() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
   data = test_instrument.get_historical_prices("SECOND","2024:04:15-14:13:00","2024:04:15-14:14:00")
 
@@ -249,7 +249,7 @@ def test_upload_instrument_with_group() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Creating an instrument group.
@@ -279,7 +279,7 @@ def test_upload_clean_historical_data() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Uploading to server with live tracking enabled.
@@ -310,7 +310,7 @@ def test_upload_on_existing_historical_data() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Uploading to server with live tracking enabled.
@@ -344,7 +344,7 @@ def test_update_historical_data() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
 
   # Uploading to server with live tracking enabled.
@@ -385,7 +385,7 @@ def test_update_historical_data_with_groups() -> None:
 
   # Getting test instrument.
   ig_details = get_ig_details()
-  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'])
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
   test_instrument = ig.search_instrument('FTSE 100')
   test_2_instrument = ig.search_instrument('SP 500')
 

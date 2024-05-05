@@ -53,7 +53,7 @@ def test_init_with_instruments() -> None:
   reset_mysql_tables(server)
 
   # Connecting to IG.
-  ig = IG(ig_details["key"],ig_details["username"],ig_details["password"])
+  ig = IG(ig_details["key"],ig_details["username"],ig_details["password"],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
 
   # Getting test instrument.
   test_instrument = ig.search_instrument("FTSE 100")
@@ -84,7 +84,7 @@ def test_get_instruments() -> None:
   reset_mysql_tables(server)
 
   # Connecting to IG.
-  ig = IG(ig_details["key"],ig_details["username"],ig_details["password"])
+  ig = IG(ig_details["key"],ig_details["username"],ig_details["password"],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
 
   # Getting test instrument.
   test_instrument = ig.search_instrument("FTSE 100")
