@@ -609,7 +609,7 @@ def test_upload_live_data() -> None:
   test_instrument = ig.search_instrument('Bitcoin')
 
   # Uploading live data.
-  server.upload_live_data([test_instrument],capture_period=30)
+  server.upload_live_data(ig,[test_instrument],capture_period=30)
 
   # Checking if data in historical data summary.
   server.cursor.execute("SELECT * FROM HistoricalDataSummary;")
