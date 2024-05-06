@@ -33,9 +33,9 @@ Module Contents
                 * *pymysql.cursors.Cursor* -- Cursor to execute SQL queries.
 
 
-   .. py:method:: upload_historical_data(instrument: ig_package.Instrument, live_tracking: bool = False, dataset: pandas.DataFrame = [], groups: list[InstrumentGroup] = []) -> None
+   .. py:method:: upload_instrument(instrument: ig_package.Instrument, live_tracking: bool = False, dataset: pandas.DataFrame = [], groups: list[InstrumentGroup] = []) -> None
 
-      Uploading historical data to the backtesting server.
+      Uploading instrument to the backtesting server.
 
       :param instrument: Instrument the historical data corresponds to.
       :type instrument: ig_package.Instrument
@@ -111,20 +111,26 @@ Module Contents
       :type previous_datetime: datetime
 
 
-   .. py:method:: add_instrument_group(name: str) -> None
+   .. py:method:: add_instrument_group(name: str) -> InstrumentGroup | None
 
       Creating an instrument group list for grouping various instruments together.
 
       :param name: Name of the instrument group.
       :type name: str
 
+      :returns: Instrument group created.
+      :rtype: InstrumentGroup | None
 
-   .. py:method:: del_instrument_group(name: str) -> None
+
+   .. py:method:: del_instrument_group(name: str) -> InstrumentGroup | None
 
       Deleting the instrument group.
 
       :param name: Name of the instrument group.
       :type name: str
+
+      :returns: Instrument group deleted.
+      :rtype: InstrumentGroup
 
 
    .. py:method:: _get_instrument_groups() -> list[InstrumentGroup] | None
@@ -153,6 +159,18 @@ Module Contents
       Updating the Historical Data Summary for any new Instrument Groups that have been added.
 
 
+   .. py:method:: upload_live_data(instrument_list: list[ig_package.Instrument] = [], instrument_group: InstrumentGroup = None, capture_period: int = 0) -> None
+
+      Uploading live data continuously for all instruments provided.
+
+      :param instrument_list: OPTIONAL List of instruments to cycle through collecting live data and uploading to the server.
+      :type instrument_list: list[ig_package.Instrument] = []
+      :param instrument_group: OPTIONAL Instrument group defined on the Backtesting Server to cycle through.
+      :type instrument_group: InstrumentGroup = None
+      :param capture_period: OPTIONAL Capturing data for a certain amount of time.
+      :type capture_period: int = 0
+
+
 
 .. py:class:: InstrumentGroup(name: str, cursor: pymysql.cursors.Cursor)
 
@@ -165,6 +183,24 @@ Module Contents
 
       :returns: List of instrument names or None.
       :rtype: list[str] | None
+
+
+   .. py:method:: _get_instrument_epics() -> list[str] | None
+
+      Getting all instrument epics associated with the Instrument Group.
+
+      :rtype: list[str] | None
+
+
+   .. py:method:: get_instruments(ig: ig_package.IG) -> list[ig_package.Instrument]
+
+      Getting instruments from IG associated with the Instrument Group.
+
+      :param ig: IG object to interact with IG REST API.
+      :type ig: ig_package.IG
+
+      :returns: List of Instrument objects from the Instrument Group.
+      :rtype: list[ig_package.Instrument]
 
 
 

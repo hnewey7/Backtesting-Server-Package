@@ -57,6 +57,7 @@
 </li>
 <li class="toctree-l3"><a class="reference internal" href="#package-contents">Package Contents</a><ul>
 <li class="toctree-l4"><a class="reference internal" href="#backtesting_server.BacktestingServer"><code class="docutils literal notranslate"><span class="pre">BacktestingServer</span></code></a></li>
+<li class="toctree-l4"><a class="reference internal" href="#backtesting_server.InstrumentGroup"><code class="docutils literal notranslate"><span class="pre">InstrumentGroup</span></code></a></li>
 </ul>
 </li>
 </ul>
@@ -130,16 +131,16 @@
 </dd></dl>
 
 <dl class="py method">
-<dt class="sig sig-object py" id="backtesting_server.BacktestingServer.upload_historical_data">
-<span class="sig-name descname"><span class="pre">upload_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="main/index.html#backtesting_server.main.InstrumentGroup" title="backtesting_server.main.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.upload_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.upload_historical_data" title="Link to this definition"></a></dt>
-<dd><p>Uploading historical data to the backtesting server.</p>
+<dt class="sig sig-object py" id="backtesting_server.BacktestingServer.upload_instrument">
+<span class="sig-name descname"><span class="pre">upload_instrument</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">dataset</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.upload_instrument"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.upload_instrument" title="Link to this definition"></a></dt>
+<dd><p>Uploading instrument to the backtesting server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>instrument</strong> (<em>ig_package.Instrument</em>) – Instrument the historical data corresponds to.</p></li>
 <li><p><strong>live_tracking</strong> (<em>bool = False</em>) – OPTIONAL Enable/disable live tracking of instrument.</p></li>
 <li><p><strong>dataset</strong> (<em>pd.DataFrame =</em><em> [</em><em>]</em>) – OPTIONAL DataFrame containing the data to be uploaded.</p></li>
-<li><p><strong>groups</strong> (<em>list</em><em>[</em><a class="reference internal" href="main/index.html#backtesting_server.main.InstrumentGroup" title="backtesting_server.main.InstrumentGroup"><em>InstrumentGroup</em></a><em>] </em><em>=</em><em> [</em><em>]</em>) – OPTIONAL List of Instrument Groups to add the instrument to.</p></li>
+<li><p><strong>groups</strong> (<em>list</em><em>[</em><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><em>InstrumentGroup</em></a><em>] </em><em>=</em><em> [</em><em>]</em>) – OPTIONAL List of Instrument Groups to add the instrument to.</p></li>
 </ul>
 </dd>
 </dl>
@@ -147,13 +148,13 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.BacktestingServer.update_historical_data">
-<span class="sig-name descname"><span class="pre">update_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.IG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="main/index.html#backtesting_server.main.InstrumentGroup" title="backtesting_server.main.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.update_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.update_historical_data" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">update_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.IG</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.update_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.update_historical_data" title="Link to this definition"></a></dt>
 <dd><p>Updating new historical data on instruments being tracked with the BacktestingServer.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>ig</strong> (<em>ig_package.IG</em>) – IG object to interact with IG Group’s API.</p></li>
-<li><p><strong>groups</strong> (<em>list</em><em>[</em><a class="reference internal" href="main/index.html#backtesting_server.main.InstrumentGroup" title="backtesting_server.main.InstrumentGroup"><em>InstrumentGroup</em></a><em>] </em><em>=</em><em> [</em><em>]</em>) – OPTIONAL List of Instrument Groups to update.</p></li>
+<li><p><strong>groups</strong> (<em>list</em><em>[</em><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><em>InstrumentGroup</em></a><em>] </em><em>=</em><em> [</em><em>]</em>) – OPTIONAL List of Instrument Groups to update.</p></li>
 </ul>
 </dd>
 </dl>
@@ -198,7 +199,7 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.BacktestingServer._add_historical_data_summary">
-<span class="sig-name descname"><span class="pre">_add_historical_data_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="main/index.html#backtesting_server.main.InstrumentGroup" title="backtesting_server.main.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer._add_historical_data_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer._add_historical_data_summary" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_add_historical_data_summary</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">live_tracking</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">bool</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">False</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">groups</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer._add_historical_data_summary"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer._add_historical_data_summary" title="Link to this definition"></a></dt>
 <dd><p>Adding instrument to the historical data summary and creating new table for historical data.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
@@ -238,36 +239,48 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.BacktestingServer.add_instrument_group">
-<span class="sig-name descname"><span class="pre">add_instrument_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.add_instrument_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.add_instrument_group" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">add_instrument_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.add_instrument_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.add_instrument_group" title="Link to this definition"></a></dt>
 <dd><p>Creating an instrument group list for grouping various instruments together.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the instrument group.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instrument group created.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup">InstrumentGroup</a> | None</p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.BacktestingServer.del_instrument_group">
-<span class="sig-name descname"><span class="pre">del_instrument_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.del_instrument_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.del_instrument_group" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">del_instrument_group</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.del_instrument_group"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.del_instrument_group" title="Link to this definition"></a></dt>
 <dd><p>Deleting the instrument group.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><p><strong>name</strong> (<em>str</em>) – Name of the instrument group.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Instrument group deleted.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup">InstrumentGroup</a></p>
 </dd>
 </dl>
 </dd></dl>
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.BacktestingServer._get_instrument_groups">
-<span class="sig-name descname"><span class="pre">_get_instrument_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="main/index.html#backtesting_server.main.InstrumentGroup" title="backtesting_server.main.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer._get_instrument_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer._get_instrument_groups" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">_get_instrument_groups</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><span class="pre">InstrumentGroup</span></a><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer._get_instrument_groups"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer._get_instrument_groups" title="Link to this definition"></a></dt>
 <dd><p>Getting all instrument groups from the Backtesting Server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Returns<span class="colon">:</span></dt>
 <dd class="field-odd"><p>List of all InstrumentGroups stored on the server or None.</p>
 </dd>
 <dt class="field-even">Return type<span class="colon">:</span></dt>
-<dd class="field-even"><p>list[<a class="reference internal" href="main/index.html#backtesting_server.main.InstrumentGroup" title="backtesting_server.main.InstrumentGroup">InstrumentGroup</a>] | None</p>
+<dd class="field-even"><p>list[<a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup">InstrumentGroup</a>] | None</p>
 </dd>
 </dl>
 </dd></dl>
@@ -296,6 +309,69 @@
 <dt class="sig sig-object py" id="backtesting_server.BacktestingServer._update_groups_in_historical_data">
 <span class="sig-name descname"><span class="pre">_update_groups_in_historical_data</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer._update_groups_in_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer._update_groups_in_historical_data" title="Link to this definition"></a></dt>
 <dd><p>Updating the Historical Data Summary for any new Instrument Groups that have been added.</p>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.BacktestingServer.upload_live_data">
+<span class="sig-name descname"><span class="pre">upload_live_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument_list</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">ig_package.Instrument</span><span class="p"><span class="pre">]</span></span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">[]</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">instrument_group</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><a class="reference internal" href="#backtesting_server.InstrumentGroup" title="backtesting_server.InstrumentGroup"><span class="pre">InstrumentGroup</span></a></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">capture_period</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">int</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">0</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#BacktestingServer.upload_live_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.BacktestingServer.upload_live_data" title="Link to this definition"></a></dt>
+<dd><p>Uploading live data continuously for all instruments provided.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>instrument_list</strong> (<em>list</em><em>[</em><em>ig_package.Instrument</em><em>] </em><em>=</em><em> [</em><em>]</em>) – OPTIONAL List of instruments to cycle through collecting live data and uploading to the server.</p></li>
+<li><p><strong>instrument_group</strong> (<em>InstrumentGroup = None</em>) – OPTIONAL Instrument group defined on the Backtesting Server to cycle through.</p></li>
+<li><p><strong>capture_period</strong> (<em>int = 0</em>) – OPTIONAL Capturing data for a certain amount of time.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="py class">
+<dt class="sig sig-object py" id="backtesting_server.InstrumentGroup">
+<em class="property"><span class="pre">class</span><span class="w"> </span></em><span class="sig-prename descclassname"><span class="pre">backtesting_server.</span></span><span class="sig-name descname"><span class="pre">InstrumentGroup</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">name</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">cursor</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pymysql.cursors.Cursor</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../../_modules/backtesting_server/main.html#InstrumentGroup"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.InstrumentGroup" title="Link to this definition"></a></dt>
+<dd><p>Class for representing a group of instruments on the Backtesting Server. These instruments can have entire actions performed on them, allowing for easy management of specific instruments.</p>
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.InstrumentGroup._get_instrument_names">
+<span class="sig-name descname"><span class="pre">_get_instrument_names</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#InstrumentGroup._get_instrument_names"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.InstrumentGroup._get_instrument_names" title="Link to this definition"></a></dt>
+<dd><p>Getting all instrument names associated with the Instrument Group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>List of instrument names or None.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p>list[str] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.InstrumentGroup._get_instrument_epics">
+<span class="sig-name descname"><span class="pre">_get_instrument_epics</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">str</span><span class="p"><span class="pre">]</span></span><span class="w"> </span><span class="p"><span class="pre">|</span></span><span class="w"> </span><span class="pre">None</span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#InstrumentGroup._get_instrument_epics"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.InstrumentGroup._get_instrument_epics" title="Link to this definition"></a></dt>
+<dd><p>Getting all instrument epics associated with the Instrument Group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[str] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.InstrumentGroup.get_instruments">
+<span class="sig-name descname"><span class="pre">get_instruments</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">ig</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.IG</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">list</span><span class="p"><span class="pre">[</span></span><span class="pre">ig_package.Instrument</span><span class="p"><span class="pre">]</span></span></span></span><a class="reference internal" href="../../_modules/backtesting_server/main.html#InstrumentGroup.get_instruments"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.InstrumentGroup.get_instruments" title="Link to this definition"></a></dt>
+<dd><p>Getting instruments from IG associated with the Instrument Group.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>ig</strong> (<em>ig_package.IG</em>) – IG object to interact with IG REST API.</p>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>List of Instrument objects from the Instrument Group.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>list[ig_package.Instrument]</p>
+</dd>
+</dl>
 </dd></dl>
 
 </dd></dl>
