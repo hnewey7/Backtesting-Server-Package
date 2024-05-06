@@ -10,7 +10,8 @@ readme = "README.md"
 python = "^3.11"
 paramiko = "^3.4.0"
 pymysql = "^1.1.0"
-ig-package = "^1.0.4"
+ig-package = "^1.2.0"
+trading-ig = "^0.0.22"
 
 [tool.poetry.group.dev.dependencies]
 pytest = "^8.1.1"
