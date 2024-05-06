@@ -542,7 +542,7 @@ class BacktestingServer():
     if start_datetime:
       start_datetime_obj = datetime.strptime(start_datetime,"%y-%m-%d %H:%M:%S")
     else:
-      start_datetime_obj = datetime(0,1,1,0,0,0)
+      start_datetime_obj = datetime(1970,1,1,0,0,0)
     # Getting end datetime object.
     if end_datetime:
       end_datetime_obj = datetime.strptime(end_datetime,"%y-%m-%d %H:%M:%S")
@@ -551,8 +551,13 @@ class BacktestingServer():
     
     # Requesting data.
     new_name = instrument.name.replace(" ","_")
-    self.cursor.execute("SELECT * FROM {}_HistoricalDataset WHERE DatetimeIndex > {} AND DatetimeIndex < {};".format(new_name,str(start_datetime_obj),str(end_datetime_obj)))
+    self.cursor.execute("SELECT * FROM {}_HistoricalDataset WHERE DatetimeIndex > '{}' AND DatetimeIndex < '{}';".format(new_name,str(start_datetime_obj),str(end_datetime_obj)))
     results = self.cursor.fetchall()
+    
+    # Creating dataframe.
+    df = pd.DataFrame(results, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
+    df.set_index("Datetime",inplace=True)
+    return df
 
 # - - - - - - - - - - - - - -
 
