@@ -646,6 +646,74 @@
 
           <span class="c1"># Uploading data.</span>
           <span class="bp">self</span><span class="o">.</span><span class="n">upload_instrument</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span><span class="n">dataset</span><span class="o">=</span><span class="n">df</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer.get_historical_data">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.get_historical_data">[docs]</a>
+  <span class="k">def</span> <span class="nf">get_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">start_datetime</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_datetime</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Getting historical data stored on the Backtesting Server.</span>
+<span class="sd">      </span>
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">      instrument: ig_package.Instrument</span>
+<span class="sd">        Instrument to get historical data for.</span>
+<span class="sd">      start_datetime: str</span>
+<span class="sd">        Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.</span>
+<span class="sd">      end_datetime: str</span>
+<span class="sd">        End datetime of data e.g. yyyy-mm-dd HH:MM:SS.</span>
+<span class="sd">      </span>
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">      pd.DataFrame</span>
+<span class="sd">        DataFrame containing historical data, e.g columns = [&#39;Datetime&#39;, &#39;Open&#39;, &#39;High&#39;, &#39;Low&#39;, &#39;Close&#39;]&quot;&quot;&quot;</span>
+    <span class="c1"># Getting start datetime object.</span>
+    <span class="k">if</span> <span class="n">start_datetime</span><span class="p">:</span>
+      <span class="n">start_datetime_obj</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">start_datetime</span><span class="p">,</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">start_datetime_obj</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="mi">1970</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">1</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1"># Getting end datetime object.</span>
+    <span class="k">if</span> <span class="n">end_datetime</span><span class="p">:</span>
+      <span class="n">end_datetime_obj</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">strptime</span><span class="p">(</span><span class="n">end_datetime</span><span class="p">,</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="n">end_datetime_obj</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span>
+    
+    <span class="c1"># Requesting data.</span>
+    <span class="n">new_name</span> <span class="o">=</span> <span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT * FROM </span><span class="si">{}</span><span class="s2">_HistoricalDataset WHERE DatetimeIndex &gt; &#39;</span><span class="si">{}</span><span class="s2">&#39; AND DatetimeIndex &lt; &#39;</span><span class="si">{}</span><span class="s2">&#39;;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">new_name</span><span class="p">,</span><span class="nb">str</span><span class="p">(</span><span class="n">start_datetime_obj</span><span class="p">),</span><span class="nb">str</span><span class="p">(</span><span class="n">end_datetime_obj</span><span class="p">)))</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    
+    <span class="c1"># Creating dataframe.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">])</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Datetime&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer.get_uploaded_instruments">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.get_uploaded_instruments">[docs]</a>
+  <span class="k">def</span> <span class="nf">get_uploaded_instruments</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ig</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">IG</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">]</span> <span class="o">|</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Getting all instruments uploaded to the Backtesting Server.</span>
+<span class="sd">      </span>
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">      ig: ig_package.IG</span>
+<span class="sd">        IG object.</span>
+<span class="sd">      </span>
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">      list[ig_package.Instrument] | None</span>
+<span class="sd">        List of Instruments that are uploaded to the Backtesting Server.&quot;&quot;&quot;</span>
+    <span class="k">try</span><span class="p">:</span>
+      <span class="c1"># Getting all epics from historical data summary.</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;SELECT Epic FROM HistoricalDataSummary;&#39;</span><span class="p">)</span>
+      <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+      <span class="c1"># Creating instruments.</span>
+      <span class="n">instruments</span> <span class="o">=</span> <span class="p">[]</span>
+      <span class="k">for</span> <span class="n">epic</span> <span class="ow">in</span> <span class="n">results</span><span class="p">:</span>
+        <span class="n">instruments</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">(</span><span class="n">epic</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="n">ig</span><span class="p">))</span>
+      <span class="k">return</span> <span class="n">instruments</span>
+    <span class="k">except</span><span class="p">:</span>
+      <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Could not get uploaded instruments from the server.&quot;</span><span class="p">)</span>
+      <span class="k">return</span> <span class="kc">None</span></div>
 </div>
 
 
