@@ -27,10 +27,8 @@ if __name__ == "__main__":
   # Creating server object.
   server = BacktestingServer(
     standard_details={
-
     },
     sql_details={
-
     })
 
   # Connecting to the official database.
@@ -38,9 +36,8 @@ if __name__ == "__main__":
 
   # Connecting to IG.
   ig_details = {
-
   }
-  ig = IG(API_key=ig_details["key"],username=ig_details["username"],password=ig_details["password"])
+  ig = IG(API_key=ig_details["key"],username=ig_details["username"],password=ig_details["password"],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
 
   # List of instruments to add.
   instruments = [
@@ -49,12 +46,15 @@ if __name__ == "__main__":
     "DOW JONES",
     "CAC40",
     "FTSE100",
-    "RUSSELL 2000"
   ]
+
+  for instrument_group in server.instrument_groups:
+    if instrument_group.name == "Indices_1":
+      indices_one = instrument_group
 
   for instrument_name in instruments:
     # Searching for instrument.
     instrument = ig.search_instrument(instrument_name)
 
     # Uploading instrument.
-    server.upload_instrument(instrument,True)
+    server.upload_instrument(instrument,True,groups=[indices_one])

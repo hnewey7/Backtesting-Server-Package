@@ -28,14 +28,12 @@ if __name__ == "__main__":
   # Creating server object.
   server = BacktestingServer(
     standard_details={
-
     },
     sql_details={
-
     })
 
   # Connecting to the official database.
   server.connect(database="official")
 
   # Adding new instrument group.
-  server.add_instrument_group("Indices")
+  server.add_instrument_group("Indices_1")

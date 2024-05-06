@@ -44,8 +44,8 @@ if __name__ == "__main__":
 
   # Getting instrument group.
   for instrument_group in server.instrument_groups:
-    if instrument_group.name == "Indices":
+    if instrument_group.name == "Indices_1":
       indices_group = instrument_group
 
   # Uploading live data from instrumnet group.
-  server.upload_live_data(instrument_group=indices_group)
+  server.upload_live_data(ig,instrument_group=indices_group)
