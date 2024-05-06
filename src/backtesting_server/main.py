@@ -522,6 +522,68 @@ class BacktestingServer():
           # Uploading data.
           self.upload_instrument(instrument,dataset=df)
 
+  def get_historical_data(self, instrument: ig_package.Instrument, start_datetime: str = None, end_datetime: str = None) -> pd.DataFrame:
+    """ Getting historical data stored on the Backtesting Server.
+      
+      Parameters
+      ----------
+      instrument: ig_package.Instrument
+        Instrument to get historical data for.
+      start_datetime: str
+        Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.
+      end_datetime: str
+        End datetime of data e.g. yyyy-mm-dd HH:MM:SS.
+      
+      Returns
+      -------
+      pd.DataFrame
+        DataFrame containing historical data, e.g columns = ['Datetime', 'Open', 'High', 'Low', 'Close']"""
+    # Getting start datetime object.
+    if start_datetime:
+      start_datetime_obj = datetime.strptime(start_datetime,"%y-%m-%d %H:%M:%S")
+    else:
+      start_datetime_obj = datetime(1970,1,1,0,0,0)
+    # Getting end datetime object.
+    if end_datetime:
+      end_datetime_obj = datetime.strptime(end_datetime,"%y-%m-%d %H:%M:%S")
+    else:
+      end_datetime_obj = datetime.now()
+    
+    # Requesting data.
+    new_name = instrument.name.replace(" ","_")
+    self.cursor.execute("SELECT * FROM {}_HistoricalDataset WHERE DatetimeIndex > '{}' AND DatetimeIndex < '{}';".format(new_name,str(start_datetime_obj),str(end_datetime_obj)))
+    results = self.cursor.fetchall()
+    
+    # Creating dataframe.
+    df = pd.DataFrame(results, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
+    df.set_index("Datetime",inplace=True)
+    return df
+
+  def get_uploaded_instruments(self, ig: ig_package.IG) -> list[ig_package.Instrument] | None:
+    """ Getting all instruments uploaded to the Backtesting Server.
+      
+      Parameters
+      ----------
+      ig: ig_package.IG
+        IG object.
+      
+      Returns
+      -------
+      list[ig_package.Instrument] | None
+        List of Instruments that are uploaded to the Backtesting Server."""
+    try:
+      # Getting all epics from historical data summary.
+      self.cursor.execute(f'SELECT Epic FROM HistoricalDataSummary;')
+      results = self.cursor.fetchall()
+      # Creating instruments.
+      instruments = []
+      for epic in results:
+        instruments.append(ig_package.Instrument(epic[0],ig))
+      return instruments
+    except:
+      logger.info("Could not get uploaded instruments from the server.")
+      return None
+
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():

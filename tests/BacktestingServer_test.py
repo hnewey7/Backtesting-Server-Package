@@ -620,3 +620,53 @@ def test_upload_live_data() -> None:
   server.cursor.execute("SELECT * FROM {}_historicaldataset;".format(test_instrument.name))
   results = server.cursor.fetchall()
   assert len(results) > 0
+
+# - - - - - - - - - - - - - - - - - - -
+# GET HISTORICAL DATA TESTS.
+
+def test_get_historical_data() -> None:
+  """ Testing get historical data from Backtesting Server."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
+  test_instrument = ig.search_instrument('Bitcoin')
+
+  # Uploading live data.
+  server.upload_live_data(ig,[test_instrument],capture_period=30)
+
+  # Getting historical data.
+  dataframe = server.get_historical_data(test_instrument)
+
+  # Handling checks.
+  assert len(dataframe) > 0
+
+def test_get_uploaded_instruments() -> None:
+  """ Testing get uploaded instruments method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
+  test_instrument = ig.search_instrument('Bitcoin')
+
+  # Uploading instrument.
+  server.upload_instrument(test_instrument)
+
+  # Getting instruments.
+  uploaded_instruments = server.get_uploaded_instruments(ig)
+
+  assert test_instrument.name == uploaded_instruments[0].name
+  assert test_instrument.epic == uploaded_instruments[0].epic
+  assert test_instrument.IG_obj == uploaded_instruments[0].IG_obj
