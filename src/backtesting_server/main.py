@@ -504,7 +504,7 @@ class BacktestingServer():
     start_time = time.time()
 
     # Uploading data.
-    while time.time() - start_time < capture_period:
+    while capture_period == None or time.time() - start_time < capture_period:
       for instrument in upload_instruments:
         # Adding previous timestamp.
         if instrument.epic not in previous_timestamps.keys():
