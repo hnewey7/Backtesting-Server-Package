@@ -620,3 +620,6 @@ def test_upload_live_data() -> None:
   server.cursor.execute("SELECT * FROM {}_historicaldataset;".format(test_instrument.name))
   results = server.cursor.fetchall()
   assert len(results) > 0
+
+# - - - - - - - - - - - - - - - - - - -
+# GET HISTORICAL DATA TESTS.
