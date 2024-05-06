@@ -473,6 +473,53 @@ class BacktestingServer():
     except:
       logger.info("Could not update the Historical Data Summary.")
 
+  def upload_live_data(self, instrument_list: list[ig_package.Instrument] = [], instrument_group: InstrumentGroup = None, capture_period: int = 0) -> None:
+    """ Uploading live data continuously for all instruments provided.
+    
+      Parameters
+      ----------
+      instrument_list: list[ig_package.Instrument] = []
+        OPTIONAL List of instruments to cycle through collecting live data and uploading to the server.
+      instrument_group: InstrumentGroup = None
+        OPTIONAL Instrument group defined on the Backtesting Server to cycle through.
+      capture_period: int = 0
+        OPTIONAL Capturing data for a certain amount of time."""
+    # Collecting all Instruments to upload.
+    upload_instruments = []
+    if instrument_group:
+      upload_instruments.extend(instrument_group.get_instruments())
+    elif instrument_list:
+      upload_instruments.extend(instrument_list)
+    else:
+      logger.info("No instruments provided.")
+    
+    # Starting tracking on each instrument.
+    for instrument in upload_instruments:
+      instrument.start_live_data()
+      logger.info("Started tracking {}.".format(instrument.epic))
+
+    previous_timestamps = {}
+    start_time = time.time()
+
+    # Uploading data.
+    while time.time() - start_time < capture_period:
+      for instrument in upload_instruments:
+        # Adding previous timestamp.
+        if instrument.epic not in previous_timestamps.keys():
+          previous_timestamps[instrument.epic] = instrument.ticker.timestamp
+        # Checking if timestamp has changed.
+        if instrument.ticker.timestamp != previous_timestamps[instrument.epic]:
+          # Formatting prices.
+          price_data = [[instrument.ticker.timestamp,instrument.ticker.bid,None,None,instrument.ticker.offer]]
+          # Creating dataframe.
+          df = pd.DataFrame(price_data, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
+          df.set_index("Datetime",inplace=True)
+          # Updating previous timestamp.
+          previous_timestamps[instrument.epic] = instrument.ticker.timestamp
+
+          # Uploading data.
+          self.upload_instrument(instrument,dataset=df)
+
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():
