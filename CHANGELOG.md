@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.1](https://github.com/mokkapps/changelog-generator-demo/compare/v0.3.0...v0.4.1) (2024-05-06)
+
+
+### Features
+
+* added _get_instrument_epics() method to InstrumentGroup ([2c0b5fd](https://github.com/mokkapps/changelog-generator-demo/commits/2c0b5fd7fbea567f29b4dee5d76c94790f8d0e9d))
+* adding get instruments method to InstrumentGroup ([0b9e740](https://github.com/mokkapps/changelog-generator-demo/commits/0b9e740c6e3a65df45b2358df1e5388c27f80fde))
+* uploading live data method ([7ad0644](https://github.com/mokkapps/changelog-generator-demo/commits/7ad06445a7419e2d0ea2230cacc6ed0b2e06b073))
+
+
+### Bug Fixes
+
+* adding ig parameter to upload live data ([8b95cf0](https://github.com/mokkapps/changelog-generator-demo/commits/8b95cf0214f0bf4cfd1bd7a5932f912293445675))
+* fixing bug with capture period ([8af5d3a](https://github.com/mokkapps/changelog-generator-demo/commits/8af5d3a9a39bd718826e4a916e064b86802d3770))
+* issue with _get_instrument_names() ([1c75a38](https://github.com/mokkapps/changelog-generator-demo/commits/1c75a38ec0fcee52801bea85320a21f7d208e0f3))
+
 ## [0.4.0](https://github.com/mokkapps/changelog-generator-demo/compare/v0.3.0...v0.4.0) (2024-05-06)
 
 

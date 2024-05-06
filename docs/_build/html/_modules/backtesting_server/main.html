@@ -598,11 +598,13 @@
 
 <div class="viewcode-block" id="BacktestingServer.upload_live_data">
 <a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.upload_live_data">[docs]</a>
-  <span class="k">def</span> <span class="nf">upload_live_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">instrument_group</span><span class="p">:</span> <span class="n">InstrumentGroup</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">capture_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="mi">0</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">upload_live_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">ig</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">IG</span><span class="p">,</span> <span class="n">instrument_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">]</span> <span class="o">=</span> <span class="p">[],</span> <span class="n">instrument_group</span><span class="p">:</span> <span class="n">InstrumentGroup</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">capture_period</span><span class="p">:</span> <span class="nb">int</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Uploading live data continuously for all instruments provided.</span>
 <span class="sd">    </span>
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
+<span class="sd">      ig: ig_package.IG</span>
+<span class="sd">        IG object.</span>
 <span class="sd">      instrument_list: list[ig_package.Instrument] = []</span>
 <span class="sd">        OPTIONAL List of instruments to cycle through collecting live data and uploading to the server.</span>
 <span class="sd">      instrument_group: InstrumentGroup = None</span>
@@ -612,7 +614,7 @@
     <span class="c1"># Collecting all Instruments to upload.</span>
     <span class="n">upload_instruments</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="k">if</span> <span class="n">instrument_group</span><span class="p">:</span>
-      <span class="n">upload_instruments</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">instrument_group</span><span class="o">.</span><span class="n">get_instruments</span><span class="p">())</span>
+      <span class="n">upload_instruments</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">instrument_group</span><span class="o">.</span><span class="n">get_instruments</span><span class="p">(</span><span class="n">ig</span><span class="p">))</span>
     <span class="k">elif</span> <span class="n">instrument_list</span><span class="p">:</span>
       <span class="n">upload_instruments</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="n">instrument_list</span><span class="p">)</span>
     <span class="k">else</span><span class="p">:</span>
@@ -627,7 +629,7 @@
     <span class="n">start_time</span> <span class="o">=</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span>
 
     <span class="c1"># Uploading data.</span>
-    <span class="k">while</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">capture_period</span><span class="p">:</span>
+    <span class="k">while</span> <span class="n">capture_period</span> <span class="o">==</span> <span class="kc">None</span> <span class="ow">or</span> <span class="n">time</span><span class="o">.</span><span class="n">time</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_time</span> <span class="o">&lt;</span> <span class="n">capture_period</span><span class="p">:</span>
       <span class="k">for</span> <span class="n">instrument</span> <span class="ow">in</span> <span class="n">upload_instruments</span><span class="p">:</span>
         <span class="c1"># Adding previous timestamp.</span>
         <span class="k">if</span> <span class="n">instrument</span><span class="o">.</span><span class="n">epic</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">previous_timestamps</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
