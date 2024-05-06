@@ -559,6 +559,31 @@ class BacktestingServer():
     df.set_index("Datetime",inplace=True)
     return df
 
+  def get_uploaded_instruments(self, ig: ig_package.IG) -> list[ig_package.Instrument] | None:
+    """ Getting all instruments uploaded to the Backtesting Server.
+      
+      Parameters
+      ----------
+      ig: ig_package.IG
+        IG object.
+      
+      Returns
+      -------
+      list[ig_package.Instrument] | None
+        List of Instruments that are uploaded to the Backtesting Server."""
+    try:
+      # Getting all epics from historical data summary.
+      self.cursor.execute(f'SELECT Epic FROM HistoricalDataSummary;')
+      results = self.cursor.fetchall()
+      # Creating instruments.
+      instruments = []
+      for epic in results:
+        instruments.append(ig_package.Instrument(epic[0],ig))
+      return instruments
+    except:
+      logger.info("Could not get uploaded instruments from the server.")
+      return None
+
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():
