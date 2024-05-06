@@ -473,11 +473,13 @@ class BacktestingServer():
     except:
       logger.info("Could not update the Historical Data Summary.")
 
-  def upload_live_data(self, instrument_list: list[ig_package.Instrument] = [], instrument_group: InstrumentGroup = None, capture_period: int = 0) -> None:
+  def upload_live_data(self,ig: ig_package.IG, instrument_list: list[ig_package.Instrument] = [], instrument_group: InstrumentGroup = None, capture_period: int = None) -> None:
     """ Uploading live data continuously for all instruments provided.
     
       Parameters
       ----------
+      ig: ig_package.IG
+        IG object.
       instrument_list: list[ig_package.Instrument] = []
         OPTIONAL List of instruments to cycle through collecting live data and uploading to the server.
       instrument_group: InstrumentGroup = None
@@ -487,7 +489,7 @@ class BacktestingServer():
     # Collecting all Instruments to upload.
     upload_instruments = []
     if instrument_group:
-      upload_instruments.extend(instrument_group.get_instruments())
+      upload_instruments.extend(instrument_group.get_instruments(ig))
     elif instrument_list:
       upload_instruments.extend(instrument_list)
     else:
