@@ -590,3 +590,33 @@ def test_update_groups_in_historical_data() -> None:
   # Removing table.
   server.cursor.execute("DROP TABLE HistoricalDataSummary;")
   server.cursor.execute("DROP TABLE InstrumentGroups;")
+
+# - - - - - - - - - - - - - - - - - - -
+# LIVE DATA TESTS.
+
+def test_upload_live_data() -> None:
+  """ Testing upload live data method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
+  test_instrument = ig.search_instrument('Bitcoin')
+
+  # Uploading live data.
+  server.upload_live_data([test_instrument],capture_period=30)
+
+  # Checking if data in historical data summary.
+  server.cursor.execute("SELECT * FROM HistoricalDataSummary;")
+  results = server.cursor.fetchall()
+  assert len(results) == 1
+
+  # Checking if data in relevant table.
+  server.cursor.execute("SELECT * FROM {}_historicaldataset;".format(test_instrument.name))
+  results = server.cursor.fetchall()
+  assert len(results) > 0
