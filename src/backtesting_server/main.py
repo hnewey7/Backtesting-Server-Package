@@ -228,7 +228,7 @@ class BacktestingServer():
     try:
       self.cursor.execute('CREATE TABLE HistoricalDataSummary (\
       ID INT NOT NULL AUTO_INCREMENT,\
-      InstrumentName VARCHAR(20),\
+      InstrumentName VARCHAR(100),\
       Epic VARCHAR(100),\
       LiveTracking BOOL DEFAULT False,\
       InstrumentGroup SET("") DEFAULT NULL,\
