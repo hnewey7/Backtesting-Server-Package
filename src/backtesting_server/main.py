@@ -131,15 +131,13 @@ class BacktestingServer():
 
     # Checking if data.
     if len(dataset) > 0:
-      # Filtering out NaN values.
-      dataset = dataset.dropna()
       # Inserting each row into database.
       logger.info("Inserting data into server-side dataset.")
       for data_point in dataset.index:
         try:
           insert_statement = f'INSERT INTO {instrument.name.replace(" ","_")}_HistoricalDataset (DatetimeIndex, Open, High, Low, Close) VALUES (%s, %s, %s, %s, %s)'
           values = [
-            (str(data_point), float(dataset["Open"][data_point]), float(dataset["High"][data_point]), float(dataset["Low"][data_point]), float(dataset["Close"][data_point])),
+            (str(data_point), dataset["Open"][data_point], dataset["High"][data_point], dataset["Low"][data_point], dataset["Close"][data_point]),
           ]
           self.cursor.executemany(insert_statement, values)
         except pymysql.err.IntegrityError:
@@ -267,10 +265,10 @@ class BacktestingServer():
     new_name = instrument.name.replace(" ","_")
     self.cursor.execute(f"CREATE TABLE {new_name}_HistoricalDataset (\
     DatetimeIndex DATETIME NOT NULL,\
-    Open FLOAT(20),\
-    High FLOAT(20),\
-    Low FLOAT(20),\
-    Close FLOAT(20),\
+    Open FLOAT(20) DEFAULT NULL,\
+    High FLOAT(20) DEFAULT NULL,\
+    Low FLOAT(20) DEFAULT NULL,\
+    Close FLOAT(20) DEFAULT NULL,\
     PRIMARY KEY (DatetimeIndex)\
     );")
   
