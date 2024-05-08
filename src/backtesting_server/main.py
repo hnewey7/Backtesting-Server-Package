@@ -512,7 +512,7 @@ class BacktestingServer():
         # Checking if timestamp has changed.
         if instrument.ticker.timestamp != previous_timestamps[instrument.epic]:
           # Formatting prices.
-          price_data = [[instrument.ticker.timestamp,instrument.ticker.bid,None,None,instrument.ticker.offer]]
+          price_data = [[instrument.ticker.timestamp,instrument.ticker.bid,instrument.ticker.offer,instrument.ticker.bid,instrument.ticker.offer]]
           # Creating dataframe.
           df = pd.DataFrame(price_data, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
           df.set_index("Datetime",inplace=True)
