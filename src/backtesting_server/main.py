@@ -584,6 +584,66 @@ class BacktestingServer():
       logger.info("Could not get uploaded instruments from the server.")
       return None
 
+  def _filter_candles(self, dataframe: pd.DataFrame, resolution: str) -> pd.DataFrame:
+    """ Filter candlesticks for a specific resolution.
+    
+      Parameters
+      ----------
+      dataframe: pd.DataFrame
+        Historical data in dataframe.
+      resolution: str
+        Resolution e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.
+        
+      Returns
+      -------
+      pd.DataFrame
+        Dataframe of candles with Open, High, Low and Close."""
+    # Resolutions.
+    resolution_dict = {
+      "SECOND":1,
+      "MINUTE":60,
+      "MINUTE_15":15*60,
+      "HOUR":60*60,
+      "HOUR_4":4*60*60,
+      "DAY":24*60*60
+    }
+    results = []
+    resolution_factor = resolution_dict[resolution]
+    # Getting starting time.
+    open_datetime = dataframe.index[0].to_pydatetime()
+    open_epoch = (open_datetime.timestamp() // resolution_factor) * resolution_factor
+    previous_epoch = 0
+    # Filtering data.
+    for index, row in dataframe.iterrows():
+      # Getting row datetime.
+      current_datetime = row.name.to_pydatetime()
+      current_epoch = current_datetime.timestamp()
+
+      if ((current_epoch) // resolution_factor) * resolution_factor > ((previous_epoch) // resolution_factor) * resolution_factor:
+        # Setting previous candle.
+        if previous_epoch != 0:
+          single_candle = (datetime.fromtimestamp(((previous_epoch) // resolution_factor) * resolution_factor),open_value,high_value,low_value,close_value)
+          results.append(single_candle)
+        # Setting open values.
+        open_value = row["Open"]
+        low_value = row["Open"]
+        high_value = row["Open"]
+      else:
+        # Checking low and high.
+        if row["Open"] < low_value:
+          low_value = row["Open"]
+        elif row["Open"] > high_value:
+          high_value = row["Open"]
+        # Setting close value and previous epoch.
+        close_value = row["Open"]
+      # Setting previous epoch.
+      previous_epoch = current_epoch
+    
+    # Creating dataframe.
+    df = pd.DataFrame(results, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
+    df.set_index("Datetime",inplace=True)
+    return df
+
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():
