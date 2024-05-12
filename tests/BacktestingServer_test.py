@@ -670,3 +670,40 @@ def test_get_uploaded_instruments() -> None:
   assert test_instrument.name == uploaded_instruments[0].name
   assert test_instrument.epic == uploaded_instruments[0].epic
   assert test_instrument.IG_obj == uploaded_instruments[0].IG_obj
+
+@pytest.mark.parametrize("resolution", ["MINUTE","MINUTE_15","HOUR","HOUR_4","DAY"])
+def test_filter_candles(resolution) -> None:
+  """ Testing filter candles method."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="official")
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
+  test_instrument = ig.search_instrument('FTSE 100')
+
+  # Getting historical data.
+  dataframe = server.get_historical_data(test_instrument)
+
+  # Filtering data.
+  filtered_dataframe = server._filter_candles(dataframe,resolution)
+
+  # Resolutions.
+  resolution_dict = {
+    "SECOND":1,
+    "MINUTE":60,
+    "MINUTE_15":15*60,
+    "HOUR":60*60,
+    "HOUR_4":4*60*60,
+    "DAY":24*60*60
+  }
+
+  # Checking data.
+  previous_epoch = 0
+  for index, row in filtered_dataframe.iterrows():
+    current_epoch = row.name.to_pydatetime().timestamp()
+    if previous_epoch != 0:
+      assert (current_epoch - previous_epoch) % resolution_dict[resolution] == 0
+    previous_epoch = current_epoch
