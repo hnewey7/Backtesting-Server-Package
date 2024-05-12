@@ -182,15 +182,17 @@ Package Contents
       :type capture_period: int = 0
 
 
-   .. py:method:: get_historical_data(instrument: ig_package.Instrument, start_datetime: str = None, end_datetime: str = None) -> pandas.DataFrame
+   .. py:method:: get_historical_data(instrument: ig_package.Instrument, resolution: str = None, start_datetime: str = None, end_datetime: str = None) -> pandas.DataFrame
 
       Getting historical data stored on the Backtesting Server.
 
       :param instrument: Instrument to get historical data for.
       :type instrument: ig_package.Instrument
-      :param start_datetime: Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.
+      :param resolution: OPTIONAL Resolution of historical data candlesticks e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.
+      :type resolution: str
+      :param start_datetime: OPTIONAL Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.
       :type start_datetime: str
-      :param end_datetime: End datetime of data e.g. yyyy-mm-dd HH:MM:SS.
+      :param end_datetime: OPTIONAL End datetime of data e.g. yyyy-mm-dd HH:MM:SS.
       :type end_datetime: str
 
       :returns: DataFrame containing historical data, e.g columns = ['Datetime', 'Open', 'High', 'Low', 'Close']
@@ -206,6 +208,19 @@ Package Contents
 
       :returns: List of Instruments that are uploaded to the Backtesting Server.
       :rtype: list[ig_package.Instrument] | None
+
+
+   .. py:method:: _filter_candles(dataframe: pandas.DataFrame, resolution: str) -> pandas.DataFrame
+
+      Filter candlesticks for a specific resolution.
+
+      :param dataframe: Historical data in dataframe.
+      :type dataframe: pd.DataFrame
+      :param resolution: Resolution e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.
+      :type resolution: str
+
+      :returns: Dataframe of candles with Open, High, Low and Close.
+      :rtype: pd.DataFrame
 
 
 

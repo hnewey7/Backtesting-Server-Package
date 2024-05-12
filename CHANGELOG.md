@@ -2,6 +2,28 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.6.0](https://github.com/mokkapps/changelog-generator-demo/compare/v0.3.0...v0.6.0) (2024-05-12)
+
+
+### Features
+
+* added _get_instrument_epics() method to InstrumentGroup ([2c0b5fd](https://github.com/mokkapps/changelog-generator-demo/commits/2c0b5fd7fbea567f29b4dee5d76c94790f8d0e9d))
+* adding filter candles method ([ba0102e](https://github.com/mokkapps/changelog-generator-demo/commits/ba0102e1bb310f4d3e9da7e9232421d0950539d4))
+* adding filter candlesticks parameter to get historical data ([c976cf4](https://github.com/mokkapps/changelog-generator-demo/commits/c976cf417647824c2dc8bd0fbe7444083991df65))
+* adding get instruments method to InstrumentGroup ([0b9e740](https://github.com/mokkapps/changelog-generator-demo/commits/0b9e740c6e3a65df45b2358df1e5388c27f80fde))
+* adding get uploaded instruments method ([b548e56](https://github.com/mokkapps/changelog-generator-demo/commits/b548e56d04e2a438fa4f48c2d6e909594d141260))
+* get historical data method ([59fb053](https://github.com/mokkapps/changelog-generator-demo/commits/59fb0531890c5994e23d99bdc8673f97110ca840))
+* uploading live data method ([7ad0644](https://github.com/mokkapps/changelog-generator-demo/commits/7ad06445a7419e2d0ea2230cacc6ed0b2e06b073))
+
+
+### Bug Fixes
+
+* adding ig parameter to upload live data ([8b95cf0](https://github.com/mokkapps/changelog-generator-demo/commits/8b95cf0214f0bf4cfd1bd7a5932f912293445675))
+* bug with instrument name being too long ([c060ffe](https://github.com/mokkapps/changelog-generator-demo/commits/c060ffed34a45853778257df59b5cbe97f5fc46d))
+* filling high/low for live data scraping ([35ff179](https://github.com/mokkapps/changelog-generator-demo/commits/35ff1795dda14bdd61f6819c6c0471ec935c2337))
+* fixing bug with capture period ([8af5d3a](https://github.com/mokkapps/changelog-generator-demo/commits/8af5d3a9a39bd718826e4a916e064b86802d3770))
+* issue with _get_instrument_names() ([1c75a38](https://github.com/mokkapps/changelog-generator-demo/commits/1c75a38ec0fcee52801bea85320a21f7d208e0f3))
+
 ### [0.5.1](https://github.com/mokkapps/changelog-generator-demo/compare/v0.3.0...v0.5.1) (2024-05-08)
 
 

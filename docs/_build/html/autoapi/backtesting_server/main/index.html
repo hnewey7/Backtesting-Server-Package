@@ -317,14 +317,15 @@
 
 <dl class="py method">
 <dt class="sig sig-object py" id="backtesting_server.main.BacktestingServer.get_historical_data">
-<span class="sig-name descname"><span class="pre">get_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_datetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_datetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer.get_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer.get_historical_data" title="Link to this definition"></a></dt>
+<span class="sig-name descname"><span class="pre">get_historical_data</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">instrument</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">ig_package.Instrument</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">start_datetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">end_datetime</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span><span class="w"> </span><span class="o"><span class="pre">=</span></span><span class="w"> </span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer.get_historical_data"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer.get_historical_data" title="Link to this definition"></a></dt>
 <dd><p>Getting historical data stored on the Backtesting Server.</p>
 <dl class="field-list simple">
 <dt class="field-odd">Parameters<span class="colon">:</span></dt>
 <dd class="field-odd"><ul class="simple">
 <li><p><strong>instrument</strong> (<em>ig_package.Instrument</em>) – Instrument to get historical data for.</p></li>
-<li><p><strong>start_datetime</strong> (<em>str</em>) – Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.</p></li>
-<li><p><strong>end_datetime</strong> (<em>str</em>) – End datetime of data e.g. yyyy-mm-dd HH:MM:SS.</p></li>
+<li><p><strong>resolution</strong> (<em>str</em>) – OPTIONAL Resolution of historical data candlesticks e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.</p></li>
+<li><p><strong>start_datetime</strong> (<em>str</em>) – OPTIONAL Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.</p></li>
+<li><p><strong>end_datetime</strong> (<em>str</em>) – OPTIONAL End datetime of data e.g. yyyy-mm-dd HH:MM:SS.</p></li>
 </ul>
 </dd>
 <dt class="field-even">Returns<span class="colon">:</span></dt>
@@ -349,6 +350,26 @@
 </dd>
 <dt class="field-odd">Return type<span class="colon">:</span></dt>
 <dd class="field-odd"><p>list[ig_package.Instrument] | None</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="py method">
+<dt class="sig sig-object py" id="backtesting_server.main.BacktestingServer._filter_candles">
+<span class="sig-name descname"><span class="pre">_filter_candles</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">dataframe</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">pandas.DataFrame</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">resolution</span></span><span class="p"><span class="pre">:</span></span><span class="w"> </span><span class="n"><span class="pre">str</span></span></em><span class="sig-paren">)</span> <span class="sig-return"><span class="sig-return-icon">&#x2192;</span> <span class="sig-return-typehint"><span class="pre">pandas.DataFrame</span></span></span><a class="reference internal" href="../../../_modules/backtesting_server/main.html#BacktestingServer._filter_candles"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#backtesting_server.main.BacktestingServer._filter_candles" title="Link to this definition"></a></dt>
+<dd><p>Filter candlesticks for a specific resolution.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>dataframe</strong> (<em>pd.DataFrame</em>) – Historical data in dataframe.</p></li>
+<li><p><strong>resolution</strong> (<em>str</em>) – Resolution e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns<span class="colon">:</span></dt>
+<dd class="field-even"><p>Dataframe of candles with Open, High, Low and Close.</p>
+</dd>
+<dt class="field-odd">Return type<span class="colon">:</span></dt>
+<dd class="field-odd"><p>pd.DataFrame</p>
 </dd>
 </dl>
 </dd></dl>

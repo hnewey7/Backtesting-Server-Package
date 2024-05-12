@@ -650,17 +650,19 @@
 
 <div class="viewcode-block" id="BacktestingServer.get_historical_data">
 <a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.get_historical_data">[docs]</a>
-  <span class="k">def</span> <span class="nf">get_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">start_datetime</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_datetime</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+  <span class="k">def</span> <span class="nf">get_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">resolution</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">start_datetime</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span> <span class="n">end_datetime</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot; Getting historical data stored on the Backtesting Server.</span>
 <span class="sd">      </span>
 <span class="sd">      Parameters</span>
 <span class="sd">      ----------</span>
 <span class="sd">      instrument: ig_package.Instrument</span>
 <span class="sd">        Instrument to get historical data for.</span>
+<span class="sd">      resolution: str</span>
+<span class="sd">        OPTIONAL Resolution of historical data candlesticks e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.</span>
 <span class="sd">      start_datetime: str</span>
-<span class="sd">        Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.</span>
+<span class="sd">        OPTIONAL Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.</span>
 <span class="sd">      end_datetime: str</span>
-<span class="sd">        End datetime of data e.g. yyyy-mm-dd HH:MM:SS.</span>
+<span class="sd">        OPTIONAL End datetime of data e.g. yyyy-mm-dd HH:MM:SS.</span>
 <span class="sd">      </span>
 <span class="sd">      Returns</span>
 <span class="sd">      -------</span>
@@ -685,6 +687,9 @@
     <span class="c1"># Creating dataframe.</span>
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">])</span>
     <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Datetime&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">resolution</span><span class="p">:</span>
+      <span class="c1"># Filtering data.</span>
+      <span class="n">df</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">_filter_candles</span><span class="p">(</span><span class="n">df</span><span class="p">,</span><span class="n">resolution</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span></div>
 
 
@@ -714,6 +719,69 @@
     <span class="k">except</span><span class="p">:</span>
       <span class="n">logger</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;Could not get uploaded instruments from the server.&quot;</span><span class="p">)</span>
       <span class="k">return</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer._filter_candles">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer._filter_candles">[docs]</a>
+  <span class="k">def</span> <span class="nf">_filter_candles</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dataframe</span><span class="p">:</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">,</span> <span class="n">resolution</span><span class="p">:</span> <span class="nb">str</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Filter candlesticks for a specific resolution.</span>
+<span class="sd">    </span>
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">      dataframe: pd.DataFrame</span>
+<span class="sd">        Historical data in dataframe.</span>
+<span class="sd">      resolution: str</span>
+<span class="sd">        Resolution e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.</span>
+<span class="sd">        </span>
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">      pd.DataFrame</span>
+<span class="sd">        Dataframe of candles with Open, High, Low and Close.&quot;&quot;&quot;</span>
+    <span class="c1"># Resolutions.</span>
+    <span class="n">resolution_dict</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;SECOND&quot;</span><span class="p">:</span><span class="mi">1</span><span class="p">,</span>
+      <span class="s2">&quot;MINUTE&quot;</span><span class="p">:</span><span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;MINUTE_15&quot;</span><span class="p">:</span><span class="mi">15</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;HOUR&quot;</span><span class="p">:</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;HOUR_4&quot;</span><span class="p">:</span><span class="mi">4</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;DAY&quot;</span><span class="p">:</span><span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span>
+    <span class="p">}</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">resolution_factor</span> <span class="o">=</span> <span class="n">resolution_dict</span><span class="p">[</span><span class="n">resolution</span><span class="p">]</span>
+    <span class="c1"># Getting starting time.</span>
+    <span class="n">open_datetime</span> <span class="o">=</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">index</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
+    <span class="n">open_epoch</span> <span class="o">=</span> <span class="p">(</span><span class="n">open_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">//</span> <span class="n">resolution_factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">resolution_factor</span>
+    <span class="n">previous_epoch</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="c1"># Filtering data.</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">dataframe</span><span class="o">.</span><span class="n">iterrows</span><span class="p">():</span>
+      <span class="c1"># Getting row datetime.</span>
+      <span class="n">current_datetime</span> <span class="o">=</span> <span class="n">row</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">to_pydatetime</span><span class="p">()</span>
+      <span class="n">current_epoch</span> <span class="o">=</span> <span class="n">current_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+
+      <span class="k">if</span> <span class="p">((</span><span class="n">current_epoch</span><span class="p">)</span> <span class="o">//</span> <span class="n">resolution_factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">resolution_factor</span> <span class="o">&gt;</span> <span class="p">((</span><span class="n">previous_epoch</span><span class="p">)</span> <span class="o">//</span> <span class="n">resolution_factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">resolution_factor</span><span class="p">:</span>
+        <span class="c1"># Setting previous candle.</span>
+        <span class="k">if</span> <span class="n">previous_epoch</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+          <span class="n">single_candle</span> <span class="o">=</span> <span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(((</span><span class="n">previous_epoch</span><span class="p">)</span> <span class="o">//</span> <span class="n">resolution_factor</span><span class="p">)</span> <span class="o">*</span> <span class="n">resolution_factor</span><span class="p">),</span><span class="n">open_value</span><span class="p">,</span><span class="n">high_value</span><span class="p">,</span><span class="n">low_value</span><span class="p">,</span><span class="n">close_value</span><span class="p">)</span>
+          <span class="n">results</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">single_candle</span><span class="p">)</span>
+        <span class="c1"># Setting open values.</span>
+        <span class="n">open_value</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span>
+        <span class="n">low_value</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span>
+        <span class="n">high_value</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span>
+      <span class="k">else</span><span class="p">:</span>
+        <span class="c1"># Checking low and high.</span>
+        <span class="k">if</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span> <span class="o">&lt;</span> <span class="n">low_value</span><span class="p">:</span>
+          <span class="n">low_value</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span>
+        <span class="k">elif</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">high_value</span><span class="p">:</span>
+          <span class="n">high_value</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span>
+        <span class="c1"># Setting close value and previous epoch.</span>
+        <span class="n">close_value</span> <span class="o">=</span> <span class="n">row</span><span class="p">[</span><span class="s2">&quot;Open&quot;</span><span class="p">]</span>
+      <span class="c1"># Setting previous epoch.</span>
+      <span class="n">previous_epoch</span> <span class="o">=</span> <span class="n">current_epoch</span>
+    
+    <span class="c1"># Creating dataframe.</span>
+    <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">])</span>
+    <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Datetime&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">df</span></div>
 </div>
 
 
