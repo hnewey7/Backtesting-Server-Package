@@ -522,17 +522,19 @@ class BacktestingServer():
           # Uploading data.
           self.upload_instrument(instrument,dataset=df)
 
-  def get_historical_data(self, instrument: ig_package.Instrument, start_datetime: str = None, end_datetime: str = None) -> pd.DataFrame:
+  def get_historical_data(self, instrument: ig_package.Instrument, resolution: str = None, start_datetime: str = None, end_datetime: str = None) -> pd.DataFrame:
     """ Getting historical data stored on the Backtesting Server.
       
       Parameters
       ----------
       instrument: ig_package.Instrument
         Instrument to get historical data for.
+      resolution: str
+        OPTIONAL Resolution of historical data candlesticks e.g. SECOND, MINUTE, MINUTE_15, HOUR, HOUR_4 and DAY.
       start_datetime: str
-        Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.
+        OPTIONAL Start datetime of data e.g. yyyy-mm-dd HH:MM:SS.
       end_datetime: str
-        End datetime of data e.g. yyyy-mm-dd HH:MM:SS.
+        OPTIONAL End datetime of data e.g. yyyy-mm-dd HH:MM:SS.
       
       Returns
       -------
@@ -557,6 +559,9 @@ class BacktestingServer():
     # Creating dataframe.
     df = pd.DataFrame(results, columns=['Datetime', 'Open', 'High', 'Low', 'Close'])
     df.set_index("Datetime",inplace=True)
+    if resolution:
+      # Filtering data.
+      df = self._filter_candles(df,resolution)
     return df
 
   def get_uploaded_instruments(self, ig: ig_package.IG) -> list[ig_package.Instrument] | None:
