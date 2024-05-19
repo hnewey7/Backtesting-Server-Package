@@ -741,6 +741,8 @@ class HistoricalPriceGap():
     self.start_datetime: datetime = start_datetime
     self.end_datetime: datetime = end_datetime
 
+    self.time_range = end_datetime.timestamp() - start_datetime.timestamp()
+
 
 if __name__ == "__main__":
 
