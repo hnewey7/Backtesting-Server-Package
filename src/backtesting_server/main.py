@@ -731,11 +731,11 @@ class HistoricalPriceGap():
     # Instrument and opening hours.
     self.instrument: ig_package.Instrument = instrument
     if self.instrument.open_time and self.instrument.close_time:
-      self.open_time = self.instrument.open_time
-      self.close_time = self.instrument.close_time
+      self.open_time = (int(instrument.open_time[:2]),int(instrument.open_time[-2:]))
+      self.close_time = (int(instrument.close_time[:2]),int(instrument.close_time[-2:]))
     else:
-      self.open_time = None
-      self.close_time = None
+      self.open_time = (0,0)
+      self.close_time = (24,0)
 
     # Datetimes.
     self.start_datetime: datetime = start_datetime
