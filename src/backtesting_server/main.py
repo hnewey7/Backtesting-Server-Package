@@ -735,14 +735,44 @@ class HistoricalPriceGap():
       self.close_time = (int(instrument.close_time[:2]),int(instrument.close_time[-2:]))
     else:
       self.open_time = (0,0)
-      self.close_time = (24,0)
+      self.close_time = (0,0)
 
     # Datetimes.
     self.start_datetime: datetime = start_datetime
     self.end_datetime: datetime = end_datetime
 
-    self.time_range = end_datetime.timestamp() - start_datetime.timestamp()
+    # Calculating time range.
+    start_epoch = start_datetime.timestamp()
+    end_epoch = end_datetime.timestamp()
+    current_starting_day_epoch = (start_epoch // (60*60*24)) * (60*60*24)
+    current_ending_day_epoch = current_starting_day_epoch + (60*60*24)
+    running_time_range = 0
+    
+    while current_starting_day_epoch < end_epoch:
+      # Checking current day.
+      day_int = datetime.fromtimestamp(current_starting_day_epoch).weekday()
+      if day_int < 5:
+        # Get open/close datetimes for current day.
+        current_day_datetime = datetime.fromtimestamp(current_starting_day_epoch)
+        current_day_open_datetime = datetime(current_day_datetime.year,current_day_datetime.month,current_day_datetime.day,self.open_time[0],self.open_time[1])
+        current_day_close_datetime = datetime(current_day_datetime.year,current_day_datetime.month,current_day_datetime.day,self.close_time[0],self.close_time[1]) if self.close_time != (0,0) else datetime(current_day_datetime.year,current_day_datetime.month,current_day_datetime.day + 1,self.close_time[0],self.close_time[1])
+        
+        # Checking start to trading hours.
+        if current_day_close_datetime.timestamp() < end_epoch:
+          if start_epoch <= current_day_open_datetime.timestamp():
+            running_time_range += current_day_close_datetime.timestamp() - current_day_open_datetime.timestamp()
+          elif start_epoch > current_day_open_datetime.timestamp() and start_epoch < current_day_close_datetime.timestamp():
+            running_time_range += current_day_close_datetime.timestamp() - start_epoch
+        else:
+          if start_epoch <= current_day_open_datetime.timestamp():
+            running_time_range += end_epoch - current_day_open_datetime.timestamp()
+          elif start_epoch > current_day_open_datetime.timestamp() and start_epoch < current_day_close_datetime.timestamp():
+            running_time_range += end_epoch - start_epoch
 
+      current_starting_day_epoch += 60*60*24
+      current_ending_day_epoch += 60*60*24
+      start_epoch = current_starting_day_epoch
+    self.time_range = running_time_range
 
 if __name__ == "__main__":
 
