@@ -649,6 +649,37 @@ class BacktestingServer():
     df.set_index("Datetime",inplace=True)
     return df
 
+
+  def get_historical_price_gaps(self, instrument: ig_package.Instrument, previous_days: int) -> list[HistoricalPriceGap]:
+    """ Getting all historical data price gaps for the given instrument.
+    
+      Parameters
+      ----------
+      instrument: ig_package.Instrument
+        Instrument to get price gaps for.
+      previous_days: int
+        Number of days previously to check.
+      
+      Returns
+      -------
+      list[HistoricalPriceGap]
+        List of all historical data price gaps."""
+    # Getting datetime.
+    current_datetime = datetime.now().timestamp()
+    previous_epoch = current_datetime - (previous_days * 60 * 60 * 24)
+    previous_datetime = datetime.fromtimestamp(previous_epoch)
+    previous_datetime_str = previous_datetime.strftime("%Y-%m-%d %H:%M:%S")
+    # Requesting all data within timeframe for datetime index.
+    self.cursor.execute("SELECT DatetimeIndex FROM {}_HistoricalDataset WHERE DatetimeIndex > '{}';".format(instrument.name.replace(" ","_"),previous_datetime_str))
+    results = self.cursor.fetchall()
+    # Getting all time differences.
+    time_differences = []
+    for index,datetime_index in enumerate(results):
+      if index > 0:
+        gap = HistoricalPriceGap(instrument,results[index-1][0],datetime_index[0])
+        time_differences.append(gap)
+    return time_differences
+
 # - - - - - - - - - - - - - -
 
 class InstrumentGroup():
