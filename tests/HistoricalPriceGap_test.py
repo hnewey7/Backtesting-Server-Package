@@ -51,7 +51,11 @@ def test_init(instrument_name: str, start_datetime: datetime, end_datetime: date
 
   # Checking values of attributes.
   assert price_gap.instrument == test_instrument
-  assert price_gap.open_time == opening_hours
-  assert price_gap.close_time == closing_hours
+  if opening_hours and closing_hours:
+    assert price_gap.open_time == (int(opening_hours[:2]),int(opening_hours[-2:]))
+    assert price_gap.close_time == (int(closing_hours[:2]),int(closing_hours[-2:]))
+  else:
+    assert price_gap.open_time == (0,0)
+    assert price_gap.close_time == (24,0)
   assert price_gap.start_datetime == start_datetime
   assert price_gap.end_datetime == end_datetime
