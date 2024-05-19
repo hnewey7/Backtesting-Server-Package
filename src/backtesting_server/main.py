@@ -774,6 +774,16 @@ class HistoricalPriceGap():
       start_epoch = current_starting_day_epoch
     self.time_range = running_time_range
 
+  def __lt__(self, other):
+    result = True if self.time_range < other.time_range else False
+    return result
+  
+  def __gt__(self,other):
+    result = True if self.time_range > other.time_range else False
+    return result
+
+# - - - - - - - - - - - - - -
+
 if __name__ == "__main__":
 
   with open("logging_config.json") as f:
