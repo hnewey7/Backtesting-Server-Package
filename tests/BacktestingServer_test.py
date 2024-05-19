@@ -707,3 +707,28 @@ def test_filter_candles(resolution) -> None:
     if previous_epoch != 0:
       assert (current_epoch - previous_epoch) % resolution_dict[resolution] == 0
     previous_epoch = current_epoch
+
+
+def test_get_historical_price_gaps() -> None:
+  """ Testing getting price gaps for historical data of a given instrument."""
+  # Creating backtesting server object.
+  server = BacktestingServer(standard_details=get_standard_server_details(),sql_details=get_mysql_server_details())
+  # Connecting to the server.
+  server.connect(database="test")
+  # Resetting tables.
+  reset_mysql_tables(server)
+
+  # Getting test instrument.
+  ig_details = get_ig_details()
+  ig = ig_package.IG(API_key=ig_details['key'],username=ig_details['username'],password=ig_details['password'],acc_type=ig_details["acc_type"],acc_number=ig_details["acc_number"])
+  test_instrument = ig.search_instrument('Bitcoin')
+
+  # Uploading live data.
+  server.upload_live_data(ig,[test_instrument],capture_period=30)
+
+  # Getting time differences.
+  price_gaps = server.get_historical_price_gaps(test_instrument,1)
+
+  # Handling checks.
+  assert len(price_gaps) > 0
+  
