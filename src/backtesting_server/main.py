@@ -721,8 +721,26 @@ class InstrumentGroup():
     for epic in epics:
       instrument_list.append(ig_package.Instrument(epic,ig))
     return instrument_list
-    
+
 # - - - - - - - - - - - - - -
+
+class HistoricalPriceGap():
+  """ Class for representing a gap in the historical price data of an Instrument."""
+
+  def __init__(self, instrument: ig_package.Instrument, start_datetime: datetime, end_datetime: datetime):
+    # Instrument and opening hours.
+    self.instrument: ig_package.Instrument = instrument
+    if self.instrument.open_time and self.instrument.close_time:
+      self.open_time = self.instrument.open_time
+      self.close_time = self.instrument.close_time
+    else:
+      self.open_time = None
+      self.close_time = None
+
+    # Datetimes.
+    self.start_datetime: datetime = start_datetime
+    self.end_datetime: datetime = end_datetime
+
 
 if __name__ == "__main__":
 
