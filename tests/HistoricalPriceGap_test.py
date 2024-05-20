@@ -16,8 +16,8 @@ from SERVER_DETAILS import get_standard_server_details, get_mysql_server_details
 # - - - - - - - - - - - - - - - - - -
 
 @pytest.mark.parametrize(["instrument_name","start_datetime","end_datetime","opening_hours","closing_hours"],[
-  ("FTSE 100",datetime(2024,5,19,11),datetime(2024,5,19,12),None,None),
-  ("BP Group PLC",datetime(2024,5,19,11),datetime(2024,5,19,12),"08:00","16:30")])
+  ("FTSE 100",datetime(2024,5,19,11),datetime(2024,5,21,11),None,None),
+  ("BP Group PLC",datetime(2024,5,19,11),datetime(2024,5,20,20),"08:00","16:30")])
 def test_init(instrument_name: str, start_datetime: datetime, end_datetime: datetime, opening_hours: str, closing_hours: str) -> None:
   """ Testing the initialisation.
     
@@ -56,6 +56,6 @@ def test_init(instrument_name: str, start_datetime: datetime, end_datetime: date
     assert price_gap.close_time == (int(closing_hours[:2]),int(closing_hours[-2:]))
   else:
     assert price_gap.open_time == (0,0)
-    assert price_gap.close_time == (24,0)
+    assert price_gap.close_time == (0,0)
   assert price_gap.start_datetime == start_datetime
   assert price_gap.end_datetime == end_datetime
