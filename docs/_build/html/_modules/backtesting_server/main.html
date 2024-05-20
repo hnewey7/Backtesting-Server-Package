@@ -782,6 +782,80 @@
     <span class="n">df</span> <span class="o">=</span> <span class="n">pd</span><span class="o">.</span><span class="n">DataFrame</span><span class="p">(</span><span class="n">results</span><span class="p">,</span> <span class="n">columns</span><span class="o">=</span><span class="p">[</span><span class="s1">&#39;Datetime&#39;</span><span class="p">,</span> <span class="s1">&#39;Open&#39;</span><span class="p">,</span> <span class="s1">&#39;High&#39;</span><span class="p">,</span> <span class="s1">&#39;Low&#39;</span><span class="p">,</span> <span class="s1">&#39;Close&#39;</span><span class="p">])</span>
     <span class="n">df</span><span class="o">.</span><span class="n">set_index</span><span class="p">(</span><span class="s2">&quot;Datetime&quot;</span><span class="p">,</span><span class="n">inplace</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
     <span class="k">return</span> <span class="n">df</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer.patch_entire_historical_data">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.patch_entire_historical_data">[docs]</a>
+  <span class="k">def</span> <span class="nf">patch_entire_historical_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ig</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">IG</span><span class="p">,</span> <span class="n">previous_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Checking all historical data stored on the server and ensuring no gaps within the data. If the patch necessary is more severe (greater gap in data), higher resolution patch applied and repeated until patched.</span>
+<span class="sd">    </span>
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    ig: ig_package.IG</span>
+<span class="sd">      IG object.</span>
+<span class="sd">    previous_days: int</span>
+<span class="sd">      Previous days to patch historical data.&quot;&quot;&quot;</span>
+    <span class="c1"># Getting all instruments with historical data on the server.</span>
+    <span class="n">uploaded_instruments</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_uploaded_instruments</span><span class="p">(</span><span class="n">ig</span><span class="p">)</span>
+    <span class="c1"># Getting all gaps in instruments.</span>
+    <span class="n">gaps</span><span class="p">:</span> <span class="nb">list</span><span class="p">[</span><span class="n">HistoricalPriceGap</span><span class="p">]</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">instrument</span> <span class="ow">in</span> <span class="n">uploaded_instruments</span><span class="p">:</span>
+      <span class="n">gaps</span><span class="o">.</span><span class="n">extend</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">get_historical_price_gaps</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span><span class="n">previous_days</span><span class="p">))</span>
+    <span class="c1"># Sorting gaps.</span>
+    <span class="n">gaps</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">reverse</span><span class="o">=</span><span class="kc">True</span><span class="p">)</span>
+
+    <span class="c1"># Resolutions.</span>
+    <span class="n">resolutions</span> <span class="o">=</span> <span class="p">{</span>
+      <span class="s2">&quot;MINUTE&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;MINUTE_15&quot;</span><span class="p">:</span> <span class="mi">15</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;HOUR&quot;</span><span class="p">:</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;HOUR_4&quot;</span><span class="p">:</span> <span class="mi">4</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="p">,</span>
+      <span class="s2">&quot;DAY&quot;</span><span class="p">:</span> <span class="mi">24</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span>
+    <span class="p">}</span>
+
+    <span class="c1"># Filling in all gaps.</span>
+    <span class="n">set_resolution</span> <span class="o">=</span> <span class="s2">&quot;SECOND&quot;</span>
+    <span class="k">for</span> <span class="n">gap</span> <span class="ow">in</span> <span class="n">gaps</span><span class="p">:</span>
+      <span class="k">for</span> <span class="n">resolution</span> <span class="ow">in</span> <span class="n">resolutions</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="k">if</span> <span class="n">gap</span><span class="o">.</span><span class="n">time_range</span> <span class="o">/</span> <span class="n">resolution</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span> <span class="o">&lt;</span> <span class="mi">1</span><span class="p">:</span>
+          <span class="k">break</span>
+        <span class="n">set_resolution</span> <span class="o">=</span> <span class="n">resolution</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+      
+      <span class="k">if</span> <span class="n">set_resolution</span> <span class="o">!=</span> <span class="s2">&quot;SECOND&quot;</span><span class="p">:</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">get_historical_data</span><span class="p">(</span><span class="n">gap</span><span class="o">.</span><span class="n">instrument</span><span class="p">,</span><span class="n">set_resolution</span><span class="p">,</span><span class="n">gap</span><span class="o">.</span><span class="n">start_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">),</span><span class="n">gap</span><span class="o">.</span><span class="n">end_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="BacktestingServer.get_historical_price_gaps">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.BacktestingServer.get_historical_price_gaps">[docs]</a>
+  <span class="k">def</span> <span class="nf">get_historical_price_gaps</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">previous_days</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="n">HistoricalPriceGap</span><span class="p">]:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot; Getting all historical data price gaps for the given instrument.</span>
+<span class="sd">    </span>
+<span class="sd">      Parameters</span>
+<span class="sd">      ----------</span>
+<span class="sd">      instrument: ig_package.Instrument</span>
+<span class="sd">        Instrument to get price gaps for.</span>
+<span class="sd">      previous_days: int</span>
+<span class="sd">        Number of days previously to check.</span>
+<span class="sd">      </span>
+<span class="sd">      Returns</span>
+<span class="sd">      -------</span>
+<span class="sd">      list[HistoricalPriceGap]</span>
+<span class="sd">        List of all historical data price gaps.&quot;&quot;&quot;</span>
+    <span class="c1"># Getting datetime.</span>
+    <span class="n">current_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">now</span><span class="p">()</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+    <span class="n">previous_epoch</span> <span class="o">=</span> <span class="n">current_datetime</span> <span class="o">-</span> <span class="p">(</span><span class="n">previous_days</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">60</span> <span class="o">*</span> <span class="mi">24</span><span class="p">)</span>
+    <span class="n">previous_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">previous_epoch</span><span class="p">)</span>
+    <span class="n">previous_datetime_str</span> <span class="o">=</span> <span class="n">previous_datetime</span><span class="o">.</span><span class="n">strftime</span><span class="p">(</span><span class="s2">&quot;%Y-%m-</span><span class="si">%d</span><span class="s2"> %H:%M:%S&quot;</span><span class="p">)</span>
+    <span class="c1"># Requesting all data within timeframe for datetime index.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">execute</span><span class="p">(</span><span class="s2">&quot;SELECT DatetimeIndex FROM </span><span class="si">{}</span><span class="s2">_HistoricalDataset WHERE DatetimeIndex &gt; &#39;</span><span class="si">{}</span><span class="s2">&#39;;&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">name</span><span class="o">.</span><span class="n">replace</span><span class="p">(</span><span class="s2">&quot; &quot;</span><span class="p">,</span><span class="s2">&quot;_&quot;</span><span class="p">),</span><span class="n">previous_datetime_str</span><span class="p">))</span>
+    <span class="n">results</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">cursor</span><span class="o">.</span><span class="n">fetchall</span><span class="p">()</span>
+    <span class="c1"># Getting all time differences.</span>
+    <span class="n">time_differences</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">index</span><span class="p">,</span><span class="n">datetime_index</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">results</span><span class="p">):</span>
+      <span class="k">if</span> <span class="n">index</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="n">gap</span> <span class="o">=</span> <span class="n">HistoricalPriceGap</span><span class="p">(</span><span class="n">instrument</span><span class="p">,</span><span class="n">results</span><span class="p">[</span><span class="n">index</span><span class="o">-</span><span class="mi">1</span><span class="p">][</span><span class="mi">0</span><span class="p">],</span><span class="n">datetime_index</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+        <span class="n">time_differences</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">gap</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">time_differences</span></div>
 </div>
 
 
@@ -869,7 +943,76 @@
     <span class="k">return</span> <span class="n">instrument_list</span></div>
 </div>
 
+
+<span class="c1"># - - - - - - - - - - - - - -</span>
+
+<div class="viewcode-block" id="HistoricalPriceGap">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.HistoricalPriceGap">[docs]</a>
+<span class="k">class</span> <span class="nc">HistoricalPriceGap</span><span class="p">():</span>
+<span class="w">  </span><span class="sd">&quot;&quot;&quot; Class for representing a gap in the historical price data of an Instrument.&quot;&quot;&quot;</span>
+
+  <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span><span class="p">,</span> <span class="n">start_datetime</span><span class="p">:</span> <span class="n">datetime</span><span class="p">,</span> <span class="n">end_datetime</span><span class="p">:</span> <span class="n">datetime</span><span class="p">):</span>
+    <span class="c1"># Instrument and opening hours.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="p">:</span> <span class="n">ig_package</span><span class="o">.</span><span class="n">Instrument</span> <span class="o">=</span> <span class="n">instrument</span>
+    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">open_time</span> <span class="ow">and</span> <span class="bp">self</span><span class="o">.</span><span class="n">instrument</span><span class="o">.</span><span class="n">close_time</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">open_time</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">open_time</span><span class="p">[:</span><span class="mi">2</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">open_time</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]))</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">close_time</span> <span class="o">=</span> <span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">close_time</span><span class="p">[:</span><span class="mi">2</span><span class="p">]),</span><span class="nb">int</span><span class="p">(</span><span class="n">instrument</span><span class="o">.</span><span class="n">close_time</span><span class="p">[</span><span class="o">-</span><span class="mi">2</span><span class="p">:]))</span>
+    <span class="k">else</span><span class="p">:</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">open_time</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+      <span class="bp">self</span><span class="o">.</span><span class="n">close_time</span> <span class="o">=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
+
+    <span class="c1"># Datetimes.</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">start_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">start_datetime</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">end_datetime</span><span class="p">:</span> <span class="n">datetime</span> <span class="o">=</span> <span class="n">end_datetime</span>
+
+    <span class="c1"># Calculating time range.</span>
+    <span class="n">start_epoch</span> <span class="o">=</span> <span class="n">start_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+    <span class="n">end_epoch</span> <span class="o">=</span> <span class="n">end_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+    <span class="n">current_starting_day_epoch</span> <span class="o">=</span> <span class="p">(</span><span class="n">start_epoch</span> <span class="o">//</span> <span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="p">))</span> <span class="o">*</span> <span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">current_ending_day_epoch</span> <span class="o">=</span> <span class="n">current_starting_day_epoch</span> <span class="o">+</span> <span class="p">(</span><span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span><span class="p">)</span>
+    <span class="n">running_time_range</span> <span class="o">=</span> <span class="mi">0</span>
     
+    <span class="k">while</span> <span class="n">current_starting_day_epoch</span> <span class="o">&lt;</span> <span class="n">end_epoch</span><span class="p">:</span>
+      <span class="c1"># Checking current day.</span>
+      <span class="n">day_int</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">current_starting_day_epoch</span><span class="p">)</span><span class="o">.</span><span class="n">weekday</span><span class="p">()</span>
+      <span class="k">if</span> <span class="n">day_int</span> <span class="o">&lt;</span> <span class="mi">5</span><span class="p">:</span>
+        <span class="c1"># Get open/close datetimes for current day.</span>
+        <span class="n">current_day_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="o">.</span><span class="n">fromtimestamp</span><span class="p">(</span><span class="n">current_starting_day_epoch</span><span class="p">)</span>
+        <span class="n">current_day_open_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">month</span><span class="p">,</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">day</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">open_time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">open_time</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">current_day_close_datetime</span> <span class="o">=</span> <span class="n">datetime</span><span class="p">(</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">month</span><span class="p">,</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">day</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">close_time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">close_time</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">close_time</span> <span class="o">!=</span> <span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span> <span class="k">else</span> <span class="n">datetime</span><span class="p">(</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">year</span><span class="p">,</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">month</span><span class="p">,</span><span class="n">current_day_datetime</span><span class="o">.</span><span class="n">day</span> <span class="o">+</span> <span class="mi">1</span><span class="p">,</span><span class="bp">self</span><span class="o">.</span><span class="n">close_time</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span><span class="bp">self</span><span class="o">.</span><span class="n">close_time</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+        
+        <span class="c1"># Checking start to trading hours.</span>
+        <span class="k">if</span> <span class="n">current_day_close_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">&lt;</span> <span class="n">end_epoch</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">start_epoch</span> <span class="o">&lt;=</span> <span class="n">current_day_open_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">():</span>
+            <span class="n">running_time_range</span> <span class="o">+=</span> <span class="n">current_day_close_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">-</span> <span class="n">current_day_open_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+          <span class="k">elif</span> <span class="n">start_epoch</span> <span class="o">&gt;</span> <span class="n">current_day_open_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="ow">and</span> <span class="n">start_epoch</span> <span class="o">&lt;</span> <span class="n">current_day_close_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">():</span>
+            <span class="n">running_time_range</span> <span class="o">+=</span> <span class="n">current_day_close_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="o">-</span> <span class="n">start_epoch</span>
+        <span class="k">else</span><span class="p">:</span>
+          <span class="k">if</span> <span class="n">start_epoch</span> <span class="o">&lt;=</span> <span class="n">current_day_open_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">():</span>
+            <span class="n">running_time_range</span> <span class="o">+=</span> <span class="n">end_epoch</span> <span class="o">-</span> <span class="n">current_day_open_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span>
+          <span class="k">elif</span> <span class="n">start_epoch</span> <span class="o">&gt;</span> <span class="n">current_day_open_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">()</span> <span class="ow">and</span> <span class="n">start_epoch</span> <span class="o">&lt;</span> <span class="n">current_day_close_datetime</span><span class="o">.</span><span class="n">timestamp</span><span class="p">():</span>
+            <span class="n">running_time_range</span> <span class="o">+=</span> <span class="n">end_epoch</span> <span class="o">-</span> <span class="n">start_epoch</span>
+
+      <span class="n">current_starting_day_epoch</span> <span class="o">+=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span>
+      <span class="n">current_ending_day_epoch</span> <span class="o">+=</span> <span class="mi">60</span><span class="o">*</span><span class="mi">60</span><span class="o">*</span><span class="mi">24</span>
+      <span class="n">start_epoch</span> <span class="o">=</span> <span class="n">current_starting_day_epoch</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">time_range</span> <span class="o">=</span> <span class="n">running_time_range</span>
+
+<div class="viewcode-block" id="HistoricalPriceGap.__lt__">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.HistoricalPriceGap.__lt__">[docs]</a>
+  <span class="k">def</span> <span class="fm">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_range</span> <span class="o">&lt;</span> <span class="n">other</span><span class="o">.</span><span class="n">time_range</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+
+  
+<div class="viewcode-block" id="HistoricalPriceGap.__gt__">
+<a class="viewcode-back" href="../../autoapi/backtesting_server/main/index.html#backtesting_server.HistoricalPriceGap.__gt__">[docs]</a>
+  <span class="k">def</span> <span class="fm">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">other</span><span class="p">):</span>
+    <span class="n">result</span> <span class="o">=</span> <span class="kc">True</span> <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">time_range</span> <span class="o">&gt;</span> <span class="n">other</span><span class="o">.</span><span class="n">time_range</span> <span class="k">else</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">result</span></div>
+</div>
+
+
 <span class="c1"># - - - - - - - - - - - - - -</span>
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>

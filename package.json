@@ -1,6 +1,6 @@
 {
   "name": "backtesting_server",
-  "version": "0.6.0",
+  "version": "0.7.0",
   "description": "Package for transferring backtesting data to a MySQL server.",
   "main": "index.js",
   "directories": {

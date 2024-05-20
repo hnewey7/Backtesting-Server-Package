@@ -214,6 +214,29 @@ Module Contents
       :rtype: pd.DataFrame
 
 
+   .. py:method:: patch_entire_historical_data(ig: ig_package.IG, previous_days: int) -> None
+
+      Checking all historical data stored on the server and ensuring no gaps within the data. If the patch necessary is more severe (greater gap in data), higher resolution patch applied and repeated until patched.
+
+      :param ig: IG object.
+      :type ig: ig_package.IG
+      :param previous_days: Previous days to patch historical data.
+      :type previous_days: int
+
+
+   .. py:method:: get_historical_price_gaps(instrument: ig_package.Instrument, previous_days: int) -> list[HistoricalPriceGap]
+
+      Getting all historical data price gaps for the given instrument.
+
+      :param instrument: Instrument to get price gaps for.
+      :type instrument: ig_package.Instrument
+      :param previous_days: Number of days previously to check.
+      :type previous_days: int
+
+      :returns: List of all historical data price gaps.
+      :rtype: list[HistoricalPriceGap]
+
+
 
 .. py:class:: InstrumentGroup(name: str, cursor: pymysql.cursors.Cursor)
 
@@ -244,6 +267,22 @@ Module Contents
 
       :returns: List of Instrument objects from the Instrument Group.
       :rtype: list[ig_package.Instrument]
+
+
+
+.. py:class:: HistoricalPriceGap(instrument: ig_package.Instrument, start_datetime: datetime.datetime, end_datetime: datetime.datetime)
+
+
+   Class for representing a gap in the historical price data of an Instrument.
+
+   .. py:method:: __lt__(other)
+
+      Return self<value.
+
+
+   .. py:method:: __gt__(other)
+
+      Return self>value.
 
 
 
