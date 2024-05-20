@@ -649,6 +649,43 @@ class BacktestingServer():
     df.set_index("Datetime",inplace=True)
     return df
 
+  def patch_entire_historical_data(self, ig: ig_package.IG, previous_days: int) -> None:
+    """ Checking all historical data stored on the server and ensuring no gaps within the data. If the patch necessary is more severe (greater gap in data), higher resolution patch applied and repeated until patched.
+    
+    Parameters
+    ----------
+    ig: ig_package.IG
+      IG object.
+    previous_days: int
+      Previous days to patch historical data."""
+    # Getting all instruments with historical data on the server.
+    uploaded_instruments = self.get_uploaded_instruments(ig)
+    # Getting all gaps in instruments.
+    gaps: list[HistoricalPriceGap] = []
+    for instrument in uploaded_instruments:
+      gaps.extend(self.get_historical_price_gaps(instrument,previous_days))
+    # Sorting gaps.
+    gaps.sort(reverse=True)
+
+    # Resolutions.
+    resolutions = {
+      "MINUTE": 60,
+      "MINUTE_15": 15*60,
+      "HOUR": 60*60,
+      "HOUR_4": 4*60*60,
+      "DAY": 24*60*60
+    }
+
+    # Filling in all gaps.
+    set_resolution = "SECOND"
+    for gap in gaps:
+      for resolution in resolutions.items():
+        if gap.time_range / resolution[1] < 1:
+          break
+        set_resolution = resolution[0]
+      
+      if set_resolution != "SECOND":
+        self.get_historical_data(gap.instrument,set_resolution,gap.start_datetime.strftime("%y-%m-%d %H:%M:%S"),gap.end_datetime.strftime("%y-%m-%d %H:%M:%S"))
 
   def get_historical_price_gaps(self, instrument: ig_package.Instrument, previous_days: int) -> list[HistoricalPriceGap]:
     """ Getting all historical data price gaps for the given instrument.
